@@ -5,14 +5,26 @@ namespace skDB{
     class SQLStmt{};
 
     enum SQLStmtType{
-        SQL_SELECT,
-        SQL_INSERT,
-        SQL_UPDATE,
-        SQL_DELETE,
-        SQL_CREATE,
-        SQL_DROP,
-        SQL_USE,
-        SQL_SHOW,
+        skDB_SQL_SELECT,
+        skDB_SQL_INSERT,
+        skDB_SQL_UPDATE,
+        skDB_SQL_DELETE,
+        skDB_SQL_CREATE,
+        skDB_SQL_DROP,
+        skDB_SQL_USE,
+        skDB_SQL_SHOW,
+    };
+
+    class SQLStmt{
+        public: 
+            explicit SQLStmt(SQLStmtType type);
+
+            SQLStmtType type() const;
+
+            virtual ~SQLStmt();
+        
+        private:
+            SQLStmtType type_;
     };
     
 }

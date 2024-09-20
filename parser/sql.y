@@ -3,6 +3,16 @@
 int yylex(void);
 void yyerror(const char * s);
 %}
+
+%code requires{
+#include "sql/stmts.h"
+using namespace skDB; 
+}
+
+%destructor{
+    free($$);
+}<str>
+
 #define api.token.prefix {SQL_}
 
 %token CREATE USE SHOW TABLE TABLES FROM

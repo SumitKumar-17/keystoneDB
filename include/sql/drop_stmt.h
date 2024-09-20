@@ -3,7 +3,19 @@
 #include "stmt.h"
 
 namespace skDB {
+    enum DropType{
+        DropTable,
+        DropDatabase,
+    };
+
     class DropStmt : SQLStmt {
+        public: 
+            explicit DropStmt(DropType type);
+
+            char *name{};
+            DropType type;
+        
+        private:
     };
 }
 

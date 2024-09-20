@@ -3,7 +3,10 @@
 #include "stmt.h"
 
 namespace skDB{
-    enum CreateStmtType{};
+    enum CreateStmtType{
+        DATABASE,
+        TABLE
+    };
 
     class CreateStmt : SQLStmt{
     };
