@@ -1,5 +1,8 @@
 #ifndef STMTS_H
 #define STMTS_H
+#include <vector>
+#include "parser_result.h"
+#include "table.h"
 #include "create_stmt.h"
 #include "delete_stmt.h"
 #include "drop_stmt.h"

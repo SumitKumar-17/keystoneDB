@@ -12,7 +12,8 @@ project(skDB
 
 add_executable(${PROJECT_NAME} main.cpp
         sql_lexer.cpp
-        sql.tab.h
+        sql_lexer.h
+        sql.tab.cpp
         sql.tab.hpp
         include/sql/exp.h
         include/sql/delete_stmt.h
@@ -27,7 +28,18 @@ add_executable(${PROJECT_NAME} main.cpp
         include/sql/stmts.h
         sql/drop_stmt.cpp
         sql/stmt.cpp
+        include/sql/table.h
+        include/sql/parser_result.h
 )
+
+add_custom_command(
+        OUTPUT sql_lexer.cpp sql_lexer.h
+        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/parser/sql.l
+        COMMAND flex -o sql_lexer.cpp --header-file=sql_lexer.h ${CMAKE_CURRENT_SOURCE_DIR}/parser/sql.l
+        COMMENT "Generating lexer"
+        VERBATIM
+)
+
 
 add_custom_command(
         OUTPUT sql.tab.hpp sql.tab.cpp
@@ -36,7 +48,6 @@ add_custom_command(
         COMMENT "Generating parser"
         VERBATIM
 )
-
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 add_custom_target(check

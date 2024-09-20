@@ -8,7 +8,7 @@ namespace skDB{
         TABLE
     };
 
-    class CreateStmt : SQLStmt{
+    class CreateStmt : public SQLStmt{
     };
 }
 

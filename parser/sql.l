@@ -1,4 +1,7 @@
 %option noyywrap
+%option reentrant
+%option nounput
+%option never-interactive
 %option case-insensitive
 %{
 #include <sstream>
@@ -10,6 +13,11 @@
 
 int chars = 0;
 int words = 0;
+const char * lexer_str = nullptr;
+unsigned long slen = 0;
+unsigned long cur = 0;
+
+
 static thread_local std::stringstream strbuf;
 
 %}
@@ -69,6 +77,7 @@ INSERT TOKEN(INSERT)
 IF TOKEN(IF)
 EXISTS TOKEN(EXISTS)
 AND TOKEN(AND)
+EXIT TOKEN(EXIT)
 
 
  /* Operator */
@@ -103,7 +112,7 @@ AND TOKEN(AND)
 
  /*  \"[^\"\n]+\"  { printf("id: %s\n",yytext); } */
 
-[A-Za-z][A-Za-z0-9_]* { yyval.str=strdup(yytext); return SQL_IDENTIFIER; }
+[A-Za-z][A-Za-z0-9_]* { yylval.str = strdup(yytext); return SQL_IDENTIFIER; }
 
 
 
@@ -113,7 +122,7 @@ AND TOKEN(AND)
 \' { BEGIN(single_quoted_string); strbuf.clear();strbuf.str(""); }
 <single_quoted_string>\'\' { strbuf<<'\''; }
 <single_quoted_string>[^']* { strbuf<<yytext;}
-<single_quoted_string>\' { BEGIN(INITIAL); printf("%s\n",strbuf.str().c_str()); yyval.str=strdup(strbuf.str().c_str()); return SQL_STRING; }
+<single_quoted_string>\' { BEGIN(INITIAL); printf("%s\n",strbuf.str().c_str());yylval.str= strdup(strbuf.str().c_str()); return SQL_STRING; }
 
 <single_quoted_string><<EOF>> { fprintf(stderr,"[SQL-Lexer-Error] Unterminated string\n"); return 0;}
 
@@ -124,6 +133,6 @@ AND TOKEN(AND)
 
 %%
 
-int yyerror(const char *msg) {
-    fprintf(stderr, "[SQL-Lexer-Error] %s\n",msg); return 0;
-}
+// int yyerror(const char *msg) {
+//     fprintf(stderr, "[SQL-Lexer-Error] %s\n",msg); return 0;
+// }
