@@ -12,15 +12,18 @@ project(skDB
 
 add_executable(${PROJECT_NAME} main.cpp
         sql_lexer.cpp
+        sql.tab.h
+        sql.tab.hpp
 )
 
 add_custom_command(
-        OUTPUT sql_lexer.cpp
-        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/parser/sql.l
-        COMMAND flex -o sql_lexer.cpp ${CMAKE_CURRENT_SOURCE_DIR}/parser/sql.l
-        COMMENT "Generating lexer"
+        OUTPUT sql.tab.hpp sql.tab.cpp
+        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/parser/sql.y
+        COMMAND bison --output sql.tab.cpp -d ${CMAKE_CURRENT_SOURCE_DIR}/parser/sql.y
+        COMMENT "Generating parser"
         VERBATIM
 )
+
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 add_custom_target(check
