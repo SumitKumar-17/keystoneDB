@@ -8,7 +8,8 @@ namespace skDB{
         TABLE
     };
 
-    class CreateStmt : public SQLStmt{
+    class CreateStmt final : public SQLStmt {
+        ~CreateStmt() override;
     };
 }
 
