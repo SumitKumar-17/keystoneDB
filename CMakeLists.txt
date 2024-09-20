@@ -29,3 +29,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/in
 add_custom_target(check
         pwd
 )
+
+add_custom_target(shell
+        ./skDB
+)
+add_dependencies(shell skDB)
