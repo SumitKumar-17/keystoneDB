@@ -158,8 +158,11 @@ insert_value
 
 
     /****** DROP statement (example: DROP TABLE students;) ******/
- drop_statement
- : DROP TABLE opt_exists table_name ';'
+drop_statement
+: DROP TABLE opt_exists table_name ';'
+| DROP DATABASE dbname ';'
+
+dbname: IDENTIFIER
 
     /****** SHOW statement (example: SHOW TABLES;) ******/
 show_statement
@@ -195,9 +198,10 @@ select_comma_list ',' column_name
 table_list:
 table_list ',' table_name
 | table_name
-    /****** DELETE ******/
 
+
+    /****** DELETE ******/
 delete_statement:
-DELETE FROM table_name opt_where ';'ment
+DELETE FROM table_name opt_where ';'
 
 %%
