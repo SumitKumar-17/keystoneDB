@@ -106,3 +106,10 @@ create table t1
 ```
 
 [Another link](https://github.com/facebook/mysql-5.6/wiki/MyRocks-data-dictionary-format)
+
+
+[Another link](https://github.com/facebook/mysql-5.6/wiki/MyRocks-data-dictionary-format)
+### Compile Protobuf
+```shell
+protoc -I=. --cpp_out=. ./db.proto 
+```

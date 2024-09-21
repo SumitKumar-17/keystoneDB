@@ -1,5 +1,6 @@
 #ifndef STMT_H
 #define STMT_H
+#include <string>
 
 namespace skDB{
     enum SQLStmtType{
@@ -11,6 +12,7 @@ namespace skDB{
         skDB_SQL_DROP,
         skDB_SQL_USE,
         skDB_SQL_SHOW,
+        skDB_SQL_EXIT,
     };
 
     class SQLStmt{
@@ -19,10 +21,17 @@ namespace skDB{
 
             SQLStmtType type() const;
 
+            virtual std::string toString();
+
             virtual ~SQLStmt();
         
         private:
             SQLStmtType type_;
+    };
+
+    class ExitStmt:public SQLStmt{
+        public:
+            ExitStmt();
     };
     
 }

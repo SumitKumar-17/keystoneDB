@@ -17,7 +17,6 @@ namespace skDB{
             explicit CreateStmt(TableName name_);
             CreateStmt(TableName name_,std::vector<DataDefinition *> *list_);
         
-        private:
             TableName name;
             CreateStmtType createType;
             std::vector<DataDefinition *> *list;
