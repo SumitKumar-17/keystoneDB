@@ -111,7 +111,7 @@ statements
 }
 
 statement
-: create_statement {$$=$1}
+: create_statement {$$=$1;}
 | insert_statement {$$=$1;}
 | drop_statement { printf("drop stmt\n"); $$ = $1;}
 | show_statement { printf("show_statement\n");$$ = $1;}
@@ -249,7 +249,7 @@ type
 
 insert_statement
 : INSERT INTO table_name opt_column_list VALUES '(' insert_values ')' ';'  {
-    $$=new InsertStmt($3,$4,$5);
+    $$=new InsertStmt($3,$4,$7);
 }
 
 insert_values
