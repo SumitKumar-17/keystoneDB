@@ -1,8 +1,9 @@
 %{
 #include <stdio.h>
 #include "sql_lexer.h"
+#include "string.h"
 #include "sql/parser_result.h"
-int yyerror(yyscan_t scanner,skDB::ParserResult * result,const char * s);
+int yyerror(yyscan_t scanner,xDB::ParserResult * result,const char * s);
 %}
 %lex-param   { yyscan_t scanner }
 
@@ -10,7 +11,7 @@ int yyerror(yyscan_t scanner,skDB::ParserResult * result,const char * s);
 %parse-param { ParserResult * result }
 %code requires{
 #include "sql/stmts.h"
-using namespace skDB;
+using namespace xDB;
 }
 
 %destructor {
@@ -33,25 +34,26 @@ using namespace skDB;
 %token<int_val> INTVAL
 
 %type<use_stmt> use_statement
-%type select_statement
+%type<select_stmt> select_statement
 %type<insert_stmt> insert_statement
 %type<create_stmt> create_statement
 %type<drop_stmt> drop_statement
-%type delete_statement
+%type<delete_stmt> delete_statement
 %type<show_stmt> show_statement
+%type<update_stmt> update_statement
 %type<stmt> statement
 %type<table_name> table_name dbname
 %type<definition_list> fields_definition
 %type<data_definition> field_type type
 %type<insert_value>  insert_value
-%type opt_exists opt_where
-%type expr operand between_expr logic_expr
-%type scalar_expr unary_expr binary_expr comp_expr
-%type literal string_literal integer_literal
-%type update_clause_comma_list update_clause
-%type select_comma_list table_list select_comma_list_with_star
+%type opt_exists
+%type<exp> expr operand between_expr logic_expr scalar_expr unary_expr binary_expr comp_expr
+%type<exp> literal string_literal integer_literal opt_where
+%type<update_assign_list> update_clause_comma_list
+%type<update_assign> update_clause
+%type<table_list>  table_list
 %type<column_name> column_name
-%type<column_name_list> column_list opt_column_list
+%type<column_name_list> column_list opt_column_list select_comma_list_with_star select_comma_list
 %type<insert_values_list> insert_values
 
 %left OR
@@ -77,24 +79,30 @@ using namespace skDB;
 
 %union{
     char * str;
-    skDB::DropStmt* drop_stmt;
+    xDB::DropStmt* drop_stmt;
     std::vector<SQLStmt*> * stmt_vec;
     TableName table_name;
-    skDB::SQLStmt* stmt;
-    skDB::UseStmt * use_stmt;
-    skDB::ColumnName * column_name;
-    skDB::ShowStmt * show_stmt;
+    xDB::SQLStmt* stmt;
+    xDB::UseStmt * use_stmt;
+    xDB::ColumnName * column_name;
+    xDB::ShowStmt * show_stmt;
     double float_val;
     int int_val;
-    skDB::InsertStmt * insert_stmt;
+    xDB::InsertStmt * insert_stmt;
     std::vector<ColumnName*> *column_name_list;
-    skDB::Parameter *insert_value;
+    xDB::Parameter *insert_value;
     std::vector<Parameter*>* insert_values_list;
-    skDB::DataDefinition* data_definition;
+    xDB::DataDefinition* data_definition;
     std::vector<DataDefinition*>*definition_list;
-    skDB::CreateStmt * create_stmt;
+    xDB::CreateStmt * create_stmt;
+    xDB::Exp * exp;
+    xDB::SelectStmt * select_stmt;
+    std::vector<TableName> * table_list;
+    xDB::DeleteStmt * delete_stmt;
+    UpdateAssign * update_assign;
+    std::vector<UpdateAssign*> * update_assign_list;
+    UpdateStmt * update_stmt;
 }
-
 
 
 %%
@@ -111,14 +119,14 @@ statements
 }
 
 statement
-: create_statement {$$=$1;}
-| insert_statement {$$=$1;}
+: create_statement { $$ = $1 ;}
+| insert_statement { $$ =$1;}
 | drop_statement { printf("drop stmt\n"); $$ = $1;}
 | show_statement { printf("show_statement\n");$$ = $1;}
 | use_statement { printf("use_statement\n"); $$ = $1;}
-| update_statement { printf("update_statement\n"); }
-| select_statement { printf("select_statement\n"); }
-| delete_statement { printf("delete_statement\n"); }
+| update_statement { printf("update_statement\n"); $$ = $1;}
+| select_statement {  $$ = $1;}
+| delete_statement { $$ = $1; }
 
 table_name: IDENTIFIER {
     $$.name = $1;
@@ -159,71 +167,129 @@ column_name
 
 opt_where
 : WHERE expr { }
-| {}
+| { $$=nullptr; }
 
     /****** Expression ******/
 
-expr: operand | between_expr | logic_expr ;
+expr: operand {
+    $$ = $1;
+ }
+| between_expr{
+    $$ = $1;
+}
+| logic_expr { $$ =$1; }
 /* And/Or Priority?? */
 logic_expr
-: expr AND expr
-| expr OR expr
+: expr AND expr {
+    $$ = new BinaryExp(BinaryAND,$1,$3);
+}
+| expr OR expr {
+    $$ = new BinaryExp(BinaryOR,$1,$3);
+}
 
 between_expr
-: operand BETWEEN operand AND operand
+: operand BETWEEN operand AND operand {
+    $$ = new BetweenExpr($1,$3,$5);
+}
 
-operand : '(' expr ')' {}
-| scalar_expr | unary_expr | binary_expr {
-
+operand : '(' expr ')' { $$ = $2; }
+| scalar_expr { $$ = $1; }
+| unary_expr { $$ = $1;}
+| binary_expr {
+    $$ = $1;
 }
 
 scalar_expr
-: column_name | literal
+: column_name{ $$ = new ScalarExp($1);}
+| literal { $$ = $1; }
 
 literal
-: string_literal | integer_literal
+: string_literal { $$ = $1;}
+| integer_literal { $$ = $1;}
+| NULL { $$ = new ScalarExp(); }
 
 string_literal
-: STRING
+: STRING {
+    $$ = new ScalarExp($1);
+}
 
 integer_literal
-: INTVAL
+: INTVAL {
+    $$ = new ScalarExp($1);
+}
 
 unary_expr
-: '-' operand {}
-| operand IS NULL {}
-| operand IS NOT NULL {}
-| NOT operand
+: '-' operand {
+    $$ = new UnaryExp(UnaryNegate,$2);
+}
+| operand IS NULL {
+    $$ = new UnaryExp(UnaryIsNull,$1);
+}
+| operand IS NOT NULL {
+    $$ = new UnaryExp(UnaryIsNotNull,$1);
+}
+| NOT operand {
+    $$ = new UnaryExp(UnaryNot,$2);
+}
 
 binary_expr
-: comp_expr { }
-| operand '-' operand {}
-| operand '+' operand {}
-| operand '/' operand {}
-| operand '*' operand {}
-| operand '%' operand {}
-| operand '^' operand {}
+: comp_expr {
+    $$ = $1;
+}
+| operand '-' operand {
+    $$ = new BinaryExp(BinarySub,$1,$3);
+}
+| operand '+' operand {
+    $$ = new BinaryExp(BinaryAdd,$1,$3);
+}
+| operand '/' operand {
+    $$ = new BinaryExp(BinaryDiv,$1,$3);
+}
+| operand '*' operand {
+    $$ = new BinaryExp(BinaryMul,$1,$3);
+}
+| operand '%' operand {
+    $$ = new BinaryExp(BinaryModulo,$1,$3);
+}
+| operand '^' operand {
+    $$ = new BinaryExp(BinaryXOR,$1,$3);
+}
 
 
 
-comp_expr: operand '=' operand
-| operand EQUALS operand
-| operand NOTEQUALS operand
-| operand GREATEQ operand
-| operand LESSEQ operand
-| operand '>' operand
-| operand '<' operand
+comp_expr: operand '=' operand{
+    $$ = new BinaryExp(BinaryEquals,$1,$3);
+}
+| operand EQUALS operand{
+     $$ = new BinaryExp(BinaryEquals,$1,$3);
+}
+| operand NOTEQUALS operand {
+     $$ = new BinaryExp(BinaryNotEquals,$1,$3);
+}
+| operand GREATEQ operand {
+     $$ = new BinaryExp(BinaryGreatEQ,$1,$3);
+}
+| operand LESSEQ operand {
+     $$ = new BinaryExp(BinaryLessEQ,$1,$3);
+}
+| operand '>' operand {
+     $$ = new BinaryExp(BinaryGreat,$1,$3);
+}
+| operand '<' operand {
+     $$ = new BinaryExp(BinaryLess,$1,$3);
+}
 
 
 
  /****** CREATE statement ******/
 create_statement
 : CREATE TABLE table_name '(' fields_definition ')' ';'{
-    $$=new CreateStmt($3,$5);
+    $$ = new CreateStmt($3,$5);
 }
 | CREATE DATABASE dbname ';'{
-    $$=new CreateStmt($3);
+    $$ = new CreateStmt($3);
 }
+
 
 fields_definition
 : fields_definition ',' field_type {
@@ -240,6 +306,7 @@ field_type: IDENTIFIER type {
     $$->setName($1);
 }
 
+
 type
 : CHAR '(' INTVAL ')' { $$ = new CharDefinition(CHAR,$3); }
 | INT { $$ = new DataDefinition(INTEGER); }
@@ -249,8 +316,8 @@ type
 
 insert_statement
 : INSERT INTO table_name opt_column_list VALUES '(' insert_values ')' ';'  {
-    $$=new InsertStmt($3,$4,$7);
-}
+    $$ = new InsertStmt($3,$4,$7);
+ }
 
 insert_values
 : insert_values ',' insert_value {
@@ -309,36 +376,74 @@ insert_value
 
    /****** UPDATE ******/
  update_statement
- : UPDATE table_name SET update_clause_comma_list opt_where ';'
+ : UPDATE table_name SET update_clause_comma_list opt_where ';'{
+    $$ = new UpdateStmt($2,$4,$5);
+ }
 
  update_clause_comma_list:
- update_clause_comma_list ',' update_clause
-| update_clause
+ update_clause_comma_list ',' update_clause {
+    $$ = $1;
+    $$->push_back($3);
+ }
+| update_clause {
+    $$ = new std::vector<UpdateAssign*>();
+    $$->push_back($1);
+}
 
  /* can be improved */
-update_clause: column_name '=' expr
+update_clause: column_name '=' expr {
+    $$ = new UpdateAssign($1,$3);
+}
 
 
 /****** SELECT (select )******/
 select_statement
-: SELECT select_comma_list_with_star FROM table_list opt_where ';'
+: SELECT select_comma_list_with_star FROM table_list opt_where ';'{
+    $$ = new SelectStmt($2,$4,$5);
+}
 
 select_comma_list_with_star
-:'*'
-| '*' ',' select_comma_list
-| select_comma_list
+:'*' {
+    char* s = strdup("*");
+    auto c = new ColumnName(nullptr,nullptr,s);
+    $$ = new std::vector<ColumnName*>();
+    $$->push_back(c);
+}
+| '*' ',' select_comma_list {
+    char * s = strdup("*");
+    auto c = new ColumnName(nullptr,nullptr,s);
+    $3->insert($3->begin(),c);
+    $$ = $3;
+}
+| select_comma_list {
+    $$ = $1;
+}
 
 select_comma_list:
-select_comma_list ',' column_name
-| column_name
+select_comma_list ',' column_name {
+    $$ = $1;
+    $$->push_back($3);
+}
+| column_name {
+    $$ = new std::vector<ColumnName*>();
+    $$->push_back($1);
+}
 
 table_list:
-table_list ',' table_name
-| table_name
+table_list ',' table_name {
+    $$ = $1;
+    $$->push_back($3);
+}
+| table_name {
+    $$ = new std::vector<TableName>();
+    $$->push_back($1);
+}
 
 /****** DELETE ******/
 delete_statement:
-DELETE FROM table_name opt_where ';'
+DELETE FROM table_name opt_where ';' {
+    $$ = new DeleteStmt($3,$4);
+}
 
 %%
 
