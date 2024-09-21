@@ -62,13 +62,13 @@ void fort_test() {
 
 void protobuf_test() {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
-    auto person = xDB::Person();
+    auto person = skDB::Person();
     person.set_id(42);
     person.set_name("hello");
     std::string output;
     bool ok = person.SerializeToString(&output);
     assert(ok);
-    auto decode = xDB::Person();
+    auto decode = skDB::Person();
     ok = decode.ParseFromString(output);
     assert(ok);
     std::cout << "protobuf test ended";

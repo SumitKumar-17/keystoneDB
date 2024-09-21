@@ -27,7 +27,7 @@ namespace skDB{
             explicit DataDefinition(DataType type_);
             virtual ~DataDefinition();
             void setName(char *data_name);
-        private:
+        // private:
             DataType type;
             char *data_name;
     };

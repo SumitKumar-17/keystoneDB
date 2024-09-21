@@ -2,8 +2,9 @@
 #include <iostream>
 #include "sql/parser_result.h"
 
-namespace skDB{
+namespace skDB {
     Executor::Executor() = default;
+
 
     bool Executor::execute(ParserResult *results) {
         for (auto &result: *results->getStatements()) {
@@ -16,22 +17,23 @@ namespace skDB{
 
     bool Executor::dispatch(SQLStmt *stmt) {
         switch (stmt->type()) {
-            case skDB_SQL_USE:
+            case xSQL_USE:
+                executeUseStmt(dynamic_cast<UseStmt *>(stmt));
                 break;
-            case skDB_SQL_DROP:
+            case xSQL_DROP:
                 break;
-            case skDB_SQL_SHOW:
+            case xSQL_SHOW:
                 break;
-            case skDB_SQL_DELETE:
+            case xSQL_DELETE:
                 break;
-            case skDB_SQL_INSERT:
+            case xSQL_INSERT:
                 break;
-            case skDB_SQL_CREATE:
+            case xSQL_CREATE:
                 executeCreateStmt(dynamic_cast<CreateStmt *>(stmt));
                 break;
-            case skDB_SQL_EXIT:
+            case xSQL_EXIT:
                 return false;
-            case skDB_SQL_SELECT:
+            case xSQL_SELECT:
                 break;
             default:
                 break;
@@ -48,7 +50,7 @@ namespace skDB{
     }
 
     bool ExecutionResult::ok() {
-        return true
+        return true;
     }
 
     bool Executor::init() {
@@ -62,6 +64,7 @@ namespace skDB{
         // if (status.ok()) status = db->Get(rocksdb::ReadOptions(), "2", &value);
         // std::cout << status.ok();
         // assert(status.ok());
+
         // status = db->Delete(rocksdb::WriteOptions(), "1");
         // assert(status.ok());
     }
