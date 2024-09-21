@@ -9,7 +9,7 @@ namespace skDB {
      class SelectStmt : public SQLStmt {
     public:
         SelectStmt(std::vector<ColumnName *> *column_names_, std::vector<TableName> *table_names_, Exp *whereExp_);
-    private:
+    // private:
         std::vector<ColumnName *> *column_names;
         std::vector<TableName> *table_names;
         Exp *whereExp;

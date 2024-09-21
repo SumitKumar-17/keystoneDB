@@ -1,5 +1,6 @@
 #include "execution/executor.h"
 #include <iostream>
+
 #include "sql/parser_result.h"
 
 namespace skDB {
@@ -36,6 +37,7 @@ namespace skDB {
             case skDB_SQL_EXIT:
                 return false;
             case skDB_SQL_SELECT:
+                executeSelectStmt(dynamic_cast<SelectStmt *>(stmt));
                 break;
             default:
                 std::cout << "Unknown SQL statement type" << std::endl;
@@ -70,5 +72,19 @@ namespace skDB {
 
         // status = db->Delete(rocksdb::WriteOptions(), "1");
         // assert(status.ok());
+    }
+
+    Column TempRow::column(int index) {
+        return columns_[index];
+    }
+
+    void TempRow::addColumn(const Column &column) {
+        columns_.push_back(column);
+    }
+
+    void TempRow::addColumns(const Row &row) {
+        for (const auto &col: row.columns()) {
+            columns_.push_back(col);
+        }
     }
 }
