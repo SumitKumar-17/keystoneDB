@@ -19,6 +19,11 @@ DROP TABLE user;
 
 ## Build
 
+To get the third party dependencies, run:
+```shell
+git submodule init
+```
+
 ```shell
 mkdir build
 cd build
