@@ -6,19 +6,19 @@
 #include "table.h"
 
 namespace skDB {
-    enum DropType{
+    enum DropType {
         DropTable,
         DropDatabase,
     };
 
-    class DropStmt :public SQLStmt {
-        public: 
-            explicit DropStmt(DropType type,TableName name_);
+    class DropStmt : public SQLStmt {
+    public:
+        explicit DropStmt(DropType type, TableName name_);
 
-            TableName name{};
-            DropType type;
-        
-        private:
+        TableName name{};
+        DropType type;
+
+    private:
     };
 }
 

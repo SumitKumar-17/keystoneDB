@@ -2,8 +2,6 @@
 #define STMT_H
 
 namespace skDB{
-    class SQLStmt{};
-
     enum SQLStmtType{
         skDB_SQL_SELECT,
         skDB_SQL_INSERT,

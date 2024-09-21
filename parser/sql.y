@@ -42,7 +42,7 @@ using namespace skDB;
 %type<stmt> statement
 %type<table_name> table_name dbname
 %type fields_definition field_type field type
-%type<insert_value> insert_value
+%type<insert_value>  insert_value
 %type opt_exists opt_where
 %type expr operand between_expr logic_expr
 %type scalar_expr unary_expr binary_expr comp_expr
@@ -51,7 +51,7 @@ using namespace skDB;
 %type select_comma_list table_list select_comma_list_with_star
 %type<column_name> column_name
 %type<column_name_list> column_list opt_column_list
-%type<insert_values_list> insert_value
+%type<insert_values_list> insert_values
 
 %left OR
 %left AND
@@ -108,8 +108,8 @@ statement
 : create_statement {}
 | insert_statement {printf("insert\n");}
 | drop_statement { printf("drop stmt\n"); $$ = $1;}
-| show_statement { printf("show_statement\n");$$=$1;}
-| use_statement { printf("use_statement\n"); $$=$1;}
+| show_statement { printf("show_statement\n");$$ = $1;}
+| use_statement { printf("use_statement\n"); $$ = $1;}
 | update_statement { printf("update_statement\n"); }
 | select_statement { printf("select_statement\n"); }
 | delete_statement { printf("delete_statement\n"); }
@@ -126,6 +126,7 @@ table_name: IDENTIFIER {
 opt_exists: IF EXISTS {}
 | /* empty */ { }
 
+opt_column_list:
 '(' column_list ')' { $$ = $2;}
 |  { $$ = nullptr;}
 
@@ -140,14 +141,14 @@ column_list ',' column_name {
 }
 
 column_name
-: IDENTIFIER {
-    $$=new ColumnName(nullptr,nullptr,$1);
+: IDENTIFIER{
+    $$ = new ColumnName(nullptr,nullptr,$1);
 }
 | IDENTIFIER '.' IDENTIFIER {
-    $$=new ColumnName(nullptr,$1,$3);
+    $$ = new ColumnName(nullptr,$1,$3);
 }
 | IDENTIFIER '.' IDENTIFIER '.' IDENTIFIER{
-    $$=new ColumnName($1,$3,$5);
+   $$ = new ColumnName($1,$3,$5);
 }
 
 opt_where
@@ -225,9 +226,13 @@ type
 | INT {}
 | INTEGER
 
-    /****** INSERT statement ******/
+ /****** INSERT statement ******/
+
 insert_statement
-: INSERT INTO table_name opt_column_list VALUES '(' insert_values ')' ';'  { }
+: INSERT INTO table_name opt_column_list VALUES '(' insert_values ')' ';'  {
+
+
+ }
 
 insert_values
 : insert_values ',' insert_value {
@@ -251,24 +256,24 @@ insert_value
 }
 
 
-    /****** DROP statement (example: DROP TABLE students;) ******/
-drop_statement
-: DROP TABLE opt_exists table_name ';' {
-$$ = new DropStmt(DropTable,$4);
+ /****** DROP statement (example: DROP TABLE students;) ******/
+ drop_statement
+ : DROP TABLE opt_exists table_name ';' {
+   $$ = new DropStmt(DropTable,$4);
 
-}
-| DROP DATABASE opt_exists dbname ';' {
-$$ = new DropStmt(DropDatabase,$4);
-}
+ }
+ | DROP DATABASE opt_exists dbname ';' {
+    $$ = new DropStmt(DropDatabase,$4);
+ }
 
-dbname:
-    IDENTIFIER {
-        $$.name = nullptr;
-        $$.schema = $1;
-}
+ dbname:
+ IDENTIFIER {
+    $$.name = nullptr;
+    $$.schema = $1;
+ }
 
-    /****** SHOW (SHOW TABLES) ******/
-show_statement
+ /****** SHOW (SHOW TABLES) ******/
+ show_statement
  : SHOW TABLES ';' {
     $$ = new ShowStmt(ShowTables);
  }
@@ -276,26 +281,27 @@ show_statement
     $$ = new ShowStmt(ShowTables);
  }
 
-    /****** USE ( USE example; ) ******/
-use_statement
-: USE table_name ';'{
-    $$=new UseStmt($2);
-}
+ /****** USE ( USE example; ) ******/
+
+ use_statement
+ : USE dbname ';'{
+    $$ = new UseStmt($2);
+ }
 
 
    /****** UPDATE ******/
-update_statement
-: UPDATE table_name SET update_clause_comma_list opt_where ';'
+ update_statement
+ : UPDATE table_name SET update_clause_comma_list opt_where ';'
 
-update_clause_comma_list:
-update_clause_comma_list ',' update_clause
+ update_clause_comma_list:
+ update_clause_comma_list ',' update_clause
 | update_clause
 
  /* can be improved */
 update_clause: column_name '=' expr
 
 
-    /****** SELECT (select )******/
+/****** SELECT (select )******/
 select_statement
 : SELECT select_comma_list_with_star FROM table_list opt_where ';'
 
@@ -312,7 +318,7 @@ table_list:
 table_list ',' table_name
 | table_name
 
-    /****** DELETE ******/
+/****** DELETE ******/
 delete_statement:
 DELETE FROM table_name opt_where ';'
 
