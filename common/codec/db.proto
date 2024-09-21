@@ -1,26 +1,25 @@
 syntax = "proto2";
-package xDB;
+package skDB;
 
-message Person{
+message Person {
   optional string name = 1;
   optional int32 id = 2;
-  enum PersonType{
+  enum PersonType {
     STUDENT = 0;
   }
 }
 
-
-message Column{
-  enum ColumnType{
+message Column {
+  enum ColumnType {
     COLUMN_INT = 0;
     COLUMN_CHAR = 1;
     COLUMN_NULL = 3;
     COLUMN_FLOAT = 4;
   }
 
-  optional  ColumnType type = 1;
-  optional  int32 integer_num = 2;
-  optional  string str = 3;
+  optional ColumnType type = 1;
+  optional int32 integer_num = 2;
+  optional string str = 3;
   optional double float_num = 4;
 }
 
@@ -33,8 +32,8 @@ message TableMetadata {
   optional uint64 nextId = 2;
 }
 
-message DBDefinition{
-  enum DefinitionType{
+message DBDefinition {
+  enum DefinitionType {
     INTEGER = 1;
     CHAR = 2;
     FLOAT = 3;

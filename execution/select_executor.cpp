@@ -231,7 +231,7 @@ namespace skDB {
                         table << column.integer_num();
                         break;
                     case Column::COLUMN_CHAR:
-                        table << column.str()
+                        table << column.str();
                         break;
                     case Column::COLUMN_NULL:
                         table << "NULL";
