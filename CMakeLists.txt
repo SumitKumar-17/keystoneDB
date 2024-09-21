@@ -3,7 +3,7 @@ set(BUILD_SHARED_LIBS OFF)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_compile_options(-Wall)
-#testing
+# testing is required
 enable_testing()
 
 cmake_minimum_required(VERSION 3.15)
@@ -89,28 +89,31 @@ target_include_directories(${PROJECT_NAME}_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR
 add_subdirectory(test)
 add_subdirectory(third_party/googletest)
 
-target_link_libraries(skDB ${CMAKE_CURRENT_SOURCE_DIR}/third_party/rocksdb/librocksdb.a)
+target_link_directories(skDB PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/third_party/rocksdb)
 
-find_library(LZ4_LIB lz4)
+target_link_libraries(skDB PRIVATE rocksdb)
+
+find_library(LZ4_LIB lz4 REQUIRED)
 message(STATUS "finding ${LZ4_LIB}")
 
-find_library(ZSTD_LIB zstd)
+find_library(ZSTD_LIB zstd REQUIRED)
 message(STATUS "finding ${ZSTD_LIB}")
 
-find_library(SNAPPY snappy)
+find_library(SNAPPY snappy REQUIRED)
 message(STATUS "finding ${SNAPPY}")
 
-find_library(BZ2 bz2)
+find_library(BZ2 bz2 REQUIRED)
 message(STATUS "finding ${BZ2}")
 
-find_library(gFLAGS gflags)
+find_library(gFLAGS gflags REQUIRED)
 message(STATUS "finding ${gFLAGS}")
 
-find_library(ZLIB z)
+find_library(ZLIB z REQUIRED)
 message(STATUS "finding ${ZLIB}")
 
-target_link_libraries(skDB ${gFLAGS} ${BZ2} ${SNAPPY} ${ZSTD_LIB} ${LZ4_LIB} ${ZLIB})
+#target_link_libraries(skDB PUBLIC ${gFLAGS} ${BZ2} ${SNAPPY} ${ZSTD_LIB} ${LZ4_LIB} ${ZLIB})
 
+target_link_libraries(skDB PUBLIC lz4 zstd snappy bz2 gflags z)
 
 add_custom_target(rocksdb
         COMMAND cd
@@ -118,3 +121,11 @@ add_custom_target(rocksdb
 )
 
 add_dependencies(skDB rocksdb)
+
+# integrate libfort
+
+# Disable building tests and examples in libfort project
+set(FORT_ENABLE_TESTING OFF CACHE INTERNAL "")
+
+add_subdirectory(third_party/libfort)
+target_link_libraries(skDB PRIVATE fort)

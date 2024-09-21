@@ -42,6 +42,22 @@ git submodule add https://github.com/google/googletest.git third_party/googletes
 cd third_party/googletest
 git checkout fa6de7f4382f5c8fb8b9e32eea28a2eb44966c32
 
+
+cd ../../
+
+git submodule add https://github.com/facebook/rocksdb.git third_party/rocksdb
+cd third_party/rocksdb
+git checkout b75438f9860e3cff5e713917ed22e0ac394a758c
+
+
+cd ../../
+
+git submodule add https://github.com/seleznevae/libfort.git third_party/libfort
+
+cd third_party/libfort
+git checkout 41237162a9bd34a30a88069ee4e230584ae8d674
+
+
 ```
 
 ## Tentative Structure
