@@ -21,7 +21,7 @@ namespace skDB {
         void executeSelectStmt(const SelectStmt *select_stmt) const;
         void executeUpdateStmt(const UpdateStmt *update_stmt) const;
         void executeDeleteStmt(const DeleteStmt *delete_stmt) const;
-        void executeDropStmt(const DropStmt *drop_stmt) const;
+        void executeDropStmt(const DropStmt *drop_stmt);
         bool init();
         static std::string MakeTableMetadataPrefix(const std::string &dbname, const std::string &table_name) {
             return TABLE_META_PREFIX + dbname + table_name;
@@ -37,6 +37,8 @@ namespace skDB {
         void createTable(const CreateStmt *stmt) const;
         void showTables() const;
         void showDatabases() const;
+        void dropTable(const DropStmt *drop_stmt) const;
+        void dropDatabase(const DropStmt *drop_stmt);
         std::string currentDB;
         rocksdb::DB *db;
     };
