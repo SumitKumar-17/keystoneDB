@@ -30,7 +30,6 @@ message Row {
 
 message TableMetadata {
   repeated DBDefinition definitions = 1;
-
 }
 
 message DBDefinition{

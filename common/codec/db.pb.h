@@ -46,12 +46,32 @@ struct TableStruct_db_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_db_2eproto;
 namespace skDB {
+class Column;
+struct ColumnDefaultTypeInternal;
+extern ColumnDefaultTypeInternal _Column_default_instance_;
+class DBDefinition;
+struct DBDefinitionDefaultTypeInternal;
+extern DBDefinitionDefaultTypeInternal _DBDefinition_default_instance_;
+class DBMetadata;
+struct DBMetadataDefaultTypeInternal;
+extern DBMetadataDefaultTypeInternal _DBMetadata_default_instance_;
 class Person;
 struct PersonDefaultTypeInternal;
 extern PersonDefaultTypeInternal _Person_default_instance_;
+class Row;
+struct RowDefaultTypeInternal;
+extern RowDefaultTypeInternal _Row_default_instance_;
+class TableMetadata;
+struct TableMetadataDefaultTypeInternal;
+extern TableMetadataDefaultTypeInternal _TableMetadata_default_instance_;
 }  // namespace skDB
 PROTOBUF_NAMESPACE_OPEN
+template<> ::skDB::Column* Arena::CreateMaybeMessage<::skDB::Column>(Arena*);
+template<> ::skDB::DBDefinition* Arena::CreateMaybeMessage<::skDB::DBDefinition>(Arena*);
+template<> ::skDB::DBMetadata* Arena::CreateMaybeMessage<::skDB::DBMetadata>(Arena*);
 template<> ::skDB::Person* Arena::CreateMaybeMessage<::skDB::Person>(Arena*);
+template<> ::skDB::Row* Arena::CreateMaybeMessage<::skDB::Row>(Arena*);
+template<> ::skDB::TableMetadata* Arena::CreateMaybeMessage<::skDB::TableMetadata>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace skDB {
 
@@ -76,6 +96,55 @@ inline bool Person_PersonType_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Person_PersonType* value) {
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Person_PersonType>(
     Person_PersonType_descriptor(), name, value);
+}
+enum Column_ColumnType : int {
+  Column_ColumnType_COLUMN_INT = 0,
+  Column_ColumnType_COLUMN_CHAR = 1,
+  Column_ColumnType_COLUMN_NULL = 3,
+  Column_ColumnType_COLUMN_FLOAT = 4
+};
+bool Column_ColumnType_IsValid(int value);
+constexpr Column_ColumnType Column_ColumnType_ColumnType_MIN = Column_ColumnType_COLUMN_INT;
+constexpr Column_ColumnType Column_ColumnType_ColumnType_MAX = Column_ColumnType_COLUMN_FLOAT;
+constexpr int Column_ColumnType_ColumnType_ARRAYSIZE = Column_ColumnType_ColumnType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Column_ColumnType_descriptor();
+template<typename T>
+inline const std::string& Column_ColumnType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, Column_ColumnType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function Column_ColumnType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    Column_ColumnType_descriptor(), enum_t_value);
+}
+inline bool Column_ColumnType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Column_ColumnType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Column_ColumnType>(
+    Column_ColumnType_descriptor(), name, value);
+}
+enum DBDefinition_DefinitionType : int {
+  DBDefinition_DefinitionType_INTEGER = 1,
+  DBDefinition_DefinitionType_CHAR = 2,
+  DBDefinition_DefinitionType_FLOAT = 3
+};
+bool DBDefinition_DefinitionType_IsValid(int value);
+constexpr DBDefinition_DefinitionType DBDefinition_DefinitionType_DefinitionType_MIN = DBDefinition_DefinitionType_INTEGER;
+constexpr DBDefinition_DefinitionType DBDefinition_DefinitionType_DefinitionType_MAX = DBDefinition_DefinitionType_FLOAT;
+constexpr int DBDefinition_DefinitionType_DefinitionType_ARRAYSIZE = DBDefinition_DefinitionType_DefinitionType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* DBDefinition_DefinitionType_descriptor();
+template<typename T>
+inline const std::string& DBDefinition_DefinitionType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, DBDefinition_DefinitionType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function DBDefinition_DefinitionType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    DBDefinition_DefinitionType_descriptor(), enum_t_value);
+}
+inline bool DBDefinition_DefinitionType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, DBDefinition_DefinitionType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<DBDefinition_DefinitionType>(
+    DBDefinition_DefinitionType_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -285,6 +354,960 @@ class Person final :
   union { Impl_ _impl_; };
   friend struct ::TableStruct_db_2eproto;
 };
+// -------------------------------------------------------------------
+
+class Column final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:skDB.Column) */ {
+ public:
+  inline Column() : Column(nullptr) {}
+  ~Column() override;
+  explicit PROTOBUF_CONSTEXPR Column(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Column(const Column& from);
+  Column(Column&& from) noexcept
+    : Column() {
+    *this = ::std::move(from);
+  }
+
+  inline Column& operator=(const Column& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Column& operator=(Column&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Column& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Column* internal_default_instance() {
+    return reinterpret_cast<const Column*>(
+               &_Column_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(Column& a, Column& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Column* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Column* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Column* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Column>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Column& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const Column& from) {
+    Column::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Column* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "skDB.Column";
+  }
+  protected:
+  explicit Column(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef Column_ColumnType ColumnType;
+  static constexpr ColumnType COLUMN_INT =
+    Column_ColumnType_COLUMN_INT;
+  static constexpr ColumnType COLUMN_CHAR =
+    Column_ColumnType_COLUMN_CHAR;
+  static constexpr ColumnType COLUMN_NULL =
+    Column_ColumnType_COLUMN_NULL;
+  static constexpr ColumnType COLUMN_FLOAT =
+    Column_ColumnType_COLUMN_FLOAT;
+  static inline bool ColumnType_IsValid(int value) {
+    return Column_ColumnType_IsValid(value);
+  }
+  static constexpr ColumnType ColumnType_MIN =
+    Column_ColumnType_ColumnType_MIN;
+  static constexpr ColumnType ColumnType_MAX =
+    Column_ColumnType_ColumnType_MAX;
+  static constexpr int ColumnType_ARRAYSIZE =
+    Column_ColumnType_ColumnType_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  ColumnType_descriptor() {
+    return Column_ColumnType_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& ColumnType_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, ColumnType>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function ColumnType_Name.");
+    return Column_ColumnType_Name(enum_t_value);
+  }
+  static inline bool ColumnType_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      ColumnType* value) {
+    return Column_ColumnType_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kStrFieldNumber = 3,
+    kTypeFieldNumber = 1,
+    kIntegerNumFieldNumber = 2,
+    kFloatNumFieldNumber = 4,
+  };
+  // optional string str = 3;
+  bool has_str() const;
+  private:
+  bool _internal_has_str() const;
+  public:
+  void clear_str();
+  const std::string& str() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_str(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_str();
+  PROTOBUF_NODISCARD std::string* release_str();
+  void set_allocated_str(std::string* str);
+  private:
+  const std::string& _internal_str() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_str(const std::string& value);
+  std::string* _internal_mutable_str();
+  public:
+
+  // optional .skDB.Column.ColumnType type = 1;
+  bool has_type() const;
+  private:
+  bool _internal_has_type() const;
+  public:
+  void clear_type();
+  ::skDB::Column_ColumnType type() const;
+  void set_type(::skDB::Column_ColumnType value);
+  private:
+  ::skDB::Column_ColumnType _internal_type() const;
+  void _internal_set_type(::skDB::Column_ColumnType value);
+  public:
+
+  // optional int32 integer_num = 2;
+  bool has_integer_num() const;
+  private:
+  bool _internal_has_integer_num() const;
+  public:
+  void clear_integer_num();
+  int32_t integer_num() const;
+  void set_integer_num(int32_t value);
+  private:
+  int32_t _internal_integer_num() const;
+  void _internal_set_integer_num(int32_t value);
+  public:
+
+  // optional double float_num = 4;
+  bool has_float_num() const;
+  private:
+  bool _internal_has_float_num() const;
+  public:
+  void clear_float_num();
+  double float_num() const;
+  void set_float_num(double value);
+  private:
+  double _internal_float_num() const;
+  void _internal_set_float_num(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:skDB.Column)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr str_;
+    int type_;
+    int32_t integer_num_;
+    double float_num_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_db_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Row final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:skDB.Row) */ {
+ public:
+  inline Row() : Row(nullptr) {}
+  ~Row() override;
+  explicit PROTOBUF_CONSTEXPR Row(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Row(const Row& from);
+  Row(Row&& from) noexcept
+    : Row() {
+    *this = ::std::move(from);
+  }
+
+  inline Row& operator=(const Row& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Row& operator=(Row&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Row& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Row* internal_default_instance() {
+    return reinterpret_cast<const Row*>(
+               &_Row_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(Row& a, Row& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Row* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Row* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Row* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Row>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Row& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const Row& from) {
+    Row::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Row* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "skDB.Row";
+  }
+  protected:
+  explicit Row(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kColumnsFieldNumber = 1,
+  };
+  // repeated .skDB.Column columns = 1;
+  int columns_size() const;
+  private:
+  int _internal_columns_size() const;
+  public:
+  void clear_columns();
+  ::skDB::Column* mutable_columns(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::skDB::Column >*
+      mutable_columns();
+  private:
+  const ::skDB::Column& _internal_columns(int index) const;
+  ::skDB::Column* _internal_add_columns();
+  public:
+  const ::skDB::Column& columns(int index) const;
+  ::skDB::Column* add_columns();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::skDB::Column >&
+      columns() const;
+
+  // @@protoc_insertion_point(class_scope:skDB.Row)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::skDB::Column > columns_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_db_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TableMetadata final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:skDB.TableMetadata) */ {
+ public:
+  inline TableMetadata() : TableMetadata(nullptr) {}
+  ~TableMetadata() override;
+  explicit PROTOBUF_CONSTEXPR TableMetadata(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TableMetadata(const TableMetadata& from);
+  TableMetadata(TableMetadata&& from) noexcept
+    : TableMetadata() {
+    *this = ::std::move(from);
+  }
+
+  inline TableMetadata& operator=(const TableMetadata& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TableMetadata& operator=(TableMetadata&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TableMetadata& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TableMetadata* internal_default_instance() {
+    return reinterpret_cast<const TableMetadata*>(
+               &_TableMetadata_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(TableMetadata& a, TableMetadata& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TableMetadata* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TableMetadata* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TableMetadata* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<TableMetadata>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TableMetadata& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const TableMetadata& from) {
+    TableMetadata::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TableMetadata* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "skDB.TableMetadata";
+  }
+  protected:
+  explicit TableMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDefinitionsFieldNumber = 1,
+  };
+  // repeated .skDB.DBDefinition definitions = 1;
+  int definitions_size() const;
+  private:
+  int _internal_definitions_size() const;
+  public:
+  void clear_definitions();
+  ::skDB::DBDefinition* mutable_definitions(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::skDB::DBDefinition >*
+      mutable_definitions();
+  private:
+  const ::skDB::DBDefinition& _internal_definitions(int index) const;
+  ::skDB::DBDefinition* _internal_add_definitions();
+  public:
+  const ::skDB::DBDefinition& definitions(int index) const;
+  ::skDB::DBDefinition* add_definitions();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::skDB::DBDefinition >&
+      definitions() const;
+
+  // @@protoc_insertion_point(class_scope:skDB.TableMetadata)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::skDB::DBDefinition > definitions_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_db_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DBDefinition final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:skDB.DBDefinition) */ {
+ public:
+  inline DBDefinition() : DBDefinition(nullptr) {}
+  ~DBDefinition() override;
+  explicit PROTOBUF_CONSTEXPR DBDefinition(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DBDefinition(const DBDefinition& from);
+  DBDefinition(DBDefinition&& from) noexcept
+    : DBDefinition() {
+    *this = ::std::move(from);
+  }
+
+  inline DBDefinition& operator=(const DBDefinition& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DBDefinition& operator=(DBDefinition&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DBDefinition& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DBDefinition* internal_default_instance() {
+    return reinterpret_cast<const DBDefinition*>(
+               &_DBDefinition_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(DBDefinition& a, DBDefinition& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DBDefinition* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DBDefinition* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DBDefinition* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DBDefinition>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DBDefinition& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const DBDefinition& from) {
+    DBDefinition::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DBDefinition* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "skDB.DBDefinition";
+  }
+  protected:
+  explicit DBDefinition(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef DBDefinition_DefinitionType DefinitionType;
+  static constexpr DefinitionType INTEGER =
+    DBDefinition_DefinitionType_INTEGER;
+  static constexpr DefinitionType CHAR =
+    DBDefinition_DefinitionType_CHAR;
+  static constexpr DefinitionType FLOAT =
+    DBDefinition_DefinitionType_FLOAT;
+  static inline bool DefinitionType_IsValid(int value) {
+    return DBDefinition_DefinitionType_IsValid(value);
+  }
+  static constexpr DefinitionType DefinitionType_MIN =
+    DBDefinition_DefinitionType_DefinitionType_MIN;
+  static constexpr DefinitionType DefinitionType_MAX =
+    DBDefinition_DefinitionType_DefinitionType_MAX;
+  static constexpr int DefinitionType_ARRAYSIZE =
+    DBDefinition_DefinitionType_DefinitionType_ARRAYSIZE;
+  static inline const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor*
+  DefinitionType_descriptor() {
+    return DBDefinition_DefinitionType_descriptor();
+  }
+  template<typename T>
+  static inline const std::string& DefinitionType_Name(T enum_t_value) {
+    static_assert(::std::is_same<T, DefinitionType>::value ||
+      ::std::is_integral<T>::value,
+      "Incorrect type passed to function DefinitionType_Name.");
+    return DBDefinition_DefinitionType_Name(enum_t_value);
+  }
+  static inline bool DefinitionType_Parse(::PROTOBUF_NAMESPACE_ID::ConstStringParam name,
+      DefinitionType* value) {
+    return DBDefinition_DefinitionType_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 2,
+    kTypeFieldNumber = 1,
+  };
+  // optional string name = 2;
+  bool has_name() const;
+  private:
+  bool _internal_has_name() const;
+  public:
+  void clear_name();
+  const std::string& name() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_name(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // optional .skDB.DBDefinition.DefinitionType type = 1;
+  bool has_type() const;
+  private:
+  bool _internal_has_type() const;
+  public:
+  void clear_type();
+  ::skDB::DBDefinition_DefinitionType type() const;
+  void set_type(::skDB::DBDefinition_DefinitionType value);
+  private:
+  ::skDB::DBDefinition_DefinitionType _internal_type() const;
+  void _internal_set_type(::skDB::DBDefinition_DefinitionType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:skDB.DBDefinition)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+    int type_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_db_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DBMetadata final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:skDB.DBMetadata) */ {
+ public:
+  inline DBMetadata() : DBMetadata(nullptr) {}
+  ~DBMetadata() override;
+  explicit PROTOBUF_CONSTEXPR DBMetadata(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DBMetadata(const DBMetadata& from);
+  DBMetadata(DBMetadata&& from) noexcept
+    : DBMetadata() {
+    *this = ::std::move(from);
+  }
+
+  inline DBMetadata& operator=(const DBMetadata& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DBMetadata& operator=(DBMetadata&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance);
+  }
+  inline ::PROTOBUF_NAMESPACE_ID::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DBMetadata& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DBMetadata* internal_default_instance() {
+    return reinterpret_cast<const DBMetadata*>(
+               &_DBMetadata_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(DBMetadata& a, DBMetadata& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DBMetadata* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DBMetadata* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DBMetadata* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DBMetadata>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DBMetadata& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const DBMetadata& from) {
+    DBMetadata::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DBMetadata* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "skDB.DBMetadata";
+  }
+  protected:
+  explicit DBMetadata(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTablesFieldNumber = 1,
+  };
+  // repeated string tables = 1;
+  int tables_size() const;
+  private:
+  int _internal_tables_size() const;
+  public:
+  void clear_tables();
+  const std::string& tables(int index) const;
+  std::string* mutable_tables(int index);
+  void set_tables(int index, const std::string& value);
+  void set_tables(int index, std::string&& value);
+  void set_tables(int index, const char* value);
+  void set_tables(int index, const char* value, size_t size);
+  std::string* add_tables();
+  void add_tables(const std::string& value);
+  void add_tables(std::string&& value);
+  void add_tables(const char* value);
+  void add_tables(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& tables() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_tables();
+  private:
+  const std::string& _internal_tables(int index) const;
+  std::string* _internal_add_tables();
+  public:
+
+  // @@protoc_insertion_point(class_scope:skDB.DBMetadata)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> tables_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_db_2eproto;
+};
 // ===================================================================
 
 
@@ -392,9 +1415,444 @@ inline void Person::set_id(int32_t value) {
   // @@protoc_insertion_point(field_set:skDB.Person.id)
 }
 
+// -------------------------------------------------------------------
+
+// Column
+
+// optional .skDB.Column.ColumnType type = 1;
+inline bool Column::_internal_has_type() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool Column::has_type() const {
+  return _internal_has_type();
+}
+inline void Column::clear_type() {
+  _impl_.type_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline ::skDB::Column_ColumnType Column::_internal_type() const {
+  return static_cast< ::skDB::Column_ColumnType >(_impl_.type_);
+}
+inline ::skDB::Column_ColumnType Column::type() const {
+  // @@protoc_insertion_point(field_get:skDB.Column.type)
+  return _internal_type();
+}
+inline void Column::_internal_set_type(::skDB::Column_ColumnType value) {
+  assert(::skDB::Column_ColumnType_IsValid(value));
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.type_ = value;
+}
+inline void Column::set_type(::skDB::Column_ColumnType value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:skDB.Column.type)
+}
+
+// optional int32 integer_num = 2;
+inline bool Column::_internal_has_integer_num() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool Column::has_integer_num() const {
+  return _internal_has_integer_num();
+}
+inline void Column::clear_integer_num() {
+  _impl_.integer_num_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline int32_t Column::_internal_integer_num() const {
+  return _impl_.integer_num_;
+}
+inline int32_t Column::integer_num() const {
+  // @@protoc_insertion_point(field_get:skDB.Column.integer_num)
+  return _internal_integer_num();
+}
+inline void Column::_internal_set_integer_num(int32_t value) {
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.integer_num_ = value;
+}
+inline void Column::set_integer_num(int32_t value) {
+  _internal_set_integer_num(value);
+  // @@protoc_insertion_point(field_set:skDB.Column.integer_num)
+}
+
+// optional string str = 3;
+inline bool Column::_internal_has_str() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool Column::has_str() const {
+  return _internal_has_str();
+}
+inline void Column::clear_str() {
+  _impl_.str_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& Column::str() const {
+  // @@protoc_insertion_point(field_get:skDB.Column.str)
+  return _internal_str();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void Column::set_str(ArgT0&& arg0, ArgT... args) {
+ _impl_._has_bits_[0] |= 0x00000001u;
+ _impl_.str_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:skDB.Column.str)
+}
+inline std::string* Column::mutable_str() {
+  std::string* _s = _internal_mutable_str();
+  // @@protoc_insertion_point(field_mutable:skDB.Column.str)
+  return _s;
+}
+inline const std::string& Column::_internal_str() const {
+  return _impl_.str_.Get();
+}
+inline void Column::_internal_set_str(const std::string& value) {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.str_.Set(value, GetArenaForAllocation());
+}
+inline std::string* Column::_internal_mutable_str() {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.str_.Mutable(GetArenaForAllocation());
+}
+inline std::string* Column::release_str() {
+  // @@protoc_insertion_point(field_release:skDB.Column.str)
+  if (!_internal_has_str()) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* p = _impl_.str_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.str_.IsDefault()) {
+    _impl_.str_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void Column::set_allocated_str(std::string* str) {
+  if (str != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.str_.SetAllocated(str, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.str_.IsDefault()) {
+    _impl_.str_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:skDB.Column.str)
+}
+
+// optional double float_num = 4;
+inline bool Column::_internal_has_float_num() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool Column::has_float_num() const {
+  return _internal_has_float_num();
+}
+inline void Column::clear_float_num() {
+  _impl_.float_num_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline double Column::_internal_float_num() const {
+  return _impl_.float_num_;
+}
+inline double Column::float_num() const {
+  // @@protoc_insertion_point(field_get:skDB.Column.float_num)
+  return _internal_float_num();
+}
+inline void Column::_internal_set_float_num(double value) {
+  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_.float_num_ = value;
+}
+inline void Column::set_float_num(double value) {
+  _internal_set_float_num(value);
+  // @@protoc_insertion_point(field_set:skDB.Column.float_num)
+}
+
+// -------------------------------------------------------------------
+
+// Row
+
+// repeated .skDB.Column columns = 1;
+inline int Row::_internal_columns_size() const {
+  return _impl_.columns_.size();
+}
+inline int Row::columns_size() const {
+  return _internal_columns_size();
+}
+inline void Row::clear_columns() {
+  _impl_.columns_.Clear();
+}
+inline ::skDB::Column* Row::mutable_columns(int index) {
+  // @@protoc_insertion_point(field_mutable:skDB.Row.columns)
+  return _impl_.columns_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::skDB::Column >*
+Row::mutable_columns() {
+  // @@protoc_insertion_point(field_mutable_list:skDB.Row.columns)
+  return &_impl_.columns_;
+}
+inline const ::skDB::Column& Row::_internal_columns(int index) const {
+  return _impl_.columns_.Get(index);
+}
+inline const ::skDB::Column& Row::columns(int index) const {
+  // @@protoc_insertion_point(field_get:skDB.Row.columns)
+  return _internal_columns(index);
+}
+inline ::skDB::Column* Row::_internal_add_columns() {
+  return _impl_.columns_.Add();
+}
+inline ::skDB::Column* Row::add_columns() {
+  ::skDB::Column* _add = _internal_add_columns();
+  // @@protoc_insertion_point(field_add:skDB.Row.columns)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::skDB::Column >&
+Row::columns() const {
+  // @@protoc_insertion_point(field_list:skDB.Row.columns)
+  return _impl_.columns_;
+}
+
+// -------------------------------------------------------------------
+
+// TableMetadata
+
+// repeated .skDB.DBDefinition definitions = 1;
+inline int TableMetadata::_internal_definitions_size() const {
+  return _impl_.definitions_.size();
+}
+inline int TableMetadata::definitions_size() const {
+  return _internal_definitions_size();
+}
+inline void TableMetadata::clear_definitions() {
+  _impl_.definitions_.Clear();
+}
+inline ::skDB::DBDefinition* TableMetadata::mutable_definitions(int index) {
+  // @@protoc_insertion_point(field_mutable:skDB.TableMetadata.definitions)
+  return _impl_.definitions_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::skDB::DBDefinition >*
+TableMetadata::mutable_definitions() {
+  // @@protoc_insertion_point(field_mutable_list:skDB.TableMetadata.definitions)
+  return &_impl_.definitions_;
+}
+inline const ::skDB::DBDefinition& TableMetadata::_internal_definitions(int index) const {
+  return _impl_.definitions_.Get(index);
+}
+inline const ::skDB::DBDefinition& TableMetadata::definitions(int index) const {
+  // @@protoc_insertion_point(field_get:skDB.TableMetadata.definitions)
+  return _internal_definitions(index);
+}
+inline ::skDB::DBDefinition* TableMetadata::_internal_add_definitions() {
+  return _impl_.definitions_.Add();
+}
+inline ::skDB::DBDefinition* TableMetadata::add_definitions() {
+  ::skDB::DBDefinition* _add = _internal_add_definitions();
+  // @@protoc_insertion_point(field_add:skDB.TableMetadata.definitions)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::skDB::DBDefinition >&
+TableMetadata::definitions() const {
+  // @@protoc_insertion_point(field_list:skDB.TableMetadata.definitions)
+  return _impl_.definitions_;
+}
+
+// -------------------------------------------------------------------
+
+// DBDefinition
+
+// optional .skDB.DBDefinition.DefinitionType type = 1;
+inline bool DBDefinition::_internal_has_type() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool DBDefinition::has_type() const {
+  return _internal_has_type();
+}
+inline void DBDefinition::clear_type() {
+  _impl_.type_ = 1;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline ::skDB::DBDefinition_DefinitionType DBDefinition::_internal_type() const {
+  return static_cast< ::skDB::DBDefinition_DefinitionType >(_impl_.type_);
+}
+inline ::skDB::DBDefinition_DefinitionType DBDefinition::type() const {
+  // @@protoc_insertion_point(field_get:skDB.DBDefinition.type)
+  return _internal_type();
+}
+inline void DBDefinition::_internal_set_type(::skDB::DBDefinition_DefinitionType value) {
+  assert(::skDB::DBDefinition_DefinitionType_IsValid(value));
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.type_ = value;
+}
+inline void DBDefinition::set_type(::skDB::DBDefinition_DefinitionType value) {
+  _internal_set_type(value);
+  // @@protoc_insertion_point(field_set:skDB.DBDefinition.type)
+}
+
+// optional string name = 2;
+inline bool DBDefinition::_internal_has_name() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool DBDefinition::has_name() const {
+  return _internal_has_name();
+}
+inline void DBDefinition::clear_name() {
+  _impl_.name_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& DBDefinition::name() const {
+  // @@protoc_insertion_point(field_get:skDB.DBDefinition.name)
+  return _internal_name();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DBDefinition::set_name(ArgT0&& arg0, ArgT... args) {
+ _impl_._has_bits_[0] |= 0x00000001u;
+ _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:skDB.DBDefinition.name)
+}
+inline std::string* DBDefinition::mutable_name() {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:skDB.DBDefinition.name)
+  return _s;
+}
+inline const std::string& DBDefinition::_internal_name() const {
+  return _impl_.name_.Get();
+}
+inline void DBDefinition::_internal_set_name(const std::string& value) {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.name_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DBDefinition::_internal_mutable_name() {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.name_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DBDefinition::release_name() {
+  // @@protoc_insertion_point(field_release:skDB.DBDefinition.name)
+  if (!_internal_has_name()) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* p = _impl_.name_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void DBDefinition::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.name_.SetAllocated(name, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:skDB.DBDefinition.name)
+}
+
+// -------------------------------------------------------------------
+
+// DBMetadata
+
+// repeated string tables = 1;
+inline int DBMetadata::_internal_tables_size() const {
+  return _impl_.tables_.size();
+}
+inline int DBMetadata::tables_size() const {
+  return _internal_tables_size();
+}
+inline void DBMetadata::clear_tables() {
+  _impl_.tables_.Clear();
+}
+inline std::string* DBMetadata::add_tables() {
+  std::string* _s = _internal_add_tables();
+  // @@protoc_insertion_point(field_add_mutable:skDB.DBMetadata.tables)
+  return _s;
+}
+inline const std::string& DBMetadata::_internal_tables(int index) const {
+  return _impl_.tables_.Get(index);
+}
+inline const std::string& DBMetadata::tables(int index) const {
+  // @@protoc_insertion_point(field_get:skDB.DBMetadata.tables)
+  return _internal_tables(index);
+}
+inline std::string* DBMetadata::mutable_tables(int index) {
+  // @@protoc_insertion_point(field_mutable:skDB.DBMetadata.tables)
+  return _impl_.tables_.Mutable(index);
+}
+inline void DBMetadata::set_tables(int index, const std::string& value) {
+  _impl_.tables_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set:skDB.DBMetadata.tables)
+}
+inline void DBMetadata::set_tables(int index, std::string&& value) {
+  _impl_.tables_.Mutable(index)->assign(std::move(value));
+  // @@protoc_insertion_point(field_set:skDB.DBMetadata.tables)
+}
+inline void DBMetadata::set_tables(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _impl_.tables_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:skDB.DBMetadata.tables)
+}
+inline void DBMetadata::set_tables(int index, const char* value, size_t size) {
+  _impl_.tables_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:skDB.DBMetadata.tables)
+}
+inline std::string* DBMetadata::_internal_add_tables() {
+  return _impl_.tables_.Add();
+}
+inline void DBMetadata::add_tables(const std::string& value) {
+  _impl_.tables_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:skDB.DBMetadata.tables)
+}
+inline void DBMetadata::add_tables(std::string&& value) {
+  _impl_.tables_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:skDB.DBMetadata.tables)
+}
+inline void DBMetadata::add_tables(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _impl_.tables_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:skDB.DBMetadata.tables)
+}
+inline void DBMetadata::add_tables(const char* value, size_t size) {
+  _impl_.tables_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:skDB.DBMetadata.tables)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+DBMetadata::tables() const {
+  // @@protoc_insertion_point(field_list:skDB.DBMetadata.tables)
+  return _impl_.tables_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+DBMetadata::mutable_tables() {
+  // @@protoc_insertion_point(field_mutable_list:skDB.DBMetadata.tables)
+  return &_impl_.tables_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -406,6 +1864,16 @@ template <> struct is_proto_enum< ::skDB::Person_PersonType> : ::std::true_type 
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::skDB::Person_PersonType>() {
   return ::skDB::Person_PersonType_descriptor();
+}
+template <> struct is_proto_enum< ::skDB::Column_ColumnType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::skDB::Column_ColumnType>() {
+  return ::skDB::Column_ColumnType_descriptor();
+}
+template <> struct is_proto_enum< ::skDB::DBDefinition_DefinitionType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::skDB::DBDefinition_DefinitionType>() {
+  return ::skDB::DBDefinition_DefinitionType_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE
