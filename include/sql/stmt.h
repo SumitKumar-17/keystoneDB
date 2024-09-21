@@ -18,11 +18,8 @@ namespace skDB{
     class SQLStmt{
         public: 
             explicit SQLStmt(SQLStmtType type);
-
             SQLStmtType type() const;
-
             virtual std::string toString();
-
             virtual ~SQLStmt();
         
         private:

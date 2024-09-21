@@ -22,17 +22,22 @@ namespace skDB {
                 executeUseStmt(dynamic_cast<UseStmt *>(stmt));
                 break;
             case skDB_SQL_DROP:
+                executeDropStmt(dynamic_cast<DropStmt *>(stmt));
                 break;
             case skDB_SQL_SHOW:
                 executeShowStmt(dynamic_cast<ShowStmt *>(stmt));
                 break;
             case skDB_SQL_DELETE:
+                executeDeleteStmt(dynamic_cast<DeleteStmt *>(stmt));
                 break;
             case skDB_SQL_INSERT:
                 executeInsertStmt(dynamic_cast<InsertStmt *>(stmt));
                 break;
             case skDB_SQL_CREATE:
                 executeCreateStmt(dynamic_cast<CreateStmt *>(stmt));
+                break;
+            case skDB_SQL_UPDATE:
+                executeUpdateStmt(dynamic_cast<UpdateStmt *>(stmt));
                 break;
             case skDB_SQL_EXIT:
                 return false;
@@ -47,9 +52,10 @@ namespace skDB {
     }
 
     void Executor::shutdown() const {
-        rocksdb::WaitForCompactOptions opt = rocksdb::WaitForCompactOptions();
+        // rocksdb::WaitForCompactOptions opt = rocksdb::WaitForCompactOptions();
+        auto opt = rocksdb::WaitForCompactOptions();
         opt.close_db = true;
-        auto s = db->WaitForCompact(opt);
+        const auto s = db->WaitForCompact(opt);
         assert(s.ok());
         delete db;
     }

@@ -51,6 +51,7 @@ namespace skDB {
                     dbd->set_type(DBDefinition::FLOAT);
                     break;
                 default:
+                    std::cout << "Unsupported type" << std::endl;
                     break;
             }
         }

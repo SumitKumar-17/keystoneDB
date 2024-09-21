@@ -19,6 +19,9 @@ namespace skDB {
         void executeShowStmt(const ShowStmt *show_stmt) const;
         void executeInsertStmt(const InsertStmt *insert_stmt) const;
         void executeSelectStmt(const SelectStmt *select_stmt) const;
+        void executeUpdateStmt(const UpdateStmt *update_stmt) const;
+        void executeDeleteStmt(const DeleteStmt *delete_stmt) const;
+        void executeDropStmt(const DropStmt *drop_stmt) const;
         bool init();
         static std::string MakeTableMetadataPrefix(const std::string &dbname, const std::string &table_name) {
             return TABLE_META_PREFIX + dbname + table_name;

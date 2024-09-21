@@ -8,11 +8,8 @@ namespace skDB{
     class ParserResult{
         public:
             ParserResult()=default;
-
             void addStatement(SQLStmt *stmt);
-
             std::vector<SQLStmt *> *getStatements();
-
         private:
             std::vector<SQLStmt *> statements;
     };
