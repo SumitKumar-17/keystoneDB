@@ -1,9 +1,15 @@
 #ifndef USE_STMT_H
 #define USE_STMT_H
 #include "stmt.h"
+#include "table.h"
 
 namespace skDB {
-    class UseStmt : SQLStmt {
+    class UseStmt final : public SQLStmt {
+    public:
+        explicit UseStmt(TableName name_);
+        ~UseStmt() override;
+    private:
+        TableName name{};
     };
 }
 

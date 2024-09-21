@@ -3,7 +3,18 @@
 #include "stmt.h"
 
 namespace skDB {
-    class ShowStmt : SQLStmt {
+    enum ShowType {
+        ShowDatabases,
+        ShowTables
+    };
+
+    class ShowStmt final:public SQLStmt {
+        public:
+            explicit ShowStmt(ShowType shoe_type_);
+            ~ShowStmt() override;
+
+        private:
+            ShowType show_type;
     };
 }
 
