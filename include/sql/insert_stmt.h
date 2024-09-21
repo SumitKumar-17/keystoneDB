@@ -11,6 +11,10 @@ namespace skDB {
     public:
         InsertStmt(TableName table_name, std::vector<ColumnName *> *optColumnName, std::vector<Parameter *> *para);
         ~InsertStmt() override;
+
+        TableName table_name;
+        std::vector<ColumnName *> *opt_column_names;
+        std::vector<Parameter *> *parameters;
     };;
 
    class Parameter{
@@ -30,6 +34,7 @@ namespace skDB {
          double d;
          DataType type;
    };
+   
 }
 
 #endif //INSERT_STMT_H
