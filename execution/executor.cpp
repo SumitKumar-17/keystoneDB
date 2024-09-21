@@ -17,25 +17,28 @@ namespace skDB {
 
     bool Executor::dispatch(SQLStmt *stmt) {
         switch (stmt->type()) {
-            case xSQL_USE:
+            case skDB_SQL_USE:
                 executeUseStmt(dynamic_cast<UseStmt *>(stmt));
                 break;
-            case xSQL_DROP:
+            case skDB_SQL_DROP:
                 break;
-            case xSQL_SHOW:
+            case skDB_SQL_SHOW:
+                executeShowStmt(dynamic_cast<ShowStmt *>(stmt));
                 break;
-            case xSQL_DELETE:
+            case skDB_SQL_DELETE:
                 break;
-            case xSQL_INSERT:
+            case skDB_SQL_INSERT:
+                executeInsertStmt(dynamic_cast<InsertStmt *>(stmt));
                 break;
-            case xSQL_CREATE:
+            case skDB_SQL_CREATE:
                 executeCreateStmt(dynamic_cast<CreateStmt *>(stmt));
                 break;
-            case xSQL_EXIT:
+            case skDB_SQL_EXIT:
                 return false;
-            case xSQL_SELECT:
+            case skDB_SQL_SELECT:
                 break;
             default:
+                std::cout << "Unknown SQL statement type" << std::endl;
                 break;
         }
         return true;

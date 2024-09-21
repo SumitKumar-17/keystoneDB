@@ -13,6 +13,8 @@ namespace skDB {
             explicit ShowStmt(ShowType shoe_type_);
             ~ShowStmt() override;
 
+            ShowType getShowType() const;
+
         private:
             ShowType show_type;
     };
