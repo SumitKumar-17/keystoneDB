@@ -8,7 +8,7 @@ namespace skDB{
     public:
         DeleteStmt(TableName table_name_, Exp *whereExp_);
         ~DeleteStmt() override;
-    private:
+    // private:
         TableName table_name;
         Exp *whereExp;
     };

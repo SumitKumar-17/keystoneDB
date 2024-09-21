@@ -27,8 +27,8 @@ namespace skDB{
             std::cout << "No database selected" << std::endl;
             return;
         }
-        std::string cur = drop_stmt->name.schema == nullptr ? currentDB : drop_stmt->name.schema;
-        std::string table_name = drop_stmt->name.name;
+        const std::string cur = drop_stmt->name.schema == nullptr ? currentDB : drop_stmt->name.schema;
+        const std::string table_name = drop_stmt->name.name;
         const auto it = db->NewIterator(rocksdb::ReadOptions());
         const std::string table_meta_prefix = TABLE_META_PREFIX + cur + table_name;
         const std::string table_row_prefix = TABLE_ROW_PREFIX + cur + table_name;
@@ -48,7 +48,7 @@ namespace skDB{
         const std::string tableMetaPrefix = TABLE_META_PREFIX + dbname;
         const auto it = db->NewIterator(rocksdb::ReadOptions());
         deletePrefix(tableMetaPrefix, db, it);
-        std::string tableRowPrefix = TABLE_ROW_PREFIX + dbname;
+        const std::string tableRowPrefix = TABLE_ROW_PREFIX + dbname;
         deletePrefix(tableRowPrefix, db, it);
         delete it;
         // switch to empty

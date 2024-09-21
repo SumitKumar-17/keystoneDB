@@ -8,6 +8,8 @@
 #include "sql/stmts.h"
 
 namespace skDB {
+    class TempRow;
+
     class Executor {
     public:
         Executor();
@@ -39,6 +41,8 @@ namespace skDB {
         void showDatabases() const;
         void dropTable(const DropStmt *drop_stmt) const;
         void dropDatabase(const DropStmt *drop_stmt);
+        bool checkTable(TableName table_name, std::string &cur, std::string &table) const;
+        bool collectTableAllRows(std::vector<TempRow> &rows, const std::string &dbname,const std::string &tablename) const;
         std::string currentDB;
         rocksdb::DB *db;
     };

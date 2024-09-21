@@ -9,7 +9,7 @@ namespace skDB {
     class UpdateAssign {
         public:
             UpdateAssign(ColumnName *column_name_, Exp *right_);
-        private:
+        // private:
             ColumnName *column_name;
             Exp *right;
     };
@@ -18,7 +18,7 @@ namespace skDB {
         public:
             UpdateStmt(TableName table_name_, std::vector<UpdateAssign *> *list_, Exp *whereExp_);
             ~UpdateStmt() override;
-        private:
+        // private:
             TableName table_name;
             std::vector<UpdateAssign *> *update_assigns;
             Exp *whereExp;
