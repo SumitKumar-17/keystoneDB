@@ -1,5 +1,18 @@
 # skDB
-A DBMS implementation to study Compilers 
+
+
+## Build 
+
+To get the third party dependencies, run:
+
+```shell
+git submodule init
+git submodule update
+```
+
+```shell
+sudo apt-get install libgflags-dev libzstd-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev
+```
 
 ## Supported SQL Example
 
@@ -15,14 +28,7 @@ DELETE FROM user WHERE id=42;
 DROP TABLE user;
 ```
 
-
-
 ## Build
-
-To get the third party dependencies, run:
-```shell
-git submodule init
-```
 
 ```shell
 mkdir build
@@ -39,4 +45,4 @@ make
 + [HuaDB](https://thu-db.github.io/huadb-doc/)
 + [BusTub](https://15445.courses.cs.cmu.edu/fall2022/schedule.html)
 + [USTC Compiler Principles](https://ustc-compiler-principles.github.io)
-+  [SQL Parser](https://github.com/hyrise/sql-parser)
++ [SQL Parser](https://github.com/hyrise/sql-parser)
