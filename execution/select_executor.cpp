@@ -1,46 +1,20 @@
-
 #include <utility>
-
 #include "fort.hpp"
 #include "execution/executor.h"
 
 namespace skDB {
-    struct TableFullName {
-        std::string table_name;
-        std::string table_schema;
-        TableMetadata metadata;
-
-        TableFullName(std::string table_schema, std::string table_name): table_name(std::move(table_name)),
-                                                                         table_schema(std::move(table_schema)) {
-        }
-
-        [[nodiscard]] std::string getTableMetaKey() const {
-            return Executor::MakeTableMetadataPrefix(table_schema, table_name);
-        }
-
-        [[nodiscard]] std::string toString() const {
-            return table_schema + "." + table_name;
-        }
-
-        std::string toStringWithColumn(const std::string &column) const {
-            return toString() + "." + column;
-        }
-    };
-
-
     ColumnFullName::ColumnFullName(std::string db_name, std::string table_name,
-                                     std::string column_name): table_name(std::move(table_name)),
-                                                               db_name(std::move(db_name)),
-                                                               column_name(std::move(column_name)) {
-      }
+                                   std::string column_name): table_name(std::move(table_name)),
+                                                             db_name(std::move(db_name)),
+                                                             column_name(std::move(column_name)) {
+    }
 
-      std::string ColumnFullName::toString() const {
-             return db_name + "." + table_name + "." + column_name;
-         }
+    std::string ColumnFullName::toString() const {
+        return db_name + "." + table_name + "." + column_name;
+    }
 
 
-
-    static bool MakeTempRow(std::vector<TableFullName> &v, int index, const TempRow &row,
+    static bool MakeTempRow(std::vector<TableFullName> &v, int index, const TempRow &row, // NOLINT(*-no-recursion)
                             std::vector<TempRow> &rows,
                             rocksdb::DB *db) {
         if (index == static_cast<int>(v.size())) {
@@ -49,14 +23,12 @@ namespace skDB {
         }
 
         std::vector<Row> table_rows;
-        auto it = db->NewIterator(rocksdb::ReadOptions());
-        auto fullname = v[index];
-        auto prefix = TABLE_ROW_PREFIX.append(fullname.table_schema).append(fullname.table_name);
+        const auto it = db->NewIterator(rocksdb::ReadOptions());
+        const auto fullname = v[index];
+        const auto prefix = TABLE_ROW_PREFIX.append(fullname.table_schema).append(fullname.table_name);
 
         for (it->Seek(prefix); it->Valid(); it->Next()) {
-            std::string str = it->key().data();
-
-            if (str.rfind(prefix, 0) != 0) {
+            if (std::string str = it->key().data(); str.rfind(prefix, 0) != 0) {
                 break;
             }
 
@@ -136,6 +108,7 @@ namespace skDB {
         }
 
         std::unordered_map<std::string, int> column2index;
+        auto fullname2index = std::unordered_map<ColumnFullName, int, ColumnFullNameHasher>();
         // full name to index mapping
 
         int count = 0;
@@ -144,6 +117,8 @@ namespace skDB {
             for (int j = 0; j < metadata.definitions_size(); j++) {
                 const auto &def = metadata.definitions(j);
                 column2index.insert({i.toStringWithColumn(def.name()), count});
+                ColumnFullName full_name(i.table_schema, i.table_name, def.name());
+                fullname2index.insert({full_name, count});
                 count++;
             }
         }
@@ -167,8 +142,6 @@ namespace skDB {
 
             // handle wild card
             if (colname == "*") {
-                ColumnFullName c("*", "*", "*");
-                column_full_names.push_back(c);
                 for (const auto &table_full_name: v) {
                     for (const auto &def: table_full_name.metadata.definitions()) {
                         ColumnFullName column_full_name(table_full_name.table_schema, table_full_name.table_name,
@@ -194,7 +167,7 @@ namespace skDB {
                     }
                 }
             } else {
-                ColumnFullName column_full_name = ColumnFullName(curDB, column_name->name, colname);
+                auto column_full_name = ColumnFullName(curDB, column_name->name, colname);
                 if (found = column2index.find(column_full_name.toString()) !=
                             column2index.end(); found) {
                     column_full_names.push_back(column_full_name);
@@ -209,16 +182,22 @@ namespace skDB {
         // build the intermediate row here
         TempRow row;
         std::vector<TempRow> results;
+
         MakeTempRow(v, 0, row, results, db);
+
         std::cout << "result count: " << results.size() << std::endl;
+
         fort::table table;
         table << fort::header;
-        for (auto col: column_full_names) {
-            table << col.toString();
+
+        for (const auto &column_full_name: column_full_names) {
+            table << column_full_name.toString();
         }
         table << fort::endr;
+
+
         for (auto result: results) {
-            for (auto col: column_full_names) {
+            for (const auto &col: column_full_names) {
                 if (column2index.find(col.toString()) == column2index.end()) {
                     std::cout << "Can not find " << col.toString() << std::endl;
                     return;
@@ -242,6 +221,7 @@ namespace skDB {
             }
             table << fort::endr;
         }
+
         std::cout << table.to_string() << std::endl;
     }
 }
