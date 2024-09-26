@@ -12,4 +12,13 @@ generate_proto:
 	cd ../../
 
 module_fetch:
-	git submodule update 
+	git submodule update
+
+docker_build:
+    docker build -t skdb .
+
+image:
+    docker images
+
+container_run:
+    docker run -it skdb

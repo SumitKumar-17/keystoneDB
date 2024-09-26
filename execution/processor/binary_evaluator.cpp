@@ -134,7 +134,7 @@ namespace skDB {
         return true;
     }
 
-    bool ExpProcessor::process(BinaryExp *binary_exp) {
+    bool ExpEvaluator::process(BinaryExp *binary_exp) {
         if (!checkIsSameType(binary_exp->getLeft(), binary_exp->getRight())) {
             return false;
         }

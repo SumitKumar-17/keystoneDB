@@ -5,7 +5,7 @@
 
 namespace skDB {
     // forward declaration
-    class ExpProcessor;
+    class AbstractExpProcessor;
 
     enum ScalarType {
         ScalarChar,
@@ -73,7 +73,7 @@ namespace skDB {
     public:
         virtual ~Exp();
 
-        virtual bool visit(ExpProcessor *processor) =0;
+        virtual bool visit(AbstractExpProcessor *processor) =0;
 
         void setValue(Value v);
 
@@ -95,7 +95,7 @@ namespace skDB {
     public:
         BetweenExpr(Exp *exp1_, Exp *exp2_, Exp *exp3_);
 
-        bool visit(ExpProcessor *processor) override;
+        bool visit(AbstractExpProcessor *processor) override;
 
         [[nodiscard]] Exp *getExp1() const { return exp1; }
         [[nodiscard]] Exp *getExp2() const { return exp2; }
@@ -112,7 +112,7 @@ namespace skDB {
 
         [[nodiscard]] BinaryExpType binaryType() const;
 
-        bool visit(ExpProcessor *processor) override;
+        bool visit(AbstractExpProcessor *processor) override;
 
         [[nodiscard]] Exp *getLeft() const { return left; }
         [[nodiscard]] Exp *getRight() const { return right; }
@@ -128,7 +128,7 @@ namespace skDB {
 
         [[nodiscard]] UnaryExpType unaryType() const;
 
-        bool visit(ExpProcessor *processor) override;
+        bool visit(AbstractExpProcessor *processor) override;
 
         [[nodiscard]] Exp *getExp() const { return exp; }
 
@@ -143,15 +143,25 @@ namespace skDB {
         explicit ScalarExp(ColumnName *column_name_);
 
         explicit ScalarExp(char *);
+
         explicit ScalarExp(int);
+
         explicit ScalarExp();
+
         explicit ScalarExp(double);
+
         [[nodiscard]] ScalarType scalarType() const;
-        bool visit(ExpProcessor *processor) override;
+
+        bool visit(AbstractExpProcessor *processor) override;
+
         [[nodiscard]] ScalarType getType() const { return type; }
+
         [[nodiscard]] int getInteger() const { return integer; }
+
         [[nodiscard]] double getFloat() const { return d; }
+
         [[nodiscard]] std::string getStr() const { return str; }
+
         [[nodiscard]] std::string getFullname() const { return fullname; }
 
     private:

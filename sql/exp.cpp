@@ -1,7 +1,5 @@
 #include "sql/exp.h"
-
 #include <utility>
-
 #include "execution/executor.h"
 
 namespace skDB {
@@ -27,8 +25,8 @@ namespace skDB {
                                                                          right(right_) {
     }
 
-    bool BinaryExp::visit(ExpProcessor *processor) {
-        processor->process(this);
+    bool BinaryExp::visit(AbstractExpProcessor *processor) {
+        return processor->process(this);
     }
 
 
@@ -36,8 +34,8 @@ namespace skDB {
         return type;
     }
 
-    bool UnaryExp::visit(ExpProcessor *processor) {
-        processor->process(this);
+    bool UnaryExp::visit(AbstractExpProcessor *processor) {
+        return processor->process(this);
     }
 
 
@@ -48,8 +46,8 @@ namespace skDB {
                                                                   exp3(exp3_) {
     }
 
-    bool BetweenExpr::visit(ExpProcessor *processor) {
-        processor->process(this);
+    bool BetweenExpr::visit(AbstractExpProcessor* processor) {
+        return processor->process(this);
     }
 
     ScalarExp::ScalarExp(): Exp(ExpScalar), type(ScalarNULL), column_name(nullptr), str(nullptr), integer(0), d(0) {
@@ -75,8 +73,8 @@ namespace skDB {
         column_name = column_name_;
     }
 
-    bool ScalarExp::visit(ExpProcessor *processor) {
-        processor->process(this);
+    bool ScalarExp::visit(AbstractExpProcessor* processor) {
+        return processor->process(this);
     }
 
     Value::Value() : type_(ScalarInvalid), integer_num(0) {

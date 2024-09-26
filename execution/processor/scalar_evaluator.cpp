@@ -5,7 +5,7 @@
 #include "execution/executor.h"
 
 namespace skDB {
-    bool ExpProcessor::process(ScalarExp *scalar_exp) {
+    bool ExpEvaluator::process(ScalarExp *scalar_exp) {
         assert(scalar_exp!=nullptr);
         switch (scalar_exp->scalarType()) {
             case ScalarChar:
@@ -25,7 +25,7 @@ namespace skDB {
         }
     }
 
-    bool ExpProcessor::processScalarName(ScalarExp *scalar_exp) {
+    bool ExpEvaluator::processScalarName(ScalarExp *scalar_exp) {
         auto m = context_.fullname2index();
         if (m.find(scalar_exp->getFullname()) == m.end()) {
             std::cout << "Unexpected error: " << scalar_exp->getFullname();
