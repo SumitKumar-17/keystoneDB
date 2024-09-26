@@ -885,6 +885,7 @@ class TableMetadata PROTOBUF_FINAL :
   enum : int {
     kDefinitionsFieldNumber = 1,
     kNextIdFieldNumber = 2,
+    kHasPrimaryFieldNumber = 3,
   };
   // repeated .skDB.DBDefinition definitions = 1;
   int definitions_size() const;
@@ -917,6 +918,19 @@ class TableMetadata PROTOBUF_FINAL :
   void _internal_set_nextid(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
+  // optional bool hasPrimary = 3;
+  bool has_hasprimary() const;
+  private:
+  bool _internal_has_hasprimary() const;
+  public:
+  void clear_hasprimary();
+  bool hasprimary() const;
+  void set_hasprimary(bool value);
+  private:
+  bool _internal_hasprimary() const;
+  void _internal_set_hasprimary(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:skDB.TableMetadata)
  private:
   class _Internal;
@@ -928,6 +942,7 @@ class TableMetadata PROTOBUF_FINAL :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::skDB::DBDefinition > definitions_;
   ::PROTOBUF_NAMESPACE_ID::uint64 nextid_;
+  bool hasprimary_;
   friend struct ::TableStruct_db_2eproto;
 };
 // -------------------------------------------------------------------
@@ -1088,6 +1103,7 @@ class DBDefinition PROTOBUF_FINAL :
     kCharLenFieldNumber = 5,
     kIsPrimaryFieldNumber = 3,
     kIsIndexFieldNumber = 4,
+    kNullableFieldNumber = 6,
     kTypeFieldNumber = 1,
   };
   // optional string name = 2;
@@ -1119,17 +1135,17 @@ class DBDefinition PROTOBUF_FINAL :
   std::string* _internal_mutable_name();
   public:
 
-  // optional int64 charLen = 5;
+  // optional uint64 charLen = 5;
   bool has_charlen() const;
   private:
   bool _internal_has_charlen() const;
   public:
   void clear_charlen();
-  ::PROTOBUF_NAMESPACE_ID::int64 charlen() const;
-  void set_charlen(::PROTOBUF_NAMESPACE_ID::int64 value);
+  ::PROTOBUF_NAMESPACE_ID::uint64 charlen() const;
+  void set_charlen(::PROTOBUF_NAMESPACE_ID::uint64 value);
   private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_charlen() const;
-  void _internal_set_charlen(::PROTOBUF_NAMESPACE_ID::int64 value);
+  ::PROTOBUF_NAMESPACE_ID::uint64 _internal_charlen() const;
+  void _internal_set_charlen(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
   // optional bool isPrimary = 3;
@@ -1158,6 +1174,19 @@ class DBDefinition PROTOBUF_FINAL :
   void _internal_set_isindex(bool value);
   public:
 
+  // optional bool nullable = 6;
+  bool has_nullable() const;
+  private:
+  bool _internal_has_nullable() const;
+  public:
+  void clear_nullable();
+  bool nullable() const;
+  void set_nullable(bool value);
+  private:
+  bool _internal_nullable() const;
+  void _internal_set_nullable(bool value);
+  public:
+
   // optional .skDB.DBDefinition.DefinitionType type = 1;
   bool has_type() const;
   private:
@@ -1181,9 +1210,10 @@ class DBDefinition PROTOBUF_FINAL :
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
-  ::PROTOBUF_NAMESPACE_ID::int64 charlen_;
+  ::PROTOBUF_NAMESPACE_ID::uint64 charlen_;
   bool isprimary_;
   bool isindex_;
+  bool nullable_;
   int type_;
   friend struct ::TableStruct_db_2eproto;
 };
@@ -1774,13 +1804,41 @@ inline void TableMetadata::set_nextid(::PROTOBUF_NAMESPACE_ID::uint64 value) {
   // @@protoc_insertion_point(field_set:skDB.TableMetadata.nextId)
 }
 
+// optional bool hasPrimary = 3;
+inline bool TableMetadata::_internal_has_hasprimary() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool TableMetadata::has_hasprimary() const {
+  return _internal_has_hasprimary();
+}
+inline void TableMetadata::clear_hasprimary() {
+  hasprimary_ = false;
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline bool TableMetadata::_internal_hasprimary() const {
+  return hasprimary_;
+}
+inline bool TableMetadata::hasprimary() const {
+  // @@protoc_insertion_point(field_get:skDB.TableMetadata.hasPrimary)
+  return _internal_hasprimary();
+}
+inline void TableMetadata::_internal_set_hasprimary(bool value) {
+  _has_bits_[0] |= 0x00000002u;
+  hasprimary_ = value;
+}
+inline void TableMetadata::set_hasprimary(bool value) {
+  _internal_set_hasprimary(value);
+  // @@protoc_insertion_point(field_set:skDB.TableMetadata.hasPrimary)
+}
+
 // -------------------------------------------------------------------
 
 // DBDefinition
 
 // optional .skDB.DBDefinition.DefinitionType type = 1;
 inline bool DBDefinition::_internal_has_type() const {
-  bool value = (_has_bits_[0] & 0x00000010u) != 0;
+  bool value = (_has_bits_[0] & 0x00000020u) != 0;
   return value;
 }
 inline bool DBDefinition::has_type() const {
@@ -1788,51 +1846,7 @@ inline bool DBDefinition::has_type() const {
 }
 inline void DBDefinition::clear_type() {
   type_ = 1;
-  _has_bits_[0] &= ~0x00000010u;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline ::skDB::DBDefinition_DefinitionType DBDefinition::_internal_type() const {
-  return static_cast< ::skDB::DBDefinition_DefinitionType >(type_);
-}
-inline ::skDB::DBDefinition_DefinitionType DBDefinition::type() const {
-  // @@protoc_insertion_point(field_get:skDB.DBDefinition.type)
-  return _internal_type();
-}
-inline void DBDefinition::_internal_set_type(::skDB::DBDefinition_DefinitionType value) {
-  assert(::skDB::DBDefinition_DefinitionType_IsValid(value));
-  _has_bits_[0] |= 0x00000010u;
-  type_ = value;
-}
-inline void DBDefinition::set_type(::skDB::DBDefinition_DefinitionType value) {
-  _internal_set_type(value);
-  // @@protoc_insertion_point(field_set:skDB.DBDefinition.type)
-}
-
-// optional string name = 2;
-inline bool DBDefinition::_internal_has_name() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
-  return value;
-}
-inline bool DBDefinition::has_name() const {
-  return _internal_has_name();
-}
-inline void DBDefinition::clear_name() {
-  name_.ClearToEmpty(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
-  _has_bits_[0] &= ~0x00000001u;
-}
-inline const std::string& DBDefinition::name() const {
-  // @@protoc_insertion_point(field_get:skDB.DBDefinition.name)
-  return _internal_name();
-}
-inline void DBDefinition::set_name(const std::string& value) {
-  _internal_set_name(value);
-  // @@protoc_insertion_point(field_set:skDB.DBDefinition.name)
-}
-inline std::string* DBDefinition::mutable_name() {
-  // @@protoc_insertion_point(field_mutable:skDB.DBDefinition.name)
-  return _internal_mutable_name();
-}
-inline const std::string& DBDefinition::_internal_name() const {
-  return name_.Get();
-}
-inline void DBDefinition::_internal_set_name(const std::string& value) {
-  _has_bits_[0] |= 0x00000001u;
+  return static_cast< ::skDB::DBDefinition_DefinitionTy
