@@ -67,9 +67,10 @@ namespace skDB {
     class Exp {
     public:
         virtual ~Exp();
-        virtual void visit(ExpProcessor processor) =0;
+        virtual bool visit(ExpProcessor *processor) =0;
         void setValue(Value v);
         [[nodiscard]] Value getValue();
+        [[nodiscard]] ExpType getExpType() const { return expType; }
 
     protected:
         explicit Exp(ExpType type_);
@@ -83,7 +84,7 @@ namespace skDB {
     class BetweenExpr : public Exp {
     public:
         BetweenExpr(Exp *exp1_, Exp *exp2_, Exp *exp3_);
-        void visit(ExpProcessor processor) override;
+        bool visit(ExpProcessor *processor) override;
         [[nodiscard]] Exp *getExp1() const { return exp1; }
         [[nodiscard]] Exp *getExp2() const { return exp2; }
         [[nodiscard]] Exp *getExp3() const { return exp3; }
@@ -97,7 +98,7 @@ namespace skDB {
     public:
         BinaryExp(BinaryExpType type_, Exp *left_, Exp *right_);
         [[nodiscard]] BinaryExpType binaryType() const;
-        void visit(ExpProcessor processor) override;
+        bool visit(ExpProcessor *processor) override;
         [[nodiscard]] Exp *getLeft() const { return left; }
         [[nodiscard]] Exp *getRight() const { return right; }
 
@@ -126,7 +127,7 @@ namespace skDB {
         explicit ScalarExp();
         explicit ScalarExp(double);
         [[nodiscard]] ScalarType scalarType() const;
-        void visit(ExpProcessor processor) override;
+        bool visit(ExpProcessor *processor) override;
         [[nodiscard]] ScalarType getType() const { return type; }
         [[nodiscard]] int getInteger() const { return integer; }
         [[nodiscard]] double getFloat() const { return d; }

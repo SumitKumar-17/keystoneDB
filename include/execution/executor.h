@@ -74,6 +74,11 @@ namespace skDB {
         bool collectTableAllRows(std::vector<TempRow> &rows, const std::string &dbname,
                                  const std::string &tablename) const;
         static bool buildColumnName2IndexMap(std::unordered_map<std::string, int> m, const TableMetadata &metadata);
+        bool evaluateExp(Exp *exp, ExpProcessor *processor);
+        bool evaluateBetween(BetweenExpr *between_expr, ExpProcessor *processorr);
+        static bool evaluateScalar(ScalarExp *exp, ExpProcessor *processor);
+        bool evaluateBinary(BinaryExp *exp, ExpProcessor *processor);
+        bool evaluateUnary(UnaryExp *exp, ExpProcessor *processor);
         std::string currentDB;
         rocksdb::DB *db;
     };
