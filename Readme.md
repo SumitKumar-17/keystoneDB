@@ -43,6 +43,7 @@ make
 ```shell
 git submodule add https://github.com/google/googletest.git third_party/googletest
 cd third_party/googletest
+git checkout fa6de7f4382f5c8fb8b9e32eea28a2eb44966c32cd third_party/googletest
 git checkout fa6de7f4382f5c8fb8b9e32eea28a2eb44966c32
 
 
