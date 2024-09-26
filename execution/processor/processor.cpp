@@ -4,5 +4,8 @@
 namespace skDB{
     ExpProcessor::ExpProcessor(ExecutionContext context): context_(context){}
 
-    bool ExpProcessor::process(BetweenExpr *between_expr){}
+    bool ExpProcessor::process(BetweenExpr *between_expr){
+        std::cout << "between is not supported yet" << std::endl;
+        return false;
+    }
 };

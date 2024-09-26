@@ -1,5 +1,6 @@
 #include "execution/executor.h"
 #include <iostream>
+#include <utility>
 
 #include "sql/parser_result.h"
 
@@ -119,7 +120,7 @@ namespace skDB {
         }
         return true;
     }
-    
+
     bool Executor::collectTableAllRows(std::vector<TempRow> &rows, const std::string &dbname,
                                        const std::string &tablename) const {
         const std::string rowPrefix = TABLE_ROW_PREFIX + dbname + tablename;
@@ -150,5 +151,11 @@ namespace skDB {
         for(int i=0;i<metadata.definitions_size();i++){
             m[metadata.definitions(i).name()]=i;
         }
+        retrun true;
+    }
+
+    ExecutionContext::ExecutionContext(TempRow temp_row,
+                                          std::unordered_map<std::string, int> fullname2index) : fullname2index_(
+           std::move(fullname2index)), row(std::move(temp_row)) {
     }
 }
