@@ -5,19 +5,19 @@
 namespace skDB {
     enum ShowType {
         ShowDatabases,
-        ShowTables
+        ShowTables,
     };
 
-    class ShowStmt final:public SQLStmt {
-        public:
-            explicit ShowStmt(ShowType shoe_type_);
-            ~ShowStmt() override;
+    class ShowStmt final : public SQLStmt {
+    public:
+        explicit ShowStmt(ShowType show_type_);
 
-            ShowType getShowType() const;
+        ~ShowStmt() override;
 
-        private:
-            ShowType show_type;
+        ShowType getShowType() const;
+
+    private:
+        ShowType show_type;
     };
 }
-
 #endif //SHOW_STMT_H

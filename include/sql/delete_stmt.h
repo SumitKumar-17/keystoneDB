@@ -3,15 +3,14 @@
 #include "exp.h"
 #include "stmt.h"
 
-namespace skDB{
+namespace skDB {
     class DeleteStmt final : public SQLStmt {
     public:
         DeleteStmt(TableName table_name_, Exp *whereExp_);
         ~DeleteStmt() override;
-    // private:
+
         TableName table_name;
         Exp *whereExp;
     };
 }
-
-#endif // DELETE_STMT_H
+#endif //DELETE_STMT_H

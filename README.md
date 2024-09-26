@@ -1,14 +1,19 @@
 # skDB
 
+A DBMS implemented for Xidian University‘s compiler course.
 
 ## Build
 
-To get the third party dependencies, run:
+### Ubuntu 22.04
+
+To get the third party dependencies(via source code), run:
 
 ```shell
 git submodule init
 git submodule update
 ```
+
+Install the following libraries on your computer
 
 ```shell
 # required by rocksdb
@@ -17,21 +22,8 @@ sudo apt-get install libgflags-dev libzstd-dev libsnappy-dev zlib1g-dev libbz2-d
 sudo apt-get install libprotobuf-dev protobuf-compiler
 ```
 
-## Supported SQL Example
-
-```sql
-CREATE DATABASE example;
-USE example;
-CREATE TABLE user (id int);
-SHOW TABLES;
-INSERT INTO user (id) VALUES (1);
-SELECT id from user WHERE id = 42;
-UPDATE user SET id=1 WHERE id=42;
-DELETE FROM user WHERE id=42;
-DROP TABLE user;
-```
-
 ## Features
+
 * Expression evaluation(Nested)
 * SQL comment
 * `NOT NULL` column constraint
@@ -42,6 +34,29 @@ DROP TABLE user;
 * Select multiple tables
 * Based on persistent key-value storage(built upon LSM-Tree)
 
+## Supported SQL (Example)
+
+```sql
+CREATE DATABASE example;
+USE example;
+CREATE TABLE user (id int);
+SHOW TABLES;
+INSERT INTO user (id NOT NULL) VALUES (1);
+SELECT id from user WHERE id = 42;
+UPDATE user SET id=1 WHERE id=42;
+DELETE FROM user WHERE id=42;
+SELECT * from user where id=(1+2*2+(id=id)+id^id+id) AND id = id%2 AND id IS NOT NULL;
+select * from t1  where id is not null;
+DROP TABLE user;
+```
+
+More details in [test.sql](./test/test.sql):
+
+```sql
+use test;
+select * from test.table1,table1;-- duplicated table (It is correctly checked)
+```
+
 ## Build
 
 ```shell
@@ -50,32 +65,6 @@ cd build
 cmake ..
 make -j4
 ```
-
-```shell
-git submodule add https://github.com/google/googletest.git third_party/googletest
-cd third_party/googletest
-git checkout fa6de7f4382f5c8fb8b9e32eea28a2eb44966c32cd third_party/googletest
-git checkout fa6de7f4382f5c8fb8b9e32eea28a2eb44966c32
-
-
-cd ../../
-
-git submodule add https://github.com/facebook/rocksdb.git third_party/rocksdb
-cd third_party/rocksdb
-git checkout b75438f9860e3cff5e713917ed22e0ac394a758c
-
-
-cd ../../
-
-git submodule add https://github.com/seleznevae/libfort.git third_party/libfort
-
-cd third_party/libfort
-git checkout 41237162a9bd34a30a88069ee4e230584ae8d674
-
-
-```
-
-
 
 ## Project Structure
 
@@ -90,6 +79,15 @@ git checkout 41237162a9bd34a30a88069ee4e230584ae8d674
 | third_party/*        | third party dependencies, e.g., googletest, rocksdb |
 | test/*               | unit test                                           |
 | docs/*               | documentation for the project                       |
+
+## Run
+
+Start skDB interactive shell (interactive mode)
+
+```shell
+# Assuming you are in build directory
+./skDB
+```
 
 ## Resources
 

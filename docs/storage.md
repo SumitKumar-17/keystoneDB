@@ -107,9 +107,19 @@ create table t1
 
 [Another link](https://github.com/facebook/mysql-5.6/wiki/MyRocks-data-dictionary-format)
 
-
-[Another link](https://github.com/facebook/mysql-5.6/wiki/MyRocks-data-dictionary-format)
 ### Compile Protobuf
+
 ```shell
 protoc -I=. --cpp_out=. ./db.proto 
+```
+
+### Iterator
+
+```c++
+//Return a heap-allocated iterator over the contents of the database.
+  // The result of NewIterator() is initially invalid (caller must
+  // call one of the Seek methods on the iterator before using it).
+  //
+  // Caller should delete the iterator when it is no longer needed.
+  // The returned iterator should be deleted before this db is deleted.
 ```

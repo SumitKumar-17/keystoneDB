@@ -8,7 +8,6 @@ namespace skDB {
         char *schema;
 
         TableName() = default;
-
         TableName(char *schema_, char *name_): name(name_), schema(schema_) {
         }
     };

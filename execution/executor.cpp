@@ -3,7 +3,6 @@
 #include <iostream>
 #include <utility>
 
-
 #include "sql/parser_result.h"
 
 namespace skDB {
@@ -21,30 +20,30 @@ namespace skDB {
 
     bool Executor::dispatch(SQLStmt *stmt) {
         switch (stmt->type()) {
-            case xSQL_USE:
+            case skSQL_USE:
                 executeUseStmt(dynamic_cast<UseStmt *>(stmt));
                 break;
-            case xSQL_DROP:
+            case skSQL_DROP:
                 executeDropStmt(dynamic_cast<DropStmt *>(stmt));
                 break;
-            case xSQL_SHOW:
+            case skSQL_SHOW:
                 executeShowStmt(dynamic_cast<ShowStmt *>(stmt));
                 break;
-            case xSQL_DELETE:
+            case skSQL_DELETE:
                 executeDeleteStmt(dynamic_cast<DeleteStmt *>(stmt));
                 break;
-            case xSQL_INSERT:
+            case skSQL_INSERT:
                 executeInsertStmt(dynamic_cast<InsertStmt *>(stmt));
                 break;
-            case xSQL_CREATE:
+            case skSQL_CREATE:
                 executeCreateStmt(dynamic_cast<CreateStmt *>(stmt));
                 break;
-            case xSQL_EXIT:
+            case skSQL_EXIT:
                 return false;
-            case xSQL_SELECT:
+            case skSQL_SELECT:
                 executeSelectStmt(dynamic_cast<SelectStmt *>(stmt));
                 break;
-            case xSQL_UPDATE:
+            case skSQL_UPDATE:
                 executeUpdateStmt(dynamic_cast<UpdateStmt *>(stmt));
                 break;
             default:

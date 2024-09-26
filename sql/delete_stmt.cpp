@@ -2,7 +2,7 @@
 
 namespace skDB {
     DeleteStmt::~DeleteStmt() = default;
-    DeleteStmt::DeleteStmt(TableName table_name_, Exp *whereExp_) : SQLStmt(skDB_SQL_DELETE), table_name(table_name_),
-                                                                    whereExp(whereExp_) {
+
+    DeleteStmt::DeleteStmt(TableName table_name_, Exp *whereExp_) : SQLStmt(skSQL_DELETE), table_name(table_name_),whereExp(whereExp_) {
     }
 }

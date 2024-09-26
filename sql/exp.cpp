@@ -23,8 +23,7 @@ namespace skDB {
         return type;
     }
 
-    BinaryExp::BinaryExp(BinaryExpType type_, Exp *left_, Exp *right_) : Exp(ExpBinary), type(type_), left(left_),
-                                                                         right(right_) {
+    BinaryExp::BinaryExp(BinaryExpType type_, Exp *left_, Exp *right_) : Exp(ExpBinary), type(type_), left(left_),right(right_) {
     }
 
     bool BinaryExp::visit(AbstractExpProcessor *processor) {

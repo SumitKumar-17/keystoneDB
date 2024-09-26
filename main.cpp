@@ -8,13 +8,18 @@
 #include "common/codec/db.pb.h"
 #include "execution/executor.h"
 #include "linenoise.h"
+#include <gflags/gflags.h>
+#include <fstream>
+
+DEFINE_bool(disable_line_editing, false, "specify this flag if you want to disable line editing(e.g., in docker)");
+DEFINE_string(filepath, "", "path for the *.sql file");
 
 int wrapped_parse(const char *text, skDB::ParserResult *result);
 
 
 void read_loop();
 
-const auto welcome = "Welcome to the skDB. skDB is a  relational DBMS built on RocksDB.";
+const auto welcome = "Welcome to the skDB. skDB is a relational DBMS built on RocksDB.";
 const auto copyright = "Copyright (c) 2024-present Sumit Kumar All rights reserved.";
 const auto author = "Written by Sumit Kumar <https://github.com/SumitKumar-17>.";
 const auto license = "Source code git repository: <https://github.com/SumitKumar-17/skDB>.";
@@ -22,7 +27,7 @@ const auto license = "Source code git repository: <https://github.com/SumitKumar
 void printInfo() {
     std::cout << welcome << std::endl;
 
-    std::cout << "skDB VERSION: v" << skDB_MAJOR << "." << skDB_MINOR << "." << skDB_PATCH << std::endl << std::endl;
+    std::cout << "skDB VERSION: v" << SKDB_MAJOR << "." << SKDB_MINOR << "." << SKDB_PATCH << std::endl << std::endl;
 
     std::cout << copyright << std::endl;
     std::cout << author << std::endl;
@@ -31,14 +36,7 @@ void printInfo() {
 }
 
 
-void signal_handler(int sig) {
-    std::cout << std::endl << "skDB> ";
-    std::fflush(stdout);
-}
-
 void setup_signal() {
-    // register SIGINT handler
-    signal(SIGINT, signal_handler);
 }
 
 bool getLine(bool debug, std::string &s, const std::string &prompt) {
@@ -67,7 +65,11 @@ void read_loop() {
             auto prompt = firstline ? "skDB> " : "   -> ";
             std::string q;
             if (!getLine(FLAGS_disable_line_editing, q, prompt)) {
-                return;
+                pending_no_blank_query.clear();
+                pending_query.clear();
+                count = 0;
+                firstline = true;
+                continue;
             }
             std::string final_query;
             std::string final_no_blank_query;
@@ -127,7 +129,7 @@ void read_loop() {
 
 
 int main(int argc, char **argv) {
-    gflags::SetUsageMessage("--filepath=FILEPATH execute sql file\n --disable_line_edit\n ");
+    gflags::SetUsageMessage("--filepath=FILEPATH execute sql file\n     --disable_line_edit\n ");
     gflags::ParseCommandLineFlags(&argc, &argv, true);
     printInfo();
     setup_signal();

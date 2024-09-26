@@ -145,6 +145,15 @@ message(STATUS "finding ${ZLIB}")
 
 target_link_libraries(skDB PUBLIC lz4 zstd snappy bz2 gflags z protobuf)
 
+find_library(URING_LIB uring REQUIRED)
+target_link_libraries(skDB PUBLIC ${URING_LIB})
+
+
+# Link Abseil library components
+find_package(absl REQUIRED)
+target_link_libraries(skDB PRIVATE absl::log_internal_check_op absl::strings absl::base)
+
+
 add_custom_target(rocksdb
         COMMAND cd
         COMMAND make -j4 --file ${CMAKE_CURRENT_SOURCE_DIR}/third_party/rocksdb/Makefile --directory ${CMAKE_CURRENT_SOURCE_DIR}/third_party/rocksdb static_lib

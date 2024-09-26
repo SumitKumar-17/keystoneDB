@@ -5,22 +5,23 @@
 #include "stmt.h"
 #include "table.h"
 
-namespace skDB{
-    enum CreateStmtType{
+namespace skDB {
+    enum CreateStmtType {
         CreateDatabase,
         CreateTable
     };
 
     class CreateStmt final : public SQLStmt {
-        public:
-            ~CreateStmt() override;
-            explicit CreateStmt(TableName name_);
-            CreateStmt(TableName name_,std::vector<DataDefinition *> *list_);
-        
-            TableName name;
-            CreateStmtType createType;
-            std::vector<DataDefinition *> *list;
+    public:
+        ~CreateStmt() override;
+
+        explicit CreateStmt(TableName name_);
+
+        CreateStmt(TableName name_, std::vector<DataDefinition *> *list_);
+
+        TableName name;
+        CreateStmtType createType;
+        std::vector<DataDefinition *> *list;
     };
 }
-
-#endif // CREATE_STMT_H
+#endif //CREATE_STMT_H

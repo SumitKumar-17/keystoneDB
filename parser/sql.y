@@ -15,6 +15,7 @@ using namespace skDB;
 }
 
 %destructor {
+    //
     free( ($$) );
 }<str>
 

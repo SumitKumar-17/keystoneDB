@@ -8,9 +8,8 @@ namespace skDB {
     public:
         explicit UseStmt(TableName name_);
         ~UseStmt() override;
-    // private:
+
         TableName name{};
     };
 }
-
 #endif //USE_STMT_H

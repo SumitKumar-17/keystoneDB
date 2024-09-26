@@ -133,3 +133,4 @@ FLOAT TOKEN(FLOAT)
 . { fprintf(stderr, "[SQL-Lexer-Error] Unknown Character: %c\n", yytext[0]); return 0; }
 
 %%
+
