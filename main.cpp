@@ -22,7 +22,7 @@ const auto license = "Source code git repository: <https://github.com/SumitKumar
 void printInfo() {
     std::cout << welcome << std::endl;
 
-    std::cout << "xDB VERSION: v" << XDB_MAJOR << "." << XDB_MINOR << "." << XDB_PATCH << std::endl << std::endl;
+    std::cout << "skDB VERSION: v" << skDB_MAJOR << "." << skDB_MINOR << "." << skDB_PATCH << std::endl << std::endl;
 
     std::cout << copyright << std::endl;
     std::cout << author << std::endl;
@@ -32,7 +32,7 @@ void printInfo() {
 
 
 void signal_handler(int sig) {
-    std::cout << std::endl << "xDB> ";
+    std::cout << std::endl << "skDB> ";
     std::fflush(stdout);
 }
 
@@ -55,7 +55,7 @@ bool getLine(bool debug, std::string &s, const std::string &prompt) {
 }
 
 void read_loop() {
-    xDB::Executor executor;
+    skDB::Executor executor;
     executor.init();
     if (FLAGS_filepath.empty()) {
         std::string pending_query, pending_no_blank_query;
@@ -64,7 +64,7 @@ void read_loop() {
         linenoiseSetMultiLine(1);
         linenoiseHistorySetMaxLen(1024);
         while (true) {
-            auto prompt = firstline ? "xDB> " : "   -> ";
+            auto prompt = firstline ? "skDB> " : "   -> ";
             std::string q;
             if (!getLine(FLAGS_disable_line_editing, q, prompt)) {
                 return;
@@ -95,7 +95,7 @@ void read_loop() {
             if (final_query.empty()) {
                 continue;
             }
-            const auto result = new xDB::ParserResult();
+            const auto result = new skDB::ParserResult();
             linenoiseHistoryAdd(final_query.c_str());
 
             wrapped_parse(final_no_blank_query.c_str(), result);
@@ -116,7 +116,7 @@ void read_loop() {
             lines += line + "\n";
         }
         ifstream.close();
-        const auto result = new xDB::ParserResult();
+        const auto result = new skDB::ParserResult();
         wrapped_parse(lines.c_str(), result);
         executor.execute(result);
     }

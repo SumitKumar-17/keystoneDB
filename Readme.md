@@ -31,6 +31,17 @@ DELETE FROM user WHERE id=42;
 DROP TABLE user;
 ```
 
+## Features
+* Expression evaluation(Nested)
+* SQL comment
+* `NOT NULL` column constraint
+* Datatype: `INT`, `FLOAT`, `CHAR(N)`
+* Multi-line support
+* sql file execution
+* Line editing and sql history
+* Select multiple tables
+* Based on persistent key-value storage(built upon LSM-Tree)
+
 ## Build
 
 ```shell

@@ -1,14 +1,5 @@
 syntax = "proto2";
-package skDB;
-
-message Person{
-  optional string name = 1;
-  optional int32 id = 2;
-  enum PersonType{
-    STUDENT = 0;
-  }
-}
-
+package xDB;
 
 message Column{
   enum ColumnType{
