@@ -76,6 +76,14 @@ namespace skDB {
             column = row.add_columns();
             column->set_type(Column::COLUMN_CHAR);
             column->set_str(str);
+        } else if (def.type() == DBDefinition::FLOAT && parameter->getType() == FLOAT) {
+                    column = row.add_columns();
+                    column->set_type(Column::COLUMN_FLOAT);
+                    column->set_float_num(parameter->getDouble());
+                } else if (def.type() == DBDefinition::FLOAT && parameter->getType() == INTEGER) {
+                    column = row.add_columns();
+                    column->set_type(Column::COLUMN_FLOAT);
+                    column->set_float_num(parameter->getInt());
         } else if (parameter->getType() == DataTypeNULL) {
             if (!def.nullable()) {
                 std::cout << "column " << def.name() << " can not be null" << std::endl;

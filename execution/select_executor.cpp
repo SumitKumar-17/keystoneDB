@@ -257,6 +257,9 @@ namespace skDB {
                     case Column::COLUMN_NULL:
                         table << "NULL";
                         break;
+                    case Column::COLUMN_FLOAT:
+                        table << column.float_num();
+                        break;
                     default:
                         std::cout << "Some errors occur";
                         return;
