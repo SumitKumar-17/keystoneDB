@@ -20,6 +20,7 @@ namespace skDB{
         INTEGER,
         FLOAT,
         CHAR,
+        DataTypeNULL
     };
 
     class DataDefinition {
@@ -40,7 +41,7 @@ namespace skDB{
         private:
             int len;
     };
-    
+
 }
 
 #endif //TABLE_H

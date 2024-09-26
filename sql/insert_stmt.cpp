@@ -2,6 +2,9 @@
 #include <cstdlib>
 
 namespace skDB{
+    Parameter::Parameter() : str(nullptr), x(0), d(0), type(DataTypeNULL) {
+      }
+
     DataType Parameter::getType() const {
         return type;
     }

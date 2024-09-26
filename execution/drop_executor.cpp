@@ -35,6 +35,7 @@ namespace skDB{
         deletePrefix(table_meta_prefix, db, it);
         deletePrefix(table_row_prefix, db, it);
         delete it;
+        std::cout << "table " << table_name << " has been dropped" << std::endl;
     }
     void Executor::dropDatabase(const DropStmt *drop_stmt)
     {

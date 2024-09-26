@@ -77,6 +77,9 @@ namespace skDB {
             column = row.add_columns();
             column->set_type(Column::COLUMN_CHAR);
             column->set_str(str);
+        } else if (parameter->getType() == DataTypeNULL) {
+                    column = row.add_columns();
+                    column->set_type(Column::COLUMN_NULL);
         } else {
             std::cout << "Data type mismatched" << std::endl;
             return false;

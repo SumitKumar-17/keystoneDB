@@ -15,8 +15,8 @@ std::string s;
 void read_loop();
 
 const auto welcome = "Welcome to the skDB. skDB is a DBMS built on RocksDB.";
-const auto copyright = "Copyright (c) 2024-present Ruitian Zhong All rights reserved.";
-const auto author = "Written by Ruitian Zhong <https://github.com/SumitKumar-17>.";
+const auto copyright = "Copyright (c) 2024-present Sumit Kumar All rights reserved.";
+const auto author = "Written by Sumit Kumar <https://github.com/SumitKumar-17>.";
 const auto license = "Source code git repository: <https://github.com/SumitKumar-17/skDB>.";
 
 void printInfo() {
@@ -48,6 +48,9 @@ void read_loop() {
     while (true) {
         std::cout << "skDB> ";
         std::getline(std::cin, s);
+        if (s.empty()) {
+                   continue;
+        }
         const auto result = new skDB::ParserResult();
         wrapped_parse(s.c_str(), result);
         if (!executor.execute(result)) {

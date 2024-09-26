@@ -100,7 +100,6 @@ EXIT TOKEN(EXIT)
  /* Float point number */
 [0-9]+"."[0-9]* |
 "."[0-9]+ {
-	// printf("float point:%s\n",yytext);
 	yylval.float_val = atof(yytext);
 	return SQL_FLOATVAL;
 }
@@ -109,7 +108,7 @@ EXIT TOKEN(EXIT)
 
  /* Integer number */
 
-[0-9]+ { yylval.int_val=atoi(yytext);return SQL_INTVAL; }
+[0-9]+ { yylval.int_val = atoi(yytext);return SQL_INTVAL; }
 
  /* Identifier (placed after the keyword, lower priority in other words) */
 
@@ -125,7 +124,7 @@ EXIT TOKEN(EXIT)
 \' { BEGIN(single_quoted_string); strbuf.clear();strbuf.str(""); }
 <single_quoted_string>\'\' { strbuf<<'\''; }
 <single_quoted_string>[^']* { strbuf<<yytext;}
-<single_quoted_string>\' { BEGIN(INITIAL); printf("%s\n",strbuf.str().c_str());yylval.str= strdup(strbuf.str().c_str()); return SQL_STRING; }
+<single_quoted_string>\' { BEGIN(INITIAL); yylval.str= strdup(strbuf.str().c_str()); return SQL_STRING; }
 
 <single_quoted_string><<EOF>> { fprintf(stderr,"[SQL-Lexer-Error] Unterminated string\n"); return 0;}
 
@@ -135,7 +134,3 @@ EXIT TOKEN(EXIT)
 . { fprintf(stderr, "[SQL-Lexer-Error] Unknown Character: %c\n", yytext[0]); return 0; }
 
 %%
-
-// int yyerror(const char *msg) {
-//     fprintf(stderr, "[SQL-Lexer-Error] %s\n",msg); return 0;
-// }

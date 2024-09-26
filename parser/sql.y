@@ -3,7 +3,7 @@
 #include "sql_lexer.h"
 #include "string.h"
 #include "sql/parser_result.h"
-int yyerror(yyscan_t scanner,skDB::ParserResult * result,const char * s);
+int yyerror(yyscan_t scanner,xDB::ParserResult * result,const char * s);
 %}
 %lex-param   { yyscan_t scanner }
 
@@ -11,7 +11,7 @@ int yyerror(yyscan_t scanner,skDB::ParserResult * result,const char * s);
 %parse-param { ParserResult * result }
 %code requires{
 #include "sql/stmts.h"
-using namespace skDB;
+using namespace xDB;
 }
 
 %destructor {
@@ -80,26 +80,26 @@ using namespace skDB;
 
 %union{
     char * str;
-    skDB::DropStmt* drop_stmt;
+    xDB::DropStmt* drop_stmt;
     std::vector<SQLStmt*> * stmt_vec;
     TableName table_name;
-    skDB::SQLStmt* stmt;
-    skDB::UseStmt * use_stmt;
-    skDB::ColumnName * column_name;
-    skDB::ShowStmt * show_stmt;
+    xDB::SQLStmt* stmt;
+    xDB::UseStmt * use_stmt;
+    xDB::ColumnName * column_name;
+    xDB::ShowStmt * show_stmt;
     double float_val;
     int int_val;
-    skDB::InsertStmt * insert_stmt;
+    xDB::InsertStmt * insert_stmt;
     std::vector<ColumnName*> *column_name_list;
-    skDB::Parameter *insert_value;
+    xDB::Parameter *insert_value;
     std::vector<Parameter*>* insert_values_list;
-    skDB::DataDefinition* data_definition;
+    xDB::DataDefinition* data_definition;
     std::vector<DataDefinition*>*definition_list;
-    skDB::CreateStmt * create_stmt;
-    skDB::Exp * exp;
-    skDB::SelectStmt * select_stmt;
+    xDB::CreateStmt * create_stmt;
+    xDB::Exp * exp;
+    xDB::SelectStmt * select_stmt;
     std::vector<TableName> * table_list;
-    skDB::DeleteStmt * delete_stmt;
+    xDB::DeleteStmt * delete_stmt;
     UpdateAssign * update_assign;
     std::vector<UpdateAssign*> * update_assign_list;
     UpdateStmt * update_stmt;
@@ -353,6 +353,10 @@ insert_value
 | STRING {
     $$ = new Parameter($1);
 }
+| NULL {
+    printf("NULL\n");
+    $$ = new Parameter();
+}
 
 
  /****** DROP statement (example: DROP TABLE students;) ******/
@@ -475,7 +479,7 @@ int wrapped_parse(const char*text, ParserResult * result){
 
     yy_delete_buffer(state,scanner);
     yylex_destroy(scanner);
-    return 1;
+    return ret;
 }
 
 int yyerror(yyscan_t scanner,ParserResult * result ,const char *msg) {

@@ -91,8 +91,9 @@ namespace skDB {
                 auto valuetype = value.getType();
                 Column column = row.column(index);
                 if (type == DBDefinition::CHAR && valuetype == ScalarChar) {
-                    if (value.getChar().length() > metadata.definitions(index).charlen()) {
-                        std::cout << value.getChar() << " is too long" << std::endl;
+                    if (static_cast<google::protobuf::int64>(value.getChar().length()) > metadata.definitions(index).
+                                            charlen()) {
+                                                std::cout << value.getChar() << " is too long" << std::endl;
                         return;
                     }
                     column.set_type(Column::COLUMN_CHAR);

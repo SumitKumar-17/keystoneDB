@@ -161,7 +161,7 @@ namespace skDB {
 
                     if (column2index.find(columnKey) != column2index.end()) {
                         if (found) {
-                            std::cout << "ambiguous column name " << column_name << std::endl;
+                            std::cout << "ambiguous column name " << column_name->column_name << std::endl;
                             return;
                         }
                         found = true;
@@ -265,6 +265,7 @@ namespace skDB {
             table << fort::endr;
         }
         if (reuslt_cnt > 0) {
+             std::cout << "Result contains " << reuslt_cnt << " row(s)" << std::endl;
             std::cout << table.to_string() << std::endl;
         } else {
             std::cout << "Empty set" << std::endl;
