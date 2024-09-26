@@ -10,7 +10,9 @@ cmake_minimum_required(VERSION 3.15)
 
 project(skDB
         LANGUAGES C CXX
-        DESCRIPTION "A DBMS")
+        DESCRIPTION "skDB is a DBMS built on RocksDB"
+        VERSION 0.0.1
+)
 
 add_executable(${PROJECT_NAME} main.cpp
         sql_lexer.cpp
@@ -63,6 +65,7 @@ add_executable(${PROJECT_NAME} main.cpp
         execution/processor/scalar_evaluator.cpp
         execution/processor/visit_exp.cpp
         execution/processor/exp_checker.cpp
+        include/version.h
 )
 
 add_custom_command(
@@ -110,7 +113,6 @@ add_library(${PROJECT_NAME}_lib STATIC
 target_include_directories(${PROJECT_NAME}_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_include_directories(${PROJECT_NAME}_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/common/codec)
 
-
 add_subdirectory(test)
 add_subdirectory(third_party/googletest)
 
@@ -155,7 +157,9 @@ set(FORT_ENABLE_TESTING OFF CACHE INTERNAL "")
 add_subdirectory(third_party/libfort)
 target_link_libraries(skDB PRIVATE fort)
 
+
 find_program(MAKE make)
 message(STATUS "finding program make")
+
 find_library(PROTOBUF protobuf REQUIRED)
 message(STATUS "finding ${PROTOBUF}")

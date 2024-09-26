@@ -53,7 +53,9 @@ namespace skDB {
                 return false;
             }
             scalar_exp->setFullColumnName(full_name);
-        } else if (column_name->schema != nullptr) {
+            return true;
+        }
+        if (column_name->schema != nullptr) {
             const auto fullname = ColumnFullName(column_name->schema, column_name->name, column_name->column_name);
 
             if (m.find(fullname) == m.end()) {

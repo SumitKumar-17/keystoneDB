@@ -1,15 +1,17 @@
 #include "execution/executor.h"
+
 #include <iostream>
 #include <utility>
+
 
 #include "sql/parser_result.h"
 
 namespace skDB {
-    Executor::Executor() = default;
-
+    Executor::Executor(): db(nullptr) {
+    }
 
     bool Executor::execute(ParserResult *results) {
-        for (auto &result: *results->getStatements()) {
+        for (const auto &result: *results->getStatements()) {
             if (!dispatch(result)) {
                 return false;
             }
@@ -19,31 +21,31 @@ namespace skDB {
 
     bool Executor::dispatch(SQLStmt *stmt) {
         switch (stmt->type()) {
-            case skDB_SQL_USE:
+            case xSQL_USE:
                 executeUseStmt(dynamic_cast<UseStmt *>(stmt));
                 break;
-            case skDB_SQL_DROP:
+            case xSQL_DROP:
                 executeDropStmt(dynamic_cast<DropStmt *>(stmt));
                 break;
-            case skDB_SQL_SHOW:
+            case xSQL_SHOW:
                 executeShowStmt(dynamic_cast<ShowStmt *>(stmt));
                 break;
-            case skDB_SQL_DELETE:
+            case xSQL_DELETE:
                 executeDeleteStmt(dynamic_cast<DeleteStmt *>(stmt));
                 break;
-            case skDB_SQL_INSERT:
+            case xSQL_INSERT:
                 executeInsertStmt(dynamic_cast<InsertStmt *>(stmt));
                 break;
-            case skDB_SQL_CREATE:
+            case xSQL_CREATE:
                 executeCreateStmt(dynamic_cast<CreateStmt *>(stmt));
                 break;
-            case skDB_SQL_UPDATE:
-                executeUpdateStmt(dynamic_cast<UpdateStmt *>(stmt));
-                break;
-            case skDB_SQL_EXIT:
+            case xSQL_EXIT:
                 return false;
-            case skDB_SQL_SELECT:
+            case xSQL_SELECT:
                 executeSelectStmt(dynamic_cast<SelectStmt *>(stmt));
+                break;
+            case xSQL_UPDATE:
+                executeUpdateStmt(dynamic_cast<UpdateStmt *>(stmt));
                 break;
             default:
                 std::cout << "Unknown SQL statement type" << std::endl;
@@ -53,16 +55,11 @@ namespace skDB {
     }
 
     void Executor::shutdown() const {
-        // rocksdb::WaitForCompactOptions opt = rocksdb::WaitForCompactOptions();
         auto opt = rocksdb::WaitForCompactOptions();
         opt.close_db = true;
         const auto s = db->WaitForCompact(opt);
         assert(s.ok());
         delete db;
-    }
-
-    bool ExecutionResult::ok() {
-        return true;
     }
 
     bool Executor::init() {
@@ -95,7 +92,8 @@ namespace skDB {
         }
     }
 
-    bool Executor::checkTable(TableName table_name, std::string &cur, std::string &table,TableMetadata &metadata) const {
+    bool Executor::checkTable(TableName table_name, std::string &cur, std::string &table,
+                              TableMetadata &metadata) const {
         assert(table_name.name!=nullptr);
         if (table_name.schema == nullptr && currentDB.empty()) {
             std::cout << "No database selected" << std::endl;
@@ -103,8 +101,12 @@ namespace skDB {
         }
         cur = table_name.schema == nullptr ? currentDB : table_name.schema;
         table = table_name.name;
+
+
         std::string value, key = MakeTableMetadataPrefix(cur, table);
+
         auto status = db->Get(rocksdb::ReadOptions(), key, &value);
+
         if (status.IsNotFound()) {
             std::cout << "Table does not exist" << std::endl;
             return false;
@@ -114,16 +116,18 @@ namespace skDB {
             return false;
         }
 
-        if(!metadata.ParseFromString(value)){
-            std::cout<<"[ Codec Error]" <<"Abort" <<std::endl;
+        if (!metadata.ParseFromString(value)) {
+            std::cout << "[ Codec Error] " << "Abort" << std::endl;
             return false;
         }
+
         return true;
     }
 
     bool Executor::collectTableAllRows(std::vector<TempRow> &rows, const std::string &dbname,
                                        const std::string &tablename) const {
         const std::string rowPrefix = TABLE_ROW_PREFIX + dbname + tablename;
+
         const auto it = db->NewIterator(rocksdb::ReadOptions());
         for (it->Seek(rowPrefix); it->Valid(); it->Next()) {
             auto s = it->key().ToString();
@@ -138,34 +142,39 @@ namespace skDB {
                 return false;
             }
             temp_row.addColumns(row);
+
             rows.push_back(temp_row);
         }
+
         if (!it->status().ok()) {
             std::cout << "[ Warning ] " << it->status().ToString();
         }
+
         delete it;
         return true;
     }
 
     // const reference?
-    bool Executor::buildColumnName2IndexMap(std::unordered_map<std::string, int> m, const TableMetadata &metadata) {
+    bool Executor::buildColumnName2IndexMap(const std::string &db, const std::string &table,
+                                            std::unordered_map<ColumnFullName, int, ColumnFullNameHasher> &m,
+                                            const TableMetadata &metadata) {
         for (int i = 0; i < metadata.definitions_size(); i++) {
-            m[metadata.definitions(i).name()] = i;
+            ColumnFullName c(db, table, metadata.definitions(i).name());
+            m[c] = i;
         }
         return true;
     }
 
     ExecutionContext::ExecutionContext(TempRow temp_row,
-                                          std::unordered_map<std::string, int> fullname2index) : fullname2index_(
-           std::move(fullname2index)), row(std::move(temp_row)) {
-               std::unordered_map<ColumnFullName, int, ColumnFullNameHasher> fullname2index,
-                                                      std::vector<TableFullName> v, std::string curDB,
-                                                      rocksdb::DB *db) : fullname2index_(
-                                                                             std::move(fullname2index)),
-                                                                         row(std::move(temp_row)),
-                                                                         full_names_(std::move(v)), curDB_(std::move(curDB)), db_(db) {
-                   }
-                   [[nodiscard]] std::string TableFullName::getTableMetaKey() const {
-                       return Executor::MakeTableMetadataPrefix(table_schema, table_name);
+                                       std::unordered_map<ColumnFullName, int, ColumnFullNameHasher> fullname2index,
+                                       std::vector<TableFullName> v, std::string curDB,
+                                       rocksdb::DB *db) : fullname2index_(
+                                                              std::move(fullname2index)),
+                                                          row(std::move(temp_row)),
+                                                          full_names_(std::move(v)), curDB_(std::move(curDB)), db_(db) {
+    }
+
+    [[nodiscard]] std::string TableFullName::getTableMetaKey() const {
+        return Executor::MakeTableMetadataPrefix(table_schema, table_name);
     }
 }
