@@ -236,13 +236,13 @@ namespace skDB {
 
         bool process(ScalarExp *scalar_exp) override;
 
-        bool processNegate(UnaryExp *exp);
+        static bool processNegate(UnaryExp *exp);
 
-        bool processIsNull(UnaryExp *exp);
+        static bool processIsNull(UnaryExp *exp);
 
-        bool processNot(UnaryExp *exp);
+        static bool processNot(UnaryExp *exp);
 
-        bool processIsNotNull(UnaryExp *exp);
+        static bool processIsNotNull(UnaryExp *exp);
 
         bool processScalarName(ScalarExp *scalar_exp);
     };

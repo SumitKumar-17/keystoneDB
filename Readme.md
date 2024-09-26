@@ -37,7 +37,7 @@ DROP TABLE user;
 mkdir build
 cd build
 cmake ..
-make
+make -j4
 ```
 
 ```shell

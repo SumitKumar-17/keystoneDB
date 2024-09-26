@@ -1,25 +1,26 @@
 syntax = "proto2";
 package skDB;
 
-message Person {
+message Person{
   optional string name = 1;
   optional int32 id = 2;
-  enum PersonType {
+  enum PersonType{
     STUDENT = 0;
   }
 }
 
-message Column {
-  enum ColumnType {
+
+message Column{
+  enum ColumnType{
     COLUMN_INT = 0;
     COLUMN_CHAR = 1;
     COLUMN_NULL = 3;
     COLUMN_FLOAT = 4;
   }
 
-  optional ColumnType type = 1;
-  optional int32 integer_num = 2;
-  optional string str = 3;
+  optional  ColumnType type = 1;
+  optional  int32 integer_num = 2;
+  optional  string str = 3;
   optional double float_num = 4;
 }
 
@@ -30,10 +31,11 @@ message Row {
 message TableMetadata {
   repeated DBDefinition definitions = 1;
   optional uint64 nextId = 2;
+  optional bool hasPrimary = 3;
 }
 
-message DBDefinition {
-  enum DefinitionType {
+message DBDefinition{
+  enum DefinitionType{
     INTEGER = 1;
     CHAR = 2;
     FLOAT = 3;
@@ -43,6 +45,7 @@ message DBDefinition {
   optional bool isPrimary = 3;
   optional bool isIndex = 4;
   optional uint64 charLen = 5;
+  optional bool nullable = 6;
 }
 
 message DBMetadata {

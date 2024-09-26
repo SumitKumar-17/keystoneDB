@@ -17,9 +17,9 @@ like:
          %{
          #include "y.tab.h"
          %}
-     
+
          %%
-     
+
          [0-9]+        yylval = atoi( yytext ); return TOK_NUMBER;
 ```
 
@@ -53,7 +53,7 @@ condition, and
 ```
          <INITIAL,STRING,QUOTE>\.        { /* handle an escape ... */
                      ...
-                     } 
+                     }
 ```
 
 will be active only when the current start condition is either
@@ -65,10 +65,14 @@ Example for detecting multiline comment in C:
  %x comment
          %%
                  int line_num = 1;
-     
+
          "/*"         BEGIN(comment);
          <comment>[^*\n]*        /* eat anything that's not a '*' */
          <comment>"*"+[^*/\n]*   /* eat up '*'s not followed by '/'s */
          <comment>\n             ++line_num;
          <comment>"*"+"/"        BEGIN(INITIAL);
 ```
+
+We should use public inheritance here.
+### Token Precedence and Associativity
+[Useful article ](https://cloud.tencent.com/developer/article/2190364)

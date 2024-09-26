@@ -14,7 +14,7 @@ int wrapped_parse(const char *text, skDB::ParserResult *result);
 
 void read_loop();
 
-const auto welcome = "Welcome to the skDB. skDB is a DBMS built on RocksDB.";
+const auto welcome = "Welcome to the skDB. skDB is a  relational DBMS built on RocksDB.";
 const auto copyright = "Copyright (c) 2024-present Sumit Kumar All rights reserved.";
 const auto author = "Written by Sumit Kumar <https://github.com/SumitKumar-17>.";
 const auto license = "Source code git repository: <https://github.com/SumitKumar-17/skDB>.";
@@ -41,19 +41,34 @@ void setup_signal() {
     signal(SIGINT, signal_handler);
 }
 
+bool getLine(bool debug, std::string &s, const std::string &prompt) {
+    if (debug) {
+        std::cout << prompt;
+        std::getline(std::cin, s);
+    } else {
+        char *query_c_str = linenoise(prompt.c_str());
+        if (query_c_str == nullptr) return false;
+        s = query_c_str;
+        linenoiseFree(query_c_str);
+    }
+    return true;
+}
+
 void read_loop() {
     skDB::Executor executor;
     std::string pending_query;
     executor.init();
     int count = 0;
     bool firstline = true;
+    linenoiseSetMultiLine(1);
+    linenoiseHistorySetMaxLen(1024);
     while (true) {
         auto prompt = firstline ? "skDB> " : "   -> ";
-        char *query_c_str = linenoise(prompt);
-        if (query_c_str == nullptr) break;
-        std::string q = query_c_str;
-        linenoiseFree(query_c_str);
 
+        std::string q;
+        if (!getLine(false, q, prompt)) {
+            return;
+        }
         std::string final_query;
 
         for (unsigned int i = 0; i < q.length(); i++) {
@@ -76,6 +91,8 @@ void read_loop() {
             continue;
         }
         const auto result = new skDB::ParserResult();
+        linenoiseHistoryAdd(final_query.c_str());
+
         wrapped_parse(final_query.c_str(), result);
         if (!executor.execute(result)) {
             break;
