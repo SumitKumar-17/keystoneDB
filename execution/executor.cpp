@@ -147,11 +147,12 @@ namespace skDB {
         return true;
     }
 
-    bool Executor::buildColumnName2IndexMap(std::unordered_map<std::string,int> m,const TableMetadata &metadata){
-        for(int i=0;i<metadata.definitions_size();i++){
-            m[metadata.definitions(i).name()]=i;
+    // const reference?
+    bool Executor::buildColumnName2IndexMap(std::unordered_map<std::string, int> m, const TableMetadata &metadata) {
+        for (int i = 0; i < metadata.definitions_size(); i++) {
+            m[metadata.definitions(i).name()] = i;
         }
-        retrun true;
+        return true;
     }
 
     ExecutionContext::ExecutionContext(TempRow temp_row,
