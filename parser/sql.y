@@ -3,7 +3,7 @@
 #include "sql_lexer.h"
 #include "string.h"
 #include "sql/parser_result.h"
-int yyerror(yyscan_t scanner,xDB::ParserResult * result,const char * s);
+int yyerror(yyscan_t scanner,skDB::ParserResult * result,const char * s);
 %}
 %lex-param   { yyscan_t scanner }
 
@@ -11,7 +11,7 @@ int yyerror(yyscan_t scanner,xDB::ParserResult * result,const char * s);
 %parse-param { ParserResult * result }
 %code requires{
 #include "sql/stmts.h"
-using namespace xDB;
+using namespace skDB;
 }
 
 %destructor {
@@ -80,26 +80,26 @@ using namespace xDB;
 
 %union{
     char * str;
-    xDB::DropStmt* drop_stmt;
+    skDB::DropStmt* drop_stmt;
     std::vector<SQLStmt*> * stmt_vec;
     TableName table_name;
-    xDB::SQLStmt* stmt;
-    xDB::UseStmt * use_stmt;
-    xDB::ColumnName * column_name;
-    xDB::ShowStmt * show_stmt;
+    skDB::SQLStmt* stmt;
+    skDB::UseStmt * use_stmt;
+    skDB::ColumnName * column_name;
+    skDB::ShowStmt * show_stmt;
     double float_val;
     int int_val;
-    xDB::InsertStmt * insert_stmt;
+    skDB::InsertStmt * insert_stmt;
     std::vector<ColumnName*> *column_name_list;
-    xDB::Parameter *insert_value;
+    skDB::Parameter *insert_value;
     std::vector<Parameter*>* insert_values_list;
-    xDB::DataDefinition* data_definition;
+    skDB::DataDefinition* data_definition;
     std::vector<DataDefinition*>*definition_list;
-    xDB::CreateStmt * create_stmt;
-    xDB::Exp * exp;
-    xDB::SelectStmt * select_stmt;
+    skDB::CreateStmt * create_stmt;
+    skDB::Exp * exp;
+    skDB::SelectStmt * select_stmt;
     std::vector<TableName> * table_list;
-    xDB::DeleteStmt * delete_stmt;
+    skDB::DeleteStmt * delete_stmt;
     UpdateAssign * update_assign;
     std::vector<UpdateAssign*> * update_assign_list;
     UpdateStmt * update_stmt;
