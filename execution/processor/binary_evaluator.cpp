@@ -32,7 +32,6 @@ namespace skDB {
                 }
                 result = lv / rv;
                 break;
-
             case BinarySub:
                 result = lv - rv;
                 break;

@@ -8,9 +8,9 @@ enable_testing()
 
 cmake_minimum_required(VERSION 3.15)
 
-project(skDB
+project(xDB
         LANGUAGES C CXX
-        DESCRIPTION "skDB is a DBMS built on RocksDB"
+        DESCRIPTION "xDB is a DBMS built on RocksDB"
         VERSION 0.0.1
 )
 
@@ -65,6 +65,7 @@ add_executable(${PROJECT_NAME} main.cpp
         execution/processor/visit_exp.cpp
         execution/processor/exp_checker.cpp
         include/version.h
+        execution/processor/between_evaluator.cpp
 )
 
 add_custom_command(
@@ -89,15 +90,15 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/th
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/rocksdb/include)
 add_custom_target(check
-        ./test/skDB_unit_test
+        ./test/xDB_unit_test
 )
 
-add_dependencies(check skDB_unit_test)
+add_dependencies(check xDB_unit_test)
 
 add_custom_target(shell
-        ./skDB
+        ./xDB
 )
-add_dependencies(shell skDB)
+add_dependencies(shell xDB)
 
 
 add_library(${PROJECT_NAME}_lib STATIC
@@ -116,11 +117,11 @@ target_include_directories(${PROJECT_NAME}_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR
 add_subdirectory(test)
 add_subdirectory(third_party/googletest)
 
-target_link_directories(skDB PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/third_party/rocksdb)
+target_link_directories(xDB PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/third_party/rocksdb)
 
-target_link_libraries(skDB PRIVATE rocksdb)
+target_link_libraries(xDB PRIVATE rocksdb)
 
-target_link_libraries(skDB PRIVATE skDB_linenoise)
+target_link_libraries(xDB PRIVATE xDB_linenoise)
 
 find_library(LZ4_LIB lz4 REQUIRED)
 message(STATUS "finding ${LZ4_LIB}")
@@ -140,16 +141,16 @@ message(STATUS "finding ${gFLAGS}")
 find_library(ZLIB z REQUIRED)
 message(STATUS "finding ${ZLIB}")
 
-#target_link_libraries(skDB PUBLIC ${gFLAGS} ${BZ2} ${SNAPPY} ${ZSTD_LIB} ${LZ4_LIB} ${ZLIB})
+#target_link_libraries(xDB PUBLIC ${gFLAGS} ${BZ2} ${SNAPPY} ${ZSTD_LIB} ${LZ4_LIB} ${ZLIB})
 
-target_link_libraries(skDB PUBLIC lz4 zstd snappy bz2 gflags z protobuf)
+target_link_libraries(xDB PUBLIC lz4 zstd snappy bz2 gflags z protobuf)
 
 add_custom_target(rocksdb
         COMMAND cd
         COMMAND make -j4 --file ${CMAKE_CURRENT_SOURCE_DIR}/third_party/rocksdb/Makefile --directory ${CMAKE_CURRENT_SOURCE_DIR}/third_party/rocksdb static_lib
 )
 
-add_dependencies(skDB rocksdb)
+add_dependencies(xDB rocksdb)
 
 # integrate libfort
 
@@ -157,7 +158,7 @@ add_dependencies(skDB rocksdb)
 set(FORT_ENABLE_TESTING OFF CACHE INTERNAL "")
 
 add_subdirectory(third_party/libfort)
-target_link_libraries(skDB PRIVATE fort)
+target_link_libraries(xDB PRIVATE fort)
 
 
 find_program(MAKE make)

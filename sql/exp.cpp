@@ -106,7 +106,7 @@ namespace skDB {
         return integer_num;
     }
 
-    bool Value::ok() const{
+    bool Value::ok() const {
         switch (type_) {
             case ScalarChar:
                 std::cout << "[ Warning ] " << "Unexpected CHAR value " << getChar() << std::endl;

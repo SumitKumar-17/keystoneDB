@@ -1,6 +1,6 @@
 #include "sql/table.h"
 
-#include <assert.h>
+#include <cassert>
 
 namespace skDB {
     DataDefinition::DataDefinition(DataType type_): type(type_), data_name(nullptr), constraints(nullptr) {

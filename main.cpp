@@ -22,7 +22,7 @@ const auto license = "Source code git repository: <https://github.com/SumitKumar
 void printInfo() {
     std::cout << welcome << std::endl;
 
-    std::cout << "skDB VERSION: v" << skDB_MAJOR << "." << skDB_MINOR << "." << skDB_PATCH << std::endl << std::endl;
+    std::cout << "xDB VERSION: v" << XDB_MAJOR << "." << XDB_MINOR << "." << XDB_PATCH << std::endl << std::endl;
 
     std::cout << copyright << std::endl;
     std::cout << author << std::endl;
@@ -32,7 +32,7 @@ void printInfo() {
 
 
 void signal_handler(int sig) {
-    std::cout << std::endl << "skDB> ";
+    std::cout << std::endl << "xDB> ";
     std::fflush(stdout);
 }
 
@@ -55,61 +55,80 @@ bool getLine(bool debug, std::string &s, const std::string &prompt) {
 }
 
 void read_loop() {
-    skDB::Executor executor;
-    std::string pending_query, pending_no_blank_query;
+    xDB::Executor executor;
     executor.init();
-    int count = 0;
-    bool firstline = true;
-    linenoiseSetMultiLine(1);
-    linenoiseHistorySetMaxLen(1024);
-    while (true) {
-        auto prompt = firstline ? "skDB> " : "   -> ";
+    if (FLAGS_filepath.empty()) {
+        std::string pending_query, pending_no_blank_query;
+        int count = 0;
+        bool firstline = true;
+        linenoiseSetMultiLine(1);
+        linenoiseHistorySetMaxLen(1024);
+        while (true) {
+            auto prompt = firstline ? "xDB> " : "   -> ";
+            std::string q;
+            if (!getLine(FLAGS_disable_line_editing, q, prompt)) {
+                return;
+            }
+            std::string final_query;
+            std::string final_no_blank_query;
 
-        std::string q;
-        if (!getLine(false, q, prompt)) {
+            for (unsigned int i = 0; i < q.length(); i++) {
+                pending_query.append(std::string(1, q[i]));
+                pending_no_blank_query.append(std::string(1, q[i]));
+                if (q[i] == ';' && count % 2 == 0) {
+                    final_query += pending_query;
+                    final_no_blank_query += pending_no_blank_query;
+                    pending_query.clear();
+                    pending_no_blank_query.clear();
+                }
+                if (q[i] == '\'') {
+                    count++;
+                }
+            }
+            if (!pending_query.empty()) {
+                firstline = false;
+            } else {
+                firstline = true;
+            }
+            pending_query.append(" ");
+            pending_no_blank_query.append("\n");
+            if (final_query.empty()) {
+                continue;
+            }
+            const auto result = new xDB::ParserResult();
+            linenoiseHistoryAdd(final_query.c_str());
+
+            wrapped_parse(final_no_blank_query.c_str(), result);
+            if (!executor.execute(result)) {
+                break;
+            }
+            // TODO: delete result
+        }
+    } else {
+        std::ifstream ifstream(FLAGS_filepath);
+        if (!ifstream.is_open()) {
+            std::cout << "Can not open file " << FLAGS_filepath << std::endl;
+            executor.shutdown();
             return;
         }
-        std::string final_query;
-        std::string final_no_blank_query;
-
-        for (unsigned int i = 0; i < q.length(); i++) {
-            pending_query.append(std::string(1, q[i]));
-            pending_no_blank_query.append(std::string(1, q[i]));
-            if (q[i] == ';' && count % 2 == 0) {
-                final_query += pending_query;
-                final_no_blank_query += pending_no_blank_query;
-                pending_query.clear();
-                pending_no_blank_query.clear();
-            }
-            if (q[i] == '\'') {
-                count++;
-            }
+        std::string line, lines;
+        while (std::getline(ifstream, line)) {
+            lines += line + "\n";
         }
-        if (!pending_query.empty()) {
-            firstline = false;
-        } else {
-            firstline = true;
-        }
-        pending_query.append(" ");
-        pending_no_blank_query.append("\n");
-        if (final_query.empty()) {
-            continue;
-        }
-        const auto result = new skDB::ParserResult();
-        linenoiseHistoryAdd(final_query.c_str());
-
-        wrapped_parse(final_no_blank_query.c_str(), result);
-        if (!executor.execute(result)) {
-            break;
-        }
-        // TODO: delete result
+        ifstream.close();
+        const auto result = new xDB::ParserResult();
+        wrapped_parse(lines.c_str(), result);
+        executor.execute(result);
     }
+
     executor.shutdown();
     std::cout << "Bye" << std::endl;
 }
 
 
 int main(int argc, char **argv) {
+    gflags::SetUsageMessage("--filepath=FILEPATH execute sql file\n --disable_line_edit\n ");
+    gflags::ParseCommandLineFlags(&argc, &argv, true);
     printInfo();
     setup_signal();
     GOOGLE_PROTOBUF_VERIFY_VERSION;
