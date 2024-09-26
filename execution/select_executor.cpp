@@ -265,10 +265,10 @@ namespace skDB {
             table << fort::endr;
         }
         if (reuslt_cnt > 0) {
-             std::cout << "Result contains " << reuslt_cnt << " row(s)" << std::endl;
+            std::cout << std::endl << "Result contains " << reuslt_cnt << " row(s)" << std::endl;
             std::cout << table.to_string() << std::endl;
         } else {
-            std::cout << "Empty set" << std::endl;
+            std::cout << std::endl << "Empty set" << std::endl;
         }
     }
 }

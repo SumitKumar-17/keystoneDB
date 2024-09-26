@@ -7,10 +7,10 @@
 #include <csignal>
 #include "common/codec/db.pb.h"
 #include "execution/executor.h"
+#include "linenoise.h"
 
 int wrapped_parse(const char *text, skDB::ParserResult *result);
 
-std::string s;
 
 void read_loop();
 
@@ -22,7 +22,7 @@ const auto license = "Source code git repository: <https://github.com/SumitKumar
 void printInfo() {
     std::cout << welcome << std::endl;
 
-    std::cout << "skDB VERSION: v" << SKDB_MAJOR << "." << SKDB_MINOR << "." << SKDB_PATCH << std::endl << std::endl;
+    std::cout << "skDB VERSION: v" << skDB_MAJOR << "." << skDB_MINOR << "." << skDB_PATCH << std::endl << std::endl;
 
     std::cout << copyright << std::endl;
     std::cout << author << std::endl;
@@ -43,16 +43,40 @@ void setup_signal() {
 
 void read_loop() {
     skDB::Executor executor;
-
+    std::string pending_query;
     executor.init();
+    int count = 0;
+    bool firstline = true;
     while (true) {
-        std::cout << "skDB> ";
-        std::getline(std::cin, s);
-        if (s.empty()) {
-                   continue;
+        auto prompt = firstline ? "skDB> " : "   -> ";
+        char *query_c_str = linenoise(prompt);
+        if (query_c_str == nullptr) break;
+        std::string q = query_c_str;
+        linenoiseFree(query_c_str);
+
+        std::string final_query;
+
+        for (unsigned int i = 0; i < q.length(); i++) {
+            pending_query.append(std::string(1, q[i]));
+            if (q[i] == ';' && count % 2 == 0) {
+                final_query += pending_query;
+                pending_query.clear();
+            }
+            if (q[i] == '\'') {
+                count++;
+            }
+        }
+        if (!pending_query.empty()) {
+            firstline = false;
+        } else {
+            firstline = true;
+        }
+        pending_query.append(" ");
+        if (final_query.empty()) {
+            continue;
         }
         const auto result = new skDB::ParserResult();
-        wrapped_parse(s.c_str(), result);
+        wrapped_parse(final_query.c_str(), result);
         if (!executor.execute(result)) {
             break;
         }
