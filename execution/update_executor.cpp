@@ -92,8 +92,8 @@ namespace skDB {
                 Column column = row.column(index);
                 if (type == DBDefinition::CHAR && valuetype == ScalarChar) {
                     if (static_cast<google::protobuf::int64>(value.getChar().length()) > metadata.definitions(index).
-                                            charlen()) {
-                                                std::cout << value.getChar() << " is too long" << std::endl;
+                        charlen()) {
+                        std::cout << value.getChar() << " is too long" << std::endl;
                         return;
                     }
                     column.set_type(Column::COLUMN_CHAR);
@@ -103,6 +103,11 @@ namespace skDB {
                     column.set_integer_num(value.getInteger());
                     column.clear_str();
                 } else if (value.getType() == ScalarNULL) {
+                    if (const auto &def = metadata.definitions(index); !def.nullable()) {
+                        std::cout << "Column " << def.name() << " can not be null" << std::endl;
+                        return;
+                    }
+
                     column.set_type(Column::COLUMN_NULL);
                     column.clear_str();
                 } else {

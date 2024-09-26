@@ -56,7 +56,7 @@ bool getLine(bool debug, std::string &s, const std::string &prompt) {
 
 void read_loop() {
     skDB::Executor executor;
-    std::string pending_query;
+    std::string pending_query, pending_no_blank_query;
     executor.init();
     int count = 0;
     bool firstline = true;
@@ -70,12 +70,16 @@ void read_loop() {
             return;
         }
         std::string final_query;
+        std::string final_no_blank_query;
 
         for (unsigned int i = 0; i < q.length(); i++) {
             pending_query.append(std::string(1, q[i]));
+            pending_no_blank_query.append(std::string(1, q[i]));
             if (q[i] == ';' && count % 2 == 0) {
                 final_query += pending_query;
+                final_no_blank_query += pending_no_blank_query;
                 pending_query.clear();
+                pending_no_blank_query.clear();
             }
             if (q[i] == '\'') {
                 count++;
@@ -87,13 +91,14 @@ void read_loop() {
             firstline = true;
         }
         pending_query.append(" ");
+        pending_no_blank_query.append("\n");
         if (final_query.empty()) {
             continue;
         }
         const auto result = new skDB::ParserResult();
         linenoiseHistoryAdd(final_query.c_str());
 
-        wrapped_parse(final_query.c_str(), result);
+        wrapped_parse(final_no_blank_query.c_str(), result);
         if (!executor.execute(result)) {
             break;
         }
