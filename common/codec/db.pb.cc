@@ -257,27 +257,27 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 const char descriptor_table_protodef_db_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\010db.proto\022\003skDB\"\265\001\n\006Column\022$\n\004type\030\001 \001(\016"
-    "2\026.skDB.Column.ColumnType\022\023\n\013integer_num\030"
-    "\002 \001(\005\022\013\n\003str\030\003 \001(\t\022\021\n\tfloat_num\030\004 \001(\001\"P\n"
-    "\nColumnType\022\016\n\nCOLUMN_INT\020\000\022\017\n\013COLUMN_CH"
-    "AR\020\001\022\017\n\013COLUMN_NULL\020\003\022\020\n\014COLUMN_FLOAT\020\004\""
-    "#\n\003Row\022\034\n\007columns\030\001 \003(\0132\013.skDB.Column\"[\n\r"
-    "TableMetadata\022&\n\013definitions\030\001 \003(\0132\021.skDB"
-    ".DBDefinition\022\016\n\006nextId\030\002 \001(\004\022\022\n\nhasPrim"
-    "ary\030\003 \001(\010\"\307\001\n\014DBDefinition\022.\n\004type\030\001 \001(\016"
-    "2 .skDB.DBDefinition.DefinitionType\022\014\n\004na"
-    "me\030\002 \001(\t\022\021\n\tisPrimary\030\003 \001(\010\022\017\n\007isIndex\030\004"
-    " \001(\010\022\017\n\007charLen\030\005 \001(\004\022\020\n\010nullable\030\006 \001(\010\""
-    "2\n\016DefinitionType\022\013\n\007INTEGER\020\001\022\010\n\004CHAR\020\002"
-    "\022\t\n\005FLOAT\020\003\"\034\n\nDBMetadata\022\016\n\006tables\030\001 \003("
-    "\t"
+    "\n\010db.proto\022\004skDB\"\266\001\n\006Column\022%\n\004type\030\001 \001("
+    "\0162\027.skDB.Column.ColumnType\022\023\n\013integer_nu"
+    "m\030\002 \001(\005\022\013\n\003str\030\003 \001(\t\022\021\n\tfloat_num\030\004 \001(\001\""
+    "P\n\nColumnType\022\016\n\nCOLUMN_INT\020\000\022\017\n\013COLUMN_"
+    "CHAR\020\001\022\017\n\013COLUMN_NULL\020\003\022\020\n\014COLUMN_FLOAT\020"
+    "\004\"$\n\003Row\022\035\n\007columns\030\001 \003(\0132\014.skDB.Column\""
+    "\\\n\rTableMetadata\022\'\n\013definitions\030\001 \003(\0132\022."
+    "skDB.DBDefinition\022\016\n\006nextId\030\002 \001(\004\022\022\n\nhas"
+    "Primary\030\003 \001(\010\"\310\001\n\014DBDefinition\022/\n\004type\030\001"
+    " \001(\0162!.skDB.DBDefinition.DefinitionType\022"
+    "\014\n\004name\030\002 \001(\t\022\021\n\tisPrimary\030\003 \001(\010\022\017\n\007isIn"
+    "dex\030\004 \001(\010\022\017\n\007charLen\030\005 \001(\004\022\020\n\010nullable\030\006"
+    " \001(\010\"2\n\016DefinitionType\022\013\n\007INTEGER\020\001\022\010\n\004C"
+    "HAR\020\002\022\t\n\005FLOAT\020\003\"\034\n\nDBMetadata\022\016\n\006tables"
+    "\030\001 \003(\t"
 };
 static ::absl::once_flag descriptor_table_db_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_db_2eproto = {
     false,
     false,
-    561,
+    566,
     descriptor_table_protodef_db_2eproto,
     "db.proto",
     &descriptor_table_db_2eproto_once,
@@ -438,7 +438,7 @@ const ::google::protobuf::MessageLite::ClassData* Column::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 4, 1, 22, 2> Column::_table_ = {
+const ::_pbi::TcParseTable<2, 4, 1, 23, 2> Column::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Column, _impl_._has_bits_),
     0, // no _extensions_
@@ -486,7 +486,7 @@ const ::_pbi::TcParseTable<2, 4, 1, 22, 2> Column::_table_ = {
   }}, {{
     {::_pbi::FieldAuxEnumData{}, ::skDB::Column_ColumnType_internal_data_},
   }}, {{
-    "\12\0\0\3\0\0\0\0"
+    "\13\0\0\3\0\0\0\0"
     "skDB.Column"
     "str"
   }},
@@ -1291,7 +1291,7 @@ const ::google::protobuf::MessageLite::ClassData* DBDefinition::GetClassData() c
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<3, 6, 1, 29, 2> DBDefinition::_table_ = {
+const ::_pbi::TcParseTable<3, 6, 1, 30, 2> DBDefinition::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(DBDefinition, _impl_._has_bits_),
     0, // no _extensions_
@@ -1353,7 +1353,7 @@ const ::_pbi::TcParseTable<3, 6, 1, 29, 2> DBDefinition::_table_ = {
   }}, {{
     {1, 3},
   }}, {{
-    "\20\0\4\0\0\0\0\0"
+    "\21\0\4\0\0\0\0\0"
     "skDB.DBDefinition"
     "name"
   }},
@@ -1641,7 +1641,7 @@ const ::google::protobuf::MessageLite::ClassData* DBMetadata::GetClassData() con
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 29, 2> DBMetadata::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 30, 2> DBMetadata::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -1671,7 +1671,7 @@ const ::_pbi::TcParseTable<0, 1, 0, 29, 2> DBMetadata::_table_ = {
   }},
   // no aux_entries
   {{
-    "\16\6\0\0\0\0\0\0"
+    "\17\6\0\0\0\0\0\0"
     "skDB.DBMetadata"
     "tables"
   }},

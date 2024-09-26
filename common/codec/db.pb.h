@@ -311,7 +311,7 @@ class DBMetadata final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       0, 1, 0,
-      29, 2>
+      30, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
@@ -586,7 +586,7 @@ class DBDefinition final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       3, 6, 1,
-      29, 2>
+      30, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
@@ -844,7 +844,7 @@ class Column final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       2, 4, 1,
-      22, 2>
+      23, 2>
       _table_;
 
   static constexpr const void* _raw_default_instance_ =
