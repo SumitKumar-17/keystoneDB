@@ -1,4 +1,3 @@
-
 #include <iostream>
 
 #include "sql/parser_result.h"
@@ -18,12 +17,12 @@ void read_loop();
 const auto welcome = "Welcome to the skDB. skDB is a DBMS built on RocksDB.";
 const auto copyright = "Copyright (c) 2024-present Ruitian Zhong All rights reserved.";
 const auto author = "Written by Ruitian Zhong <https://github.com/SumitKumar-17>.";
-const auto license = "License: MIT; Source code repository: <https://github.com/SumitKumar-17/skDB>.";
+const auto license = "Source code git repository: <https://github.com/SumitKumar-17/skDB>.";
 
 void printInfo() {
     std::cout << welcome << std::endl;
 
-    std::cout << "skDB VERSION: v" << skDB_MAJOR << "." << skDB_MINOR << "." << skDB_PATCH << std::endl << std::endl;
+    std::cout << "skDB VERSION: v" << SKDB_MAJOR << "." << SKDB_MINOR << "." << SKDB_PATCH << std::endl << std::endl;
 
     std::cout << copyright << std::endl;
     std::cout << author << std::endl;

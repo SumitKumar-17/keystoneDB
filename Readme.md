@@ -1,7 +1,7 @@
 # skDB
 
 
-## Build 
+## Build
 
 To get the third party dependencies, run:
 
@@ -66,7 +66,19 @@ git checkout 41237162a9bd34a30a88069ee4e230584ae8d674
 
 
 
-## Tentative Structure
+## Project Structure
+
+| File                 | Description                                         |
+|----------------------|-----------------------------------------------------|
+| include/*            | all the header files                                |
+| sql/*                | intermediate representation(IR) for SQL             |
+| executor/*           | execute SQL IR                                      |
+| executor/processor/* | processor for SQL expression(visitor pattern)       |
+| parser/sql.l         | lexical analysis for SQL(flex)                      |
+| parser/sql.y         | syntax analysis for SQL(bison)                      |
+| third_party/*        | third party dependencies, e.g., googletest, rocksdb |
+| test/*               | unit test                                           |
+| docs/*               | documentation for the project                       |
 
 ## Resources
 
@@ -75,9 +87,3 @@ git checkout 41237162a9bd34a30a88069ee4e230584ae8d674
 + [BusTub](https://15445.courses.cs.cmu.edu/fall2022/schedule.html)
 + [USTC Compiler Principles](https://ustc-compiler-principles.github.io)
 + [SQL Parser](https://github.com/hyrise/sql-parser)
-
-
-
-```shell
-
-```
