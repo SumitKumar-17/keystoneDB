@@ -1,5 +1,5 @@
 syntax = "proto2";
-package xDB;
+package skDB;
 
 message Column{
   enum ColumnType{
