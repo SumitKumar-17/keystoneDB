@@ -94,7 +94,7 @@ namespace skDB {
         }
     }
 
-    bool Executor::checkTable(TableName table_name, std::string &cur, std::string &table) const {
+    bool Executor::checkTable(TableName table_name, std::string &cur, std::string &table,TableMetadata &metadata) const {
         assert(table_name.name!=nullptr);
         if (table_name.schema == nullptr && currentDB.empty()) {
             std::cout << "No database selected" << std::endl;
@@ -110,6 +110,11 @@ namespace skDB {
         }
         if (!status.ok()) {
             std::cout << "[ Error ] " << status.ToString() << std::endl;
+            return false;
+        }
+
+        if(!metadata.ParseFromString(value)){
+            std::cout<<"[ Codec Error]" <<"Abort" <<std::endl;
             return false;
         }
         return true;
@@ -139,5 +144,11 @@ namespace skDB {
         }
         delete it;
         return true;
+    }
+
+    bool Executor::buildColumnName2IndexMap(std::unordered_map<std::string,int> m,const TableMetadata &metadata){
+        for(int i=0;i<metadata.definitions_size();i++){
+            m[metadata.definitions(i).name()]=i;
+        }
     }
 }

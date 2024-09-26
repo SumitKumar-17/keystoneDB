@@ -4,11 +4,14 @@ namespace skDB {
         assert(delete_stmt!=nullptr);
         std::string cur;
         std::string table;
+        TableMetadata metadata;
         // check if the table exist?
-        if (!checkTable(delete_stmt->table_name, cur, table)) {
+        if (!checkTable(delete_stmt->table_name, cur, table,metadata)) {
             return;
         }
         std::vector<TempRow> rows;
         collectTableAllRows(rows, cur, table);
+        std::unordered_map<std::string,int>m;
+        buildColumnName2IndexMap(m,metadata);
     }
 }
