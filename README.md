@@ -1,6 +1,6 @@
 # skDB
 
-A DBMS implemented for Xidian University‘s compiler course.
+A DBMS implemented for learning Compilers.
 
 ## Build
 
