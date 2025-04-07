@@ -23,11 +23,16 @@ sudo apt-get install libprotobuf-dev protobuf-compiler
 in Arch Linux
 ```shell
 # Required by RocksDB
-sudo pacman -S gflags zstd snappy zlib bzip2 lz4
+sudo pacman -S gflags zstd snappy zlib bzip2 lz4 liburing-dev
 
 # Required by Protobuf
 sudo pacman -S protobuf
 ```
+
+if the grpc libray apprecited then recompile by the command in teroot director y 
+with protoc --cpp_out=./ common/codec/db.proto
+
+thn buidl the databsae
 
 ## Features
 
