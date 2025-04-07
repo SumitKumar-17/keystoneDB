@@ -1,6 +1,7 @@
 # keystoneDB
-
 Database Management Systems Laboratory(CS39202) Project
+![keystoneDB.png](./keystoneDB.png)
+
 ## Build
 
 ### Ubuntu 22.04
@@ -68,6 +69,7 @@ DELETE FROM user WHERE id=42;
 SELECT * from user where id=(1+2*2+(id=id)+id^id+id) AND id = id%2 AND id IS NOT NULL;
 select * from t1  where id is not null;
 DROP TABLE user;
+exit; -- keyword used to exit from the database
 ```
 
 More details in [test.sql](./test/test.sql):
@@ -106,5 +108,5 @@ Start keystoneDB interactive shell (interactive mode)
 
 ```shell
 # Assuming you are in build directory
-./keystoneDB
+./build/keystoneDB
 ```
