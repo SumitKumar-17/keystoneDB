@@ -1,6 +1,6 @@
 # keystoneDB
 Database Management Systems Laboratory(CS39202) Term Project
-![keystoneDB.png](./keystoneDB.png)
+![keystoneDB.png](./DOCUMENTS/keystoneDB.png)
 
 ## Build
 
