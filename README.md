@@ -1,7 +1,6 @@
 # keystoneDB
 
-A DBMS implemented for learning Compilers.
-
+Database Management Systems Laboratory(CS39202) Project
 ## Build
 
 ### Ubuntu 22.04
