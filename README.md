@@ -20,6 +20,14 @@ sudo apt-get install libgflags-dev libzstd-dev libsnappy-dev zlib1g-dev libbz2-d
 # required by protobuf
 sudo apt-get install libprotobuf-dev protobuf-compiler
 ```
+in Arch Linux
+```shell
+# Required by RocksDB
+sudo pacman -S gflags zstd snappy zlib bzip2 lz4
+
+# Required by Protobuf
+sudo pacman -S protobuf
+```
 
 ## Features
 
