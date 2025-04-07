@@ -1,5 +1,5 @@
 # keystoneDB
-Database Management Systems Laboratory(CS39202) Project
+Database Management Systems Laboratory(CS39202) Term Project
 ![keystoneDB.png](./keystoneDB.png)
 
 ## Build
