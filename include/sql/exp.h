@@ -4,7 +4,7 @@
 #include <utility>
 #include "table.h"
 
-namespace skDB {
+namespace keystoneDB {
     // forward declaration
     class AbstractExpProcessor;
 

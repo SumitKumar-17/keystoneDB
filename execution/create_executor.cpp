@@ -5,7 +5,7 @@
 
 #include "constant.h"
 
-namespace skDB {
+namespace keystoneDB {
     void static createDatabase(const CreateStmt *stmt, rocksdb::DB *db) {
         std::string v;
         rocksdb::ReadOptions options;

@@ -3,7 +3,7 @@
 #include "exp.h"
 #include "stmt.h"
 
-namespace skDB {
+namespace keystoneDB {
     class DeleteStmt final : public SQLStmt {
     public:
         DeleteStmt(TableName table_name_, Exp *whereExp_);

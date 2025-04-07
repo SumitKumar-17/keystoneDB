@@ -2,7 +2,7 @@
 
 #include <cassert>
 
-namespace skDB {
+namespace keystoneDB {
     DataDefinition::DataDefinition(DataType type_): type(type_), data_name(nullptr), constraints(nullptr) {
     }
 

@@ -1,6 +1,6 @@
 #include "execution/executor.h"
 
-namespace skDB {
+namespace keystoneDB {
     void Executor::executeUpdateStmt(const UpdateStmt *update_stmt) const {
         assert(update_stmt!=nullptr);
         assert(update_stmt->update_assigns!=nullptr);

@@ -6,7 +6,7 @@
 #include "stmt.h"
 #include "table.h"
 
-namespace skDB {
+namespace keystoneDB {
     class SelectStmt : public SQLStmt {
     public:
         SelectStmt(std::vector<ColumnName *> *column_names_, std::vector<TableName> *table_names_, Exp *whereExp_);

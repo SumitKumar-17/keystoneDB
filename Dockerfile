@@ -10,6 +10,6 @@ RUN mkdir -p build && \
     cd build && \
     cmake .. && \ make -j4
 
-COPY ./build/skDB /
+COPY ./build/keystoneDB /
 
 ENTRYPOINT ["/bin/bash"]

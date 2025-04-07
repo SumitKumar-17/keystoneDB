@@ -3,7 +3,7 @@
 #include "sql/exp.h"
 #include "execution/executor.h"
 
-namespace skDB {
+namespace keystoneDB {
     AbstractExpProcessor::AbstractExpProcessor(ExecutionContext context): context_(std::move(context)) {
     }
 

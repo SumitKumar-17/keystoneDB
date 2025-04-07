@@ -14,20 +14,20 @@
 DEFINE_bool(disable_line_editing, false, "specify this flag if you want to disable line editing(e.g., in docker)");
 DEFINE_string(filepath, "", "path for the *.sql file");
 
-int wrapped_parse(const char *text, skDB::ParserResult *result);
+int wrapped_parse(const char *text, keystoneDB::ParserResult *result);
 
 
 void read_loop();
 
-const auto welcome = "Welcome to the skDB. skDB is a relational DBMS built on RocksDB.";
+const auto welcome = "Welcome to the keystoneDB. keystoneDB is a relational DBMS built on RocksDB.";
 const auto copyright = "Copyright (c) 2024-present Sumit Kumar All rights reserved.";
 const auto author = "Written by Sumit Kumar <https://github.com/SumitKumar-17>.";
-const auto license = "Source code git repository: <https://github.com/SumitKumar-17/skDB>.";
+const auto license = "Source code git repository: <https://github.com/SumitKumar-17/keystoneDB>.";
 
 void printInfo() {
     std::cout << welcome << std::endl;
 
-    std::cout << "skDB VERSION: v" << SKDB_MAJOR << "." << SKDB_MINOR << "." << SKDB_PATCH << std::endl << std::endl;
+    std::cout << "keystoneDB VERSION: v" << KEYSTONEDB_MAJOR << "." << KEYSTONEDB_MINOR << "." << KEYSTONEDB_PATCH << std::endl << std::endl;
 
     std::cout << copyright << std::endl;
     std::cout << author << std::endl;
@@ -53,7 +53,7 @@ bool getLine(bool debug, std::string &s, const std::string &prompt) {
 }
 
 void read_loop() {
-    skDB::Executor executor;
+    keystoneDB::Executor executor;
     executor.init();
     if (FLAGS_filepath.empty()) {
         std::string pending_query, pending_no_blank_query;
@@ -62,7 +62,7 @@ void read_loop() {
         linenoiseSetMultiLine(1);
         linenoiseHistorySetMaxLen(1024);
         while (true) {
-            auto prompt = firstline ? "skDB> " : "   -> ";
+            auto prompt = firstline ? "keystoneDB> " : "   -> ";
             std::string q;
             if (!getLine(FLAGS_disable_line_editing, q, prompt)) {
                 pending_no_blank_query.clear();
@@ -97,7 +97,7 @@ void read_loop() {
             if (final_query.empty()) {
                 continue;
             }
-            const auto result = new skDB::ParserResult();
+            const auto result = new keystoneDB::ParserResult();
             linenoiseHistoryAdd(final_query.c_str());
 
             wrapped_parse(final_no_blank_query.c_str(), result);
@@ -118,7 +118,7 @@ void read_loop() {
             lines += line + "\n";
         }
         ifstream.close();
-        const auto result = new skDB::ParserResult();
+        const auto result = new keystoneDB::ParserResult();
         wrapped_parse(lines.c_str(), result);
         executor.execute(result);
     }

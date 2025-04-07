@@ -50,7 +50,7 @@ struct TableStruct_db_2eproto {
 };
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_db_2eproto;
-namespace skDB {
+namespace keystoneDB {
 class Column;
 struct ColumnDefaultTypeInternal;
 extern ColumnDefaultTypeInternal _Column_default_instance_;
@@ -66,13 +66,13 @@ extern RowDefaultTypeInternal _Row_default_instance_;
 class TableMetadata;
 struct TableMetadataDefaultTypeInternal;
 extern TableMetadataDefaultTypeInternal _TableMetadata_default_instance_;
-}  // namespace skDB
+}  // namespace keystoneDB
 namespace google {
 namespace protobuf {
 }  // namespace protobuf
 }  // namespace google
 
-namespace skDB {
+namespace keystoneDB {
 enum Column_ColumnType : int {
   Column_ColumnType_COLUMN_INT = 0,
   Column_ColumnType_COLUMN_CHAR = 1,
@@ -141,7 +141,7 @@ inline bool DBDefinition_DefinitionType_Parse(absl::string_view name, DBDefiniti
 // -------------------------------------------------------------------
 
 class DBMetadata final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:skDB.DBMetadata) */ {
+/* @@protoc_insertion_point(class_definition:keystoneDB.DBMetadata) */ {
  public:
   inline DBMetadata() : DBMetadata(nullptr) {}
   ~DBMetadata() PROTOBUF_FINAL;
@@ -263,7 +263,7 @@ class DBMetadata final : public ::google::protobuf::Message
   void InternalSwap(DBMetadata* other);
  private:
   friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "skDB.DBMetadata"; }
+  static ::absl::string_view FullMessageName() { return "keystoneDB.DBMetadata"; }
 
  protected:
   explicit DBMetadata(::google::protobuf::Arena* arena);
@@ -305,7 +305,7 @@ class DBMetadata final : public ::google::protobuf::Message
   ::google::protobuf::RepeatedPtrField<std::string>* _internal_mutable_tables();
 
   public:
-  // @@protoc_insertion_point(class_scope:skDB.DBMetadata)
+  // @@protoc_insertion_point(class_scope:keystoneDB.DBMetadata)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
@@ -341,7 +341,7 @@ class DBMetadata final : public ::google::protobuf::Message
 // -------------------------------------------------------------------
 
 class DBDefinition final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:skDB.DBDefinition) */ {
+/* @@protoc_insertion_point(class_definition:keystoneDB.DBDefinition) */ {
  public:
   inline DBDefinition() : DBDefinition(nullptr) {}
   ~DBDefinition() PROTOBUF_FINAL;
@@ -463,7 +463,7 @@ class DBDefinition final : public ::google::protobuf::Message
   void InternalSwap(DBDefinition* other);
  private:
   friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "skDB.DBDefinition"; }
+  static ::absl::string_view FullMessageName() { return "keystoneDB.DBDefinition"; }
 
  protected:
   explicit DBDefinition(::google::protobuf::Arena* arena);
@@ -569,18 +569,18 @@ class DBDefinition final : public ::google::protobuf::Message
   void _internal_set_nullable(bool value);
 
   public:
-  // optional .skDB.DBDefinition.DefinitionType type = 1;
+  // optional .keystoneDB.DBDefinition.DefinitionType type = 1;
   bool has_type() const;
   void clear_type() ;
-  ::skDB::DBDefinition_DefinitionType type() const;
-  void set_type(::skDB::DBDefinition_DefinitionType value);
+  ::keystoneDB::DBDefinition_DefinitionType type() const;
+  void set_type(::keystoneDB::DBDefinition_DefinitionType value);
 
   private:
-  ::skDB::DBDefinition_DefinitionType _internal_type() const;
-  void _internal_set_type(::skDB::DBDefinition_DefinitionType value);
+  ::keystoneDB::DBDefinition_DefinitionType _internal_type() const;
+  void _internal_set_type(::keystoneDB::DBDefinition_DefinitionType value);
 
   public:
-  // @@protoc_insertion_point(class_scope:skDB.DBDefinition)
+  // @@protoc_insertion_point(class_scope:keystoneDB.DBDefinition)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
@@ -622,7 +622,7 @@ class DBDefinition final : public ::google::protobuf::Message
 // -------------------------------------------------------------------
 
 class Column final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:skDB.Column) */ {
+/* @@protoc_insertion_point(class_definition:keystoneDB.Column) */ {
  public:
   inline Column() : Column(nullptr) {}
   ~Column() PROTOBUF_FINAL;
@@ -744,7 +744,7 @@ class Column final : public ::google::protobuf::Message
   void InternalSwap(Column* other);
  private:
   friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "skDB.Column"; }
+  static ::absl::string_view FullMessageName() { return "keystoneDB.Column"; }
 
  protected:
   explicit Column(::google::protobuf::Arena* arena);
@@ -805,15 +805,15 @@ class Column final : public ::google::protobuf::Message
   std::string* _internal_mutable_str();
 
   public:
-  // optional .skDB.Column.ColumnType type = 1;
+  // optional .keystoneDB.Column.ColumnType type = 1;
   bool has_type() const;
   void clear_type() ;
-  ::skDB::Column_ColumnType type() const;
-  void set_type(::skDB::Column_ColumnType value);
+  ::keystoneDB::Column_ColumnType type() const;
+  void set_type(::keystoneDB::Column_ColumnType value);
 
   private:
-  ::skDB::Column_ColumnType _internal_type() const;
-  void _internal_set_type(::skDB::Column_ColumnType value);
+  ::keystoneDB::Column_ColumnType _internal_type() const;
+  void _internal_set_type(::keystoneDB::Column_ColumnType value);
 
   public:
   // optional int32 integer_num = 2;
@@ -838,7 +838,7 @@ class Column final : public ::google::protobuf::Message
   void _internal_set_float_num(double value);
 
   public:
-  // @@protoc_insertion_point(class_scope:skDB.Column)
+  // @@protoc_insertion_point(class_scope:keystoneDB.Column)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
@@ -878,7 +878,7 @@ class Column final : public ::google::protobuf::Message
 // -------------------------------------------------------------------
 
 class TableMetadata final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:skDB.TableMetadata) */ {
+/* @@protoc_insertion_point(class_definition:keystoneDB.TableMetadata) */ {
  public:
   inline TableMetadata() : TableMetadata(nullptr) {}
   ~TableMetadata() PROTOBUF_FINAL;
@@ -1000,7 +1000,7 @@ class TableMetadata final : public ::google::protobuf::Message
   void InternalSwap(TableMetadata* other);
  private:
   friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "skDB.TableMetadata"; }
+  static ::absl::string_view FullMessageName() { return "keystoneDB.TableMetadata"; }
 
  protected:
   explicit TableMetadata(::google::protobuf::Arena* arena);
@@ -1022,23 +1022,23 @@ class TableMetadata final : public ::google::protobuf::Message
     kNextIdFieldNumber = 2,
     kHasPrimaryFieldNumber = 3,
   };
-  // repeated .skDB.DBDefinition definitions = 1;
+  // repeated .keystoneDB.DBDefinition definitions = 1;
   int definitions_size() const;
   private:
   int _internal_definitions_size() const;
 
   public:
   void clear_definitions() ;
-  ::skDB::DBDefinition* mutable_definitions(int index);
-  ::google::protobuf::RepeatedPtrField<::skDB::DBDefinition>* mutable_definitions();
+  ::keystoneDB::DBDefinition* mutable_definitions(int index);
+  ::google::protobuf::RepeatedPtrField<::keystoneDB::DBDefinition>* mutable_definitions();
 
   private:
-  const ::google::protobuf::RepeatedPtrField<::skDB::DBDefinition>& _internal_definitions() const;
-  ::google::protobuf::RepeatedPtrField<::skDB::DBDefinition>* _internal_mutable_definitions();
+  const ::google::protobuf::RepeatedPtrField<::keystoneDB::DBDefinition>& _internal_definitions() const;
+  ::google::protobuf::RepeatedPtrField<::keystoneDB::DBDefinition>* _internal_mutable_definitions();
   public:
-  const ::skDB::DBDefinition& definitions(int index) const;
-  ::skDB::DBDefinition* add_definitions();
-  const ::google::protobuf::RepeatedPtrField<::skDB::DBDefinition>& definitions() const;
+  const ::keystoneDB::DBDefinition& definitions(int index) const;
+  ::keystoneDB::DBDefinition* add_definitions();
+  const ::google::protobuf::RepeatedPtrField<::keystoneDB::DBDefinition>& definitions() const;
   // optional uint64 nextId = 2;
   bool has_nextid() const;
   void clear_nextid() ;
@@ -1061,7 +1061,7 @@ class TableMetadata final : public ::google::protobuf::Message
   void _internal_set_hasprimary(bool value);
 
   public:
-  // @@protoc_insertion_point(class_scope:skDB.TableMetadata)
+  // @@protoc_insertion_point(class_scope:keystoneDB.TableMetadata)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
@@ -1089,7 +1089,7 @@ class TableMetadata final : public ::google::protobuf::Message
                           const TableMetadata& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::RepeatedPtrField< ::skDB::DBDefinition > definitions_;
+    ::google::protobuf::RepeatedPtrField< ::keystoneDB::DBDefinition > definitions_;
     ::uint64_t nextid_;
     bool hasprimary_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -1100,7 +1100,7 @@ class TableMetadata final : public ::google::protobuf::Message
 // -------------------------------------------------------------------
 
 class Row final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:skDB.Row) */ {
+/* @@protoc_insertion_point(class_definition:keystoneDB.Row) */ {
  public:
   inline Row() : Row(nullptr) {}
   ~Row() PROTOBUF_FINAL;
@@ -1222,7 +1222,7 @@ class Row final : public ::google::protobuf::Message
   void InternalSwap(Row* other);
  private:
   friend class ::google::protobuf::internal::AnyMetadata;
-  static ::absl::string_view FullMessageName() { return "skDB.Row"; }
+  static ::absl::string_view FullMessageName() { return "keystoneDB.Row"; }
 
  protected:
   explicit Row(::google::protobuf::Arena* arena);
@@ -1242,24 +1242,24 @@ class Row final : public ::google::protobuf::Message
   enum : int {
     kColumnsFieldNumber = 1,
   };
-  // repeated .skDB.Column columns = 1;
+  // repeated .keystoneDB.Column columns = 1;
   int columns_size() const;
   private:
   int _internal_columns_size() const;
 
   public:
   void clear_columns() ;
-  ::skDB::Column* mutable_columns(int index);
-  ::google::protobuf::RepeatedPtrField<::skDB::Column>* mutable_columns();
+  ::keystoneDB::Column* mutable_columns(int index);
+  ::google::protobuf::RepeatedPtrField<::keystoneDB::Column>* mutable_columns();
 
   private:
-  const ::google::protobuf::RepeatedPtrField<::skDB::Column>& _internal_columns() const;
-  ::google::protobuf::RepeatedPtrField<::skDB::Column>* _internal_mutable_columns();
+  const ::google::protobuf::RepeatedPtrField<::keystoneDB::Column>& _internal_columns() const;
+  ::google::protobuf::RepeatedPtrField<::keystoneDB::Column>* _internal_mutable_columns();
   public:
-  const ::skDB::Column& columns(int index) const;
-  ::skDB::Column* add_columns();
-  const ::google::protobuf::RepeatedPtrField<::skDB::Column>& columns() const;
-  // @@protoc_insertion_point(class_scope:skDB.Row)
+  const ::keystoneDB::Column& columns(int index) const;
+  ::keystoneDB::Column* add_columns();
+  const ::google::protobuf::RepeatedPtrField<::keystoneDB::Column>& columns() const;
+  // @@protoc_insertion_point(class_scope:keystoneDB.Row)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
@@ -1285,7 +1285,7 @@ class Row final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const Row& from_msg);
-    ::google::protobuf::RepeatedPtrField< ::skDB::Column > columns_;
+    ::google::protobuf::RepeatedPtrField< ::keystoneDB::Column > columns_;
     mutable ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1309,7 +1309,7 @@ class Row final : public ::google::protobuf::Message
 
 // Column
 
-// optional .skDB.Column.ColumnType type = 1;
+// optional .keystoneDB.Column.ColumnType type = 1;
 inline bool Column::has_type() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   return value;
@@ -1319,22 +1319,22 @@ inline void Column::clear_type() {
   _impl_.type_ = 0;
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline ::skDB::Column_ColumnType Column::type() const {
-  // @@protoc_insertion_point(field_get:skDB.Column.type)
+inline ::keystoneDB::Column_ColumnType Column::type() const {
+  // @@protoc_insertion_point(field_get:keystoneDB.Column.type)
   return _internal_type();
 }
-inline void Column::set_type(::skDB::Column_ColumnType value) {
+inline void Column::set_type(::keystoneDB::Column_ColumnType value) {
   _internal_set_type(value);
   _impl_._has_bits_[0] |= 0x00000002u;
-  // @@protoc_insertion_point(field_set:skDB.Column.type)
+  // @@protoc_insertion_point(field_set:keystoneDB.Column.type)
 }
-inline ::skDB::Column_ColumnType Column::_internal_type() const {
+inline ::keystoneDB::Column_ColumnType Column::_internal_type() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::skDB::Column_ColumnType>(_impl_.type_);
+  return static_cast<::keystoneDB::Column_ColumnType>(_impl_.type_);
 }
-inline void Column::_internal_set_type(::skDB::Column_ColumnType value) {
+inline void Column::_internal_set_type(::keystoneDB::Column_ColumnType value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  assert(::skDB::Column_ColumnType_IsValid(value));
+  assert(::keystoneDB::Column_ColumnType_IsValid(value));
   _impl_.type_ = value;
 }
 
@@ -1349,13 +1349,13 @@ inline void Column::clear_integer_num() {
   _impl_._has_bits_[0] &= ~0x00000004u;
 }
 inline ::int32_t Column::integer_num() const {
-  // @@protoc_insertion_point(field_get:skDB.Column.integer_num)
+  // @@protoc_insertion_point(field_get:keystoneDB.Column.integer_num)
   return _internal_integer_num();
 }
 inline void Column::set_integer_num(::int32_t value) {
   _internal_set_integer_num(value);
   _impl_._has_bits_[0] |= 0x00000004u;
-  // @@protoc_insertion_point(field_set:skDB.Column.integer_num)
+  // @@protoc_insertion_point(field_set:keystoneDB.Column.integer_num)
 }
 inline ::int32_t Column::_internal_integer_num() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
@@ -1378,7 +1378,7 @@ inline void Column::clear_str() {
 }
 inline const std::string& Column::str() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:skDB.Column.str)
+  // @@protoc_insertion_point(field_get:keystoneDB.Column.str)
   return _internal_str();
 }
 template <typename Arg_, typename... Args_>
@@ -1387,11 +1387,11 @@ inline PROTOBUF_ALWAYS_INLINE void Column::set_str(Arg_&& arg,
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.str_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:skDB.Column.str)
+  // @@protoc_insertion_point(field_set:keystoneDB.Column.str)
 }
 inline std::string* Column::mutable_str() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_str();
-  // @@protoc_insertion_point(field_mutable:skDB.Column.str)
+  // @@protoc_insertion_point(field_mutable:keystoneDB.Column.str)
   return _s;
 }
 inline const std::string& Column::_internal_str() const {
@@ -1410,7 +1410,7 @@ inline std::string* Column::_internal_mutable_str() {
 }
 inline std::string* Column::release_str() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:skDB.Column.str)
+  // @@protoc_insertion_point(field_release:keystoneDB.Column.str)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
@@ -1434,7 +1434,7 @@ inline void Column::set_allocated_str(std::string* value) {
           _impl_.str_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:skDB.Column.str)
+  // @@protoc_insertion_point(field_set_allocated:keystoneDB.Column.str)
 }
 
 // optional double float_num = 4;
@@ -1448,13 +1448,13 @@ inline void Column::clear_float_num() {
   _impl_._has_bits_[0] &= ~0x00000008u;
 }
 inline double Column::float_num() const {
-  // @@protoc_insertion_point(field_get:skDB.Column.float_num)
+  // @@protoc_insertion_point(field_get:keystoneDB.Column.float_num)
   return _internal_float_num();
 }
 inline void Column::set_float_num(double value) {
   _internal_set_float_num(value);
   _impl_._has_bits_[0] |= 0x00000008u;
-  // @@protoc_insertion_point(field_set:skDB.Column.float_num)
+  // @@protoc_insertion_point(field_set:keystoneDB.Column.float_num)
 }
 inline double Column::_internal_float_num() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
@@ -1469,7 +1469,7 @@ inline void Column::_internal_set_float_num(double value) {
 
 // Row
 
-// repeated .skDB.Column columns = 1;
+// repeated .keystoneDB.Column columns = 1;
 inline int Row::_internal_columns_size() const {
   return _internal_columns().size();
 }
@@ -1480,39 +1480,39 @@ inline void Row::clear_columns() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.columns_.Clear();
 }
-inline ::skDB::Column* Row::mutable_columns(int index)
+inline ::keystoneDB::Column* Row::mutable_columns(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:skDB.Row.columns)
+  // @@protoc_insertion_point(field_mutable:keystoneDB.Row.columns)
   return _internal_mutable_columns()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::skDB::Column>* Row::mutable_columns()
+inline ::google::protobuf::RepeatedPtrField<::keystoneDB::Column>* Row::mutable_columns()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:skDB.Row.columns)
+  // @@protoc_insertion_point(field_mutable_list:keystoneDB.Row.columns)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _internal_mutable_columns();
 }
-inline const ::skDB::Column& Row::columns(int index) const
+inline const ::keystoneDB::Column& Row::columns(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:skDB.Row.columns)
+  // @@protoc_insertion_point(field_get:keystoneDB.Row.columns)
   return _internal_columns().Get(index);
 }
-inline ::skDB::Column* Row::add_columns() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::keystoneDB::Column* Row::add_columns() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::skDB::Column* _add = _internal_mutable_columns()->Add();
-  // @@protoc_insertion_point(field_add:skDB.Row.columns)
+  ::keystoneDB::Column* _add = _internal_mutable_columns()->Add();
+  // @@protoc_insertion_point(field_add:keystoneDB.Row.columns)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::skDB::Column>& Row::columns() const
+inline const ::google::protobuf::RepeatedPtrField<::keystoneDB::Column>& Row::columns() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:skDB.Row.columns)
+  // @@protoc_insertion_point(field_list:keystoneDB.Row.columns)
   return _internal_columns();
 }
-inline const ::google::protobuf::RepeatedPtrField<::skDB::Column>&
+inline const ::google::protobuf::RepeatedPtrField<::keystoneDB::Column>&
 Row::_internal_columns() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.columns_;
 }
-inline ::google::protobuf::RepeatedPtrField<::skDB::Column>*
+inline ::google::protobuf::RepeatedPtrField<::keystoneDB::Column>*
 Row::_internal_mutable_columns() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.columns_;
@@ -1522,7 +1522,7 @@ Row::_internal_mutable_columns() {
 
 // TableMetadata
 
-// repeated .skDB.DBDefinition definitions = 1;
+// repeated .keystoneDB.DBDefinition definitions = 1;
 inline int TableMetadata::_internal_definitions_size() const {
   return _internal_definitions().size();
 }
@@ -1533,39 +1533,39 @@ inline void TableMetadata::clear_definitions() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.definitions_.Clear();
 }
-inline ::skDB::DBDefinition* TableMetadata::mutable_definitions(int index)
+inline ::keystoneDB::DBDefinition* TableMetadata::mutable_definitions(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:skDB.TableMetadata.definitions)
+  // @@protoc_insertion_point(field_mutable:keystoneDB.TableMetadata.definitions)
   return _internal_mutable_definitions()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::skDB::DBDefinition>* TableMetadata::mutable_definitions()
+inline ::google::protobuf::RepeatedPtrField<::keystoneDB::DBDefinition>* TableMetadata::mutable_definitions()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:skDB.TableMetadata.definitions)
+  // @@protoc_insertion_point(field_mutable_list:keystoneDB.TableMetadata.definitions)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _internal_mutable_definitions();
 }
-inline const ::skDB::DBDefinition& TableMetadata::definitions(int index) const
+inline const ::keystoneDB::DBDefinition& TableMetadata::definitions(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:skDB.TableMetadata.definitions)
+  // @@protoc_insertion_point(field_get:keystoneDB.TableMetadata.definitions)
   return _internal_definitions().Get(index);
 }
-inline ::skDB::DBDefinition* TableMetadata::add_definitions() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::keystoneDB::DBDefinition* TableMetadata::add_definitions() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::skDB::DBDefinition* _add = _internal_mutable_definitions()->Add();
-  // @@protoc_insertion_point(field_add:skDB.TableMetadata.definitions)
+  ::keystoneDB::DBDefinition* _add = _internal_mutable_definitions()->Add();
+  // @@protoc_insertion_point(field_add:keystoneDB.TableMetadata.definitions)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::skDB::DBDefinition>& TableMetadata::definitions() const
+inline const ::google::protobuf::RepeatedPtrField<::keystoneDB::DBDefinition>& TableMetadata::definitions() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:skDB.TableMetadata.definitions)
+  // @@protoc_insertion_point(field_list:keystoneDB.TableMetadata.definitions)
   return _internal_definitions();
 }
-inline const ::google::protobuf::RepeatedPtrField<::skDB::DBDefinition>&
+inline const ::google::protobuf::RepeatedPtrField<::keystoneDB::DBDefinition>&
 TableMetadata::_internal_definitions() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.definitions_;
 }
-inline ::google::protobuf::RepeatedPtrField<::skDB::DBDefinition>*
+inline ::google::protobuf::RepeatedPtrField<::keystoneDB::DBDefinition>*
 TableMetadata::_internal_mutable_definitions() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.definitions_;
@@ -1582,13 +1582,13 @@ inline void TableMetadata::clear_nextid() {
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
 inline ::uint64_t TableMetadata::nextid() const {
-  // @@protoc_insertion_point(field_get:skDB.TableMetadata.nextId)
+  // @@protoc_insertion_point(field_get:keystoneDB.TableMetadata.nextId)
   return _internal_nextid();
 }
 inline void TableMetadata::set_nextid(::uint64_t value) {
   _internal_set_nextid(value);
   _impl_._has_bits_[0] |= 0x00000001u;
-  // @@protoc_insertion_point(field_set:skDB.TableMetadata.nextId)
+  // @@protoc_insertion_point(field_set:keystoneDB.TableMetadata.nextId)
 }
 inline ::uint64_t TableMetadata::_internal_nextid() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
@@ -1610,13 +1610,13 @@ inline void TableMetadata::clear_hasprimary() {
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
 inline bool TableMetadata::hasprimary() const {
-  // @@protoc_insertion_point(field_get:skDB.TableMetadata.hasPrimary)
+  // @@protoc_insertion_point(field_get:keystoneDB.TableMetadata.hasPrimary)
   return _internal_hasprimary();
 }
 inline void TableMetadata::set_hasprimary(bool value) {
   _internal_set_hasprimary(value);
   _impl_._has_bits_[0] |= 0x00000002u;
-  // @@protoc_insertion_point(field_set:skDB.TableMetadata.hasPrimary)
+  // @@protoc_insertion_point(field_set:keystoneDB.TableMetadata.hasPrimary)
 }
 inline bool TableMetadata::_internal_hasprimary() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
@@ -1631,7 +1631,7 @@ inline void TableMetadata::_internal_set_hasprimary(bool value) {
 
 // DBDefinition
 
-// optional .skDB.DBDefinition.DefinitionType type = 1;
+// optional .keystoneDB.DBDefinition.DefinitionType type = 1;
 inline bool DBDefinition::has_type() const {
   bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
   return value;
@@ -1641,22 +1641,22 @@ inline void DBDefinition::clear_type() {
   _impl_.type_ = 1;
   _impl_._has_bits_[0] &= ~0x00000020u;
 }
-inline ::skDB::DBDefinition_DefinitionType DBDefinition::type() const {
-  // @@protoc_insertion_point(field_get:skDB.DBDefinition.type)
+inline ::keystoneDB::DBDefinition_DefinitionType DBDefinition::type() const {
+  // @@protoc_insertion_point(field_get:keystoneDB.DBDefinition.type)
   return _internal_type();
 }
-inline void DBDefinition::set_type(::skDB::DBDefinition_DefinitionType value) {
+inline void DBDefinition::set_type(::keystoneDB::DBDefinition_DefinitionType value) {
   _internal_set_type(value);
   _impl_._has_bits_[0] |= 0x00000020u;
-  // @@protoc_insertion_point(field_set:skDB.DBDefinition.type)
+  // @@protoc_insertion_point(field_set:keystoneDB.DBDefinition.type)
 }
-inline ::skDB::DBDefinition_DefinitionType DBDefinition::_internal_type() const {
+inline ::keystoneDB::DBDefinition_DefinitionType DBDefinition::_internal_type() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::skDB::DBDefinition_DefinitionType>(_impl_.type_);
+  return static_cast<::keystoneDB::DBDefinition_DefinitionType>(_impl_.type_);
 }
-inline void DBDefinition::_internal_set_type(::skDB::DBDefinition_DefinitionType value) {
+inline void DBDefinition::_internal_set_type(::keystoneDB::DBDefinition_DefinitionType value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  assert(::skDB::DBDefinition_DefinitionType_IsValid(value));
+  assert(::keystoneDB::DBDefinition_DefinitionType_IsValid(value));
   _impl_.type_ = value;
 }
 
@@ -1672,7 +1672,7 @@ inline void DBDefinition::clear_name() {
 }
 inline const std::string& DBDefinition::name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:skDB.DBDefinition.name)
+  // @@protoc_insertion_point(field_get:keystoneDB.DBDefinition.name)
   return _internal_name();
 }
 template <typename Arg_, typename... Args_>
@@ -1681,11 +1681,11 @@ inline PROTOBUF_ALWAYS_INLINE void DBDefinition::set_name(Arg_&& arg,
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:skDB.DBDefinition.name)
+  // @@protoc_insertion_point(field_set:keystoneDB.DBDefinition.name)
 }
 inline std::string* DBDefinition::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:skDB.DBDefinition.name)
+  // @@protoc_insertion_point(field_mutable:keystoneDB.DBDefinition.name)
   return _s;
 }
 inline const std::string& DBDefinition::_internal_name() const {
@@ -1704,7 +1704,7 @@ inline std::string* DBDefinition::_internal_mutable_name() {
 }
 inline std::string* DBDefinition::release_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:skDB.DBDefinition.name)
+  // @@protoc_insertion_point(field_release:keystoneDB.DBDefinition.name)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
@@ -1728,7 +1728,7 @@ inline void DBDefinition::set_allocated_name(std::string* value) {
           _impl_.name_.Set("", GetArena());
         }
   #endif  // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:skDB.DBDefinition.name)
+  // @@protoc_insertion_point(field_set_allocated:keystoneDB.DBDefinition.name)
 }
 
 // optional bool isPrimary = 3;
@@ -1742,13 +1742,13 @@ inline void DBDefinition::clear_isprimary() {
   _impl_._has_bits_[0] &= ~0x00000004u;
 }
 inline bool DBDefinition::isprimary() const {
-  // @@protoc_insertion_point(field_get:skDB.DBDefinition.isPrimary)
+  // @@protoc_insertion_point(field_get:keystoneDB.DBDefinition.isPrimary)
   return _internal_isprimary();
 }
 inline void DBDefinition::set_isprimary(bool value) {
   _internal_set_isprimary(value);
   _impl_._has_bits_[0] |= 0x00000004u;
-  // @@protoc_insertion_point(field_set:skDB.DBDefinition.isPrimary)
+  // @@protoc_insertion_point(field_set:keystoneDB.DBDefinition.isPrimary)
 }
 inline bool DBDefinition::_internal_isprimary() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
@@ -1770,13 +1770,13 @@ inline void DBDefinition::clear_isindex() {
   _impl_._has_bits_[0] &= ~0x00000008u;
 }
 inline bool DBDefinition::isindex() const {
-  // @@protoc_insertion_point(field_get:skDB.DBDefinition.isIndex)
+  // @@protoc_insertion_point(field_get:keystoneDB.DBDefinition.isIndex)
   return _internal_isindex();
 }
 inline void DBDefinition::set_isindex(bool value) {
   _internal_set_isindex(value);
   _impl_._has_bits_[0] |= 0x00000008u;
-  // @@protoc_insertion_point(field_set:skDB.DBDefinition.isIndex)
+  // @@protoc_insertion_point(field_set:keystoneDB.DBDefinition.isIndex)
 }
 inline bool DBDefinition::_internal_isindex() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
@@ -1798,13 +1798,13 @@ inline void DBDefinition::clear_charlen() {
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
 inline ::uint64_t DBDefinition::charlen() const {
-  // @@protoc_insertion_point(field_get:skDB.DBDefinition.charLen)
+  // @@protoc_insertion_point(field_get:keystoneDB.DBDefinition.charLen)
   return _internal_charlen();
 }
 inline void DBDefinition::set_charlen(::uint64_t value) {
   _internal_set_charlen(value);
   _impl_._has_bits_[0] |= 0x00000002u;
-  // @@protoc_insertion_point(field_set:skDB.DBDefinition.charLen)
+  // @@protoc_insertion_point(field_set:keystoneDB.DBDefinition.charLen)
 }
 inline ::uint64_t DBDefinition::_internal_charlen() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
@@ -1826,13 +1826,13 @@ inline void DBDefinition::clear_nullable() {
   _impl_._has_bits_[0] &= ~0x00000010u;
 }
 inline bool DBDefinition::nullable() const {
-  // @@protoc_insertion_point(field_get:skDB.DBDefinition.nullable)
+  // @@protoc_insertion_point(field_get:keystoneDB.DBDefinition.nullable)
   return _internal_nullable();
 }
 inline void DBDefinition::set_nullable(bool value) {
   _internal_set_nullable(value);
   _impl_._has_bits_[0] |= 0x00000010u;
-  // @@protoc_insertion_point(field_set:skDB.DBDefinition.nullable)
+  // @@protoc_insertion_point(field_set:keystoneDB.DBDefinition.nullable)
 }
 inline bool DBDefinition::_internal_nullable() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
@@ -1861,17 +1861,17 @@ inline void DBMetadata::clear_tables() {
 inline std::string* DBMetadata::add_tables() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   std::string* _s = _internal_mutable_tables()->Add();
-  // @@protoc_insertion_point(field_add_mutable:skDB.DBMetadata.tables)
+  // @@protoc_insertion_point(field_add_mutable:keystoneDB.DBMetadata.tables)
   return _s;
 }
 inline const std::string& DBMetadata::tables(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:skDB.DBMetadata.tables)
+  // @@protoc_insertion_point(field_get:keystoneDB.DBMetadata.tables)
   return _internal_tables().Get(index);
 }
 inline std::string* DBMetadata::mutable_tables(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:skDB.DBMetadata.tables)
+  // @@protoc_insertion_point(field_mutable:keystoneDB.DBMetadata.tables)
   return _internal_mutable_tables()->Mutable(index);
 }
 template <typename Arg_, typename... Args_>
@@ -1879,7 +1879,7 @@ inline void DBMetadata::set_tables(int index, Arg_&& value, Args_... args) {
   ::google::protobuf::internal::AssignToString(
       *_internal_mutable_tables()->Mutable(index),
       std::forward<Arg_>(value), args... );
-  // @@protoc_insertion_point(field_set:skDB.DBMetadata.tables)
+  // @@protoc_insertion_point(field_set:keystoneDB.DBMetadata.tables)
 }
 template <typename Arg_, typename... Args_>
 inline void DBMetadata::add_tables(Arg_&& value, Args_... args) {
@@ -1887,16 +1887,16 @@ inline void DBMetadata::add_tables(Arg_&& value, Args_... args) {
   ::google::protobuf::internal::AddToRepeatedPtrField(*_internal_mutable_tables(),
                                std::forward<Arg_>(value),
                                args... );
-  // @@protoc_insertion_point(field_add:skDB.DBMetadata.tables)
+  // @@protoc_insertion_point(field_add:keystoneDB.DBMetadata.tables)
 }
 inline const ::google::protobuf::RepeatedPtrField<std::string>&
 DBMetadata::tables() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:skDB.DBMetadata.tables)
+  // @@protoc_insertion_point(field_list:keystoneDB.DBMetadata.tables)
   return _internal_tables();
 }
 inline ::google::protobuf::RepeatedPtrField<std::string>*
 DBMetadata::mutable_tables() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable_list:skDB.DBMetadata.tables)
+  // @@protoc_insertion_point(field_mutable_list:keystoneDB.DBMetadata.tables)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _internal_mutable_tables();
 }
@@ -1916,23 +1916,23 @@ DBMetadata::_internal_mutable_tables() {
 #endif  // __GNUC__
 
 // @@protoc_insertion_point(namespace_scope)
-}  // namespace skDB
+}  // namespace keystoneDB
 
 
 namespace google {
 namespace protobuf {
 
 template <>
-struct is_proto_enum<::skDB::Column_ColumnType> : std::true_type {};
+struct is_proto_enum<::keystoneDB::Column_ColumnType> : std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor<::skDB::Column_ColumnType>() {
-  return ::skDB::Column_ColumnType_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor<::keystoneDB::Column_ColumnType>() {
+  return ::keystoneDB::Column_ColumnType_descriptor();
 }
 template <>
-struct is_proto_enum<::skDB::DBDefinition_DefinitionType> : std::true_type {};
+struct is_proto_enum<::keystoneDB::DBDefinition_DefinitionType> : std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor<::skDB::DBDefinition_DefinitionType>() {
-  return ::skDB::DBDefinition_DefinitionType_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor<::keystoneDB::DBDefinition_DefinitionType>() {
+  return ::keystoneDB::DBDefinition_DefinitionType_descriptor();
 }
 
 }  // namespace protobuf

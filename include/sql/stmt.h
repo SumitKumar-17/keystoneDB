@@ -2,7 +2,7 @@
 #define STMT_H
 #include <string>
 
-namespace skDB {
+namespace keystoneDB {
     enum SQLStmtType {
         skSQL_SELECT,
         skSQL_INSERT,

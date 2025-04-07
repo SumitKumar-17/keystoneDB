@@ -2,7 +2,7 @@
 
 #include "execution/executor.h"
 
-namespace skDB {
+namespace keystoneDB {
     bool Executor::visitBetween(BetweenExpr *between_expr, AbstractExpProcessor *processor)const {// NOLINT(*-no-recursion)
         assert(between_expr!=nullptr);
         if (!visitExp(between_expr->getExp1(), processor) || !visitExp(between_expr->getExp2(), processor) || !

@@ -5,7 +5,7 @@
 #include "stmt.h"
 #include "table.h"
 
-namespace skDB {
+namespace keystoneDB {
     enum DropType {
         DropTable,
         DropDatabase,

@@ -4,7 +4,7 @@
 
 #include "stmt.h"
 
-namespace skDB {
+namespace keystoneDB {
     class ParserResult {
     public:
         ParserResult() = default;

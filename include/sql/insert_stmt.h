@@ -4,7 +4,7 @@
 #include "table.h"
 #include <vector>
 
-namespace skDB {
+namespace keystoneDB {
     class Parameter;
 
     class InsertStmt final : public SQLStmt {

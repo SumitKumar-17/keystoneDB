@@ -1,6 +1,6 @@
 #include "execution/executor.h"
 
-namespace skDB {
+namespace keystoneDB {
     static bool deletePrefix(const std::string &prefix, rocksdb::DB *db, rocksdb::Iterator *it) {
         for (it->Seek(prefix); it->Valid(); it->Next()) {
             auto key = it->key().ToString();

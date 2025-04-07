@@ -1,7 +1,7 @@
 #include "sql/insert_stmt.h"
 #include <cstdlib>
 
-namespace skDB {
+namespace keystoneDB {
     Parameter::Parameter() : str(nullptr), x(0), d(0), type(DataTypeNULL) {
     }
 

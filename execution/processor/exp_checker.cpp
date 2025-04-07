@@ -1,6 +1,6 @@
 #include "execution/executor.h"
 
-namespace skDB {
+namespace keystoneDB {
     bool ExpChecker::process(ScalarExp *scalar_exp) {
         if (scalar_exp->getType() != ScalarName) {
             return true;

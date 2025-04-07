@@ -3,7 +3,7 @@
 #include "fort.hpp"
 #include "execution/executor.h"
 
-namespace skDB {
+namespace keystoneDB {
     ColumnFullName::ColumnFullName(std::string db_name, std::string table_name,
                                    std::string column_name): table_name(std::move(table_name)),
                                                              db_name(std::move(db_name)),

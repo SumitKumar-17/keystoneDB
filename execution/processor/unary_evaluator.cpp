@@ -3,7 +3,7 @@
 #include "sql/exp.h"
 #include "execution/executor.h"
 
-namespace skDB {
+namespace keystoneDB {
     bool ExpEvaluator::processNegate(UnaryExp *exp) {
         if (exp->getExp()->getValue().getType() != ScalarInteger) {
             std::cout << "incompatible type for negation " << std::endl;

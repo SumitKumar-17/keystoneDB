@@ -1,4 +1,4 @@
-# skDB
+# keystoneDB
 
 A DBMS implemented for learning Compilers.
 
@@ -82,11 +82,11 @@ make -j4
 
 ## Run
 
-Start skDB interactive shell (interactive mode)
+Start keystoneDB interactive shell (interactive mode)
 
 ```shell
 # Assuming you are in build directory
-./skDB
+./keystoneDB
 ```
 
 ## Resources

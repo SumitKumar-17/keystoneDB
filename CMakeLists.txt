@@ -8,9 +8,9 @@ enable_testing()
 
 cmake_minimum_required(VERSION 3.15)
 
-project(skDB
+project(keystoneDB
         LANGUAGES C CXX
-        DESCRIPTION "skDB is a DBMS built on RocksDB"
+        DESCRIPTION "keystoneDB is a DBMS built on RocksDB"
         VERSION 0.0.1
 )
 
@@ -90,15 +90,15 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/th
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_party/rocksdb/include)
 add_custom_target(check
-        ./test/skDB_unit_test
+        ./test/keystoneDB_unit_test
 )
 
-add_dependencies(check skDB_unit_test)
+add_dependencies(check keystoneDB_unit_test)
 
 add_custom_target(shell
-        ./skDB
+        ./keystoneDB
 )
-add_dependencies(shell skDB)
+add_dependencies(shell keystoneDB)
 
 
 add_library(${PROJECT_NAME}_lib STATIC
@@ -117,11 +117,11 @@ target_include_directories(${PROJECT_NAME}_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR
 add_subdirectory(test)
 add_subdirectory(third_party/googletest)
 
-target_link_directories(skDB PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/third_party/rocksdb)
+target_link_directories(keystoneDB PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/third_party/rocksdb)
 
-target_link_libraries(skDB PRIVATE rocksdb)
+target_link_libraries(keystoneDB PRIVATE rocksdb)
 
-target_link_libraries(skDB PRIVATE skDB_linenoise)
+target_link_libraries(keystoneDB PRIVATE keystoneDB_linenoise)
 
 find_library(LZ4_LIB lz4 REQUIRED)
 message(STATUS "finding ${LZ4_LIB}")
@@ -141,17 +141,17 @@ message(STATUS "finding ${gFLAGS}")
 find_library(ZLIB z REQUIRED)
 message(STATUS "finding ${ZLIB}")
 
-#target_link_libraries(skDB PUBLIC ${gFLAGS} ${BZ2} ${SNAPPY} ${ZSTD_LIB} ${LZ4_LIB} ${ZLIB})
+#target_link_libraries(keystoneDB PUBLIC ${gFLAGS} ${BZ2} ${SNAPPY} ${ZSTD_LIB} ${LZ4_LIB} ${ZLIB})
 
-target_link_libraries(skDB PUBLIC lz4 zstd snappy bz2 gflags z protobuf)
+target_link_libraries(keystoneDB PUBLIC lz4 zstd snappy bz2 gflags z protobuf)
 
 find_library(URING_LIB uring REQUIRED)
-target_link_libraries(skDB PUBLIC ${URING_LIB})
+target_link_libraries(keystoneDB PUBLIC ${URING_LIB})
 
 
 # Link Abseil library components
 find_package(absl REQUIRED)
-target_link_libraries(skDB PRIVATE absl::log_internal_check_op absl::strings absl::base)
+target_link_libraries(keystoneDB PRIVATE absl::log_internal_check_op absl::strings absl::base)
 
 
 add_custom_target(rocksdb
@@ -159,7 +159,7 @@ add_custom_target(rocksdb
         COMMAND make -j4 --file ${CMAKE_CURRENT_SOURCE_DIR}/third_party/rocksdb/Makefile --directory ${CMAKE_CURRENT_SOURCE_DIR}/third_party/rocksdb static_lib
 )
 
-add_dependencies(skDB rocksdb)
+add_dependencies(keystoneDB rocksdb)
 
 # integrate libfort
 
@@ -167,7 +167,7 @@ add_dependencies(skDB rocksdb)
 set(FORT_ENABLE_TESTING OFF CACHE INTERNAL "")
 
 add_subdirectory(third_party/libfort)
-target_link_libraries(skDB PRIVATE fort)
+target_link_libraries(keystoneDB PRIVATE fort)
 
 
 find_program(MAKE make)

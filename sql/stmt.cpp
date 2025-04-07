@@ -1,6 +1,6 @@
 #include "sql/stmt.h"
 
-namespace skDB {
+namespace keystoneDB {
     SQLStmt::SQLStmt(const SQLStmtType type) : type_(type) {
     }
 

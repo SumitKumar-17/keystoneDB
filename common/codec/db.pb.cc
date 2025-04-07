@@ -23,7 +23,7 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace _pb = ::google::protobuf;
 namespace _pbi = ::google::protobuf::internal;
 namespace _fl = ::google::protobuf::internal::field_layout;
-namespace skDB {
+namespace keystoneDB {
 
 inline constexpr DBMetadata::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -60,7 +60,7 @@ inline constexpr DBDefinition::Impl_::Impl_(
         isprimary_{false},
         isindex_{false},
         nullable_{false},
-        type_{static_cast< ::skDB::DBDefinition_DefinitionType >(1)} {}
+        type_{static_cast< ::keystoneDB::DBDefinition_DefinitionType >(1)} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR DBDefinition::DBDefinition(::_pbi::ConstantInitialized)
@@ -88,7 +88,7 @@ inline constexpr Column::Impl_::Impl_(
         str_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        type_{static_cast< ::skDB::Column_ColumnType >(0)},
+        type_{static_cast< ::keystoneDB::Column_ColumnType >(0)},
         integer_num_{0},
         float_num_{0} {}
 
@@ -163,66 +163,66 @@ struct RowDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RowDefaultTypeInternal _Row_default_instance_;
-}  // namespace skDB
+}  // namespace keystoneDB
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_db_2eproto[2];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_db_2eproto = nullptr;
 const ::uint32_t
     TableStruct_db_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
-        PROTOBUF_FIELD_OFFSET(::skDB::Column, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::skDB::Column, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::Column, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::Column, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::skDB::Column, _impl_.type_),
-        PROTOBUF_FIELD_OFFSET(::skDB::Column, _impl_.integer_num_),
-        PROTOBUF_FIELD_OFFSET(::skDB::Column, _impl_.str_),
-        PROTOBUF_FIELD_OFFSET(::skDB::Column, _impl_.float_num_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::Column, _impl_.type_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::Column, _impl_.integer_num_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::Column, _impl_.str_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::Column, _impl_.float_num_),
         1,
         2,
         0,
         3,
         ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::skDB::Row, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::Row, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::skDB::Row, _impl_.columns_),
-        PROTOBUF_FIELD_OFFSET(::skDB::TableMetadata, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::skDB::TableMetadata, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::Row, _impl_.columns_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::TableMetadata, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::TableMetadata, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::skDB::TableMetadata, _impl_.definitions_),
-        PROTOBUF_FIELD_OFFSET(::skDB::TableMetadata, _impl_.nextid_),
-        PROTOBUF_FIELD_OFFSET(::skDB::TableMetadata, _impl_.hasprimary_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::TableMetadata, _impl_.definitions_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::TableMetadata, _impl_.nextid_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::TableMetadata, _impl_.hasprimary_),
         ~0u,
         0,
         1,
-        PROTOBUF_FIELD_OFFSET(::skDB::DBDefinition, _impl_._has_bits_),
-        PROTOBUF_FIELD_OFFSET(::skDB::DBDefinition, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::DBDefinition, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::DBDefinition, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::skDB::DBDefinition, _impl_.type_),
-        PROTOBUF_FIELD_OFFSET(::skDB::DBDefinition, _impl_.name_),
-        PROTOBUF_FIELD_OFFSET(::skDB::DBDefinition, _impl_.isprimary_),
-        PROTOBUF_FIELD_OFFSET(::skDB::DBDefinition, _impl_.isindex_),
-        PROTOBUF_FIELD_OFFSET(::skDB::DBDefinition, _impl_.charlen_),
-        PROTOBUF_FIELD_OFFSET(::skDB::DBDefinition, _impl_.nullable_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::DBDefinition, _impl_.type_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::DBDefinition, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::DBDefinition, _impl_.isprimary_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::DBDefinition, _impl_.isindex_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::DBDefinition, _impl_.charlen_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::DBDefinition, _impl_.nullable_),
         5,
         0,
         2,
@@ -230,43 +230,43 @@ const ::uint32_t
         1,
         4,
         ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::skDB::DBMetadata, _internal_metadata_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::DBMetadata, _internal_metadata_),
         ~0u,  // no _extensions_
         ~0u,  // no _oneof_case_
         ~0u,  // no _weak_field_map_
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::skDB::DBMetadata, _impl_.tables_),
+        PROTOBUF_FIELD_OFFSET(::keystoneDB::DBMetadata, _impl_.tables_),
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, 12, -1, sizeof(::skDB::Column)},
-        {16, -1, -1, sizeof(::skDB::Row)},
-        {25, 36, -1, sizeof(::skDB::TableMetadata)},
-        {39, 53, -1, sizeof(::skDB::DBDefinition)},
-        {59, -1, -1, sizeof(::skDB::DBMetadata)},
+        {0, 12, -1, sizeof(::keystoneDB::Column)},
+        {16, -1, -1, sizeof(::keystoneDB::Row)},
+        {25, 36, -1, sizeof(::keystoneDB::TableMetadata)},
+        {39, 53, -1, sizeof(::keystoneDB::DBDefinition)},
+        {59, -1, -1, sizeof(::keystoneDB::DBMetadata)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
-    &::skDB::_Column_default_instance_._instance,
-    &::skDB::_Row_default_instance_._instance,
-    &::skDB::_TableMetadata_default_instance_._instance,
-    &::skDB::_DBDefinition_default_instance_._instance,
-    &::skDB::_DBMetadata_default_instance_._instance,
+    &::keystoneDB::_Column_default_instance_._instance,
+    &::keystoneDB::_Row_default_instance_._instance,
+    &::keystoneDB::_TableMetadata_default_instance_._instance,
+    &::keystoneDB::_DBDefinition_default_instance_._instance,
+    &::keystoneDB::_DBMetadata_default_instance_._instance,
 };
 const char descriptor_table_protodef_db_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\010db.proto\022\004skDB\"\266\001\n\006Column\022%\n\004type\030\001 \001("
-    "\0162\027.skDB.Column.ColumnType\022\023\n\013integer_nu"
+    "\n\010db.proto\022\004keystoneDB\"\266\001\n\006Column\022%\n\004type\030\001 \001("
+    "\0162\027.keystoneDB.Column.ColumnType\022\023\n\013integer_nu"
     "m\030\002 \001(\005\022\013\n\003str\030\003 \001(\t\022\021\n\tfloat_num\030\004 \001(\001\""
     "P\n\nColumnType\022\016\n\nCOLUMN_INT\020\000\022\017\n\013COLUMN_"
     "CHAR\020\001\022\017\n\013COLUMN_NULL\020\003\022\020\n\014COLUMN_FLOAT\020"
-    "\004\"$\n\003Row\022\035\n\007columns\030\001 \003(\0132\014.skDB.Column\""
+    "\004\"$\n\003Row\022\035\n\007columns\030\001 \003(\0132\014.keystoneDB.Column\""
     "\\\n\rTableMetadata\022\'\n\013definitions\030\001 \003(\0132\022."
-    "skDB.DBDefinition\022\016\n\006nextId\030\002 \001(\004\022\022\n\nhas"
+    "keystoneDB.DBDefinition\022\016\n\006nextId\030\002 \001(\004\022\022\n\nhas"
     "Primary\030\003 \001(\010\"\310\001\n\014DBDefinition\022/\n\004type\030\001"
-    " \001(\0162!.skDB.DBDefinition.DefinitionType\022"
+    " \001(\0162!.keystoneDB.DBDefinition.DefinitionType\022"
     "\014\n\004name\030\002 \001(\t\022\021\n\tisPrimary\030\003 \001(\010\022\017\n\007isIn"
     "dex\030\004 \001(\010\022\017\n\007charLen\030\005 \001(\004\022\020\n\010nullable\030\006"
     " \001(\010\"2\n\016DefinitionType\022\013\n\007INTEGER\020\001\022\010\n\004C"
@@ -290,7 +290,7 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_db_2eproto = {
     file_level_enum_descriptors_db_2eproto,
     file_level_service_descriptors_db_2eproto,
 };
-namespace skDB {
+namespace keystoneDB {
 const ::google::protobuf::EnumDescriptor* Column_ColumnType_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_db_2eproto);
   return file_level_enum_descriptors_db_2eproto[0];
@@ -351,11 +351,11 @@ Column::Column(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:skDB.Column)
+  // @@protoc_insertion_point(arena_constructor:keystoneDB.Column)
 }
 inline PROTOBUF_NDEBUG_INLINE Column::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::skDB::Column& from_msg)
+    const Impl_& from, const ::keystoneDB::Column& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         str_(arena, from.str_) {}
@@ -381,7 +381,7 @@ Column::Column(
                offsetof(Impl_, type_) +
                sizeof(Impl_::float_num_));
 
-  // @@protoc_insertion_point(copy_constructor:skDB.Column)
+  // @@protoc_insertion_point(copy_constructor:keystoneDB.Column)
 }
 inline PROTOBUF_NDEBUG_INLINE Column::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
@@ -399,7 +399,7 @@ inline void Column::SharedCtor(::_pb::Arena* arena) {
                sizeof(Impl_::float_num_));
 }
 Column::~Column() {
-  // @@protoc_insertion_point(destructor:skDB.Column)
+  // @@protoc_insertion_point(destructor:keystoneDB.Column)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
@@ -453,13 +453,13 @@ const ::_pbi::TcParseTable<2, 4, 1, 23, 2> Column::_table_ = {
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::skDB::Column>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::keystoneDB::Column>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // optional double float_num = 4;
     {::_pbi::TcParser::FastF64S1,
      {33, 3, 0, PROTOBUF_FIELD_OFFSET(Column, _impl_.float_num_)}},
-    // optional .skDB.Column.ColumnType type = 1;
+    // optional .keystoneDB.Column.ColumnType type = 1;
     {::_pbi::TcParser::FastEvS1,
      {8, 1, 0, PROTOBUF_FIELD_OFFSET(Column, _impl_.type_)}},
     // optional int32 integer_num = 2;
@@ -471,7 +471,7 @@ const ::_pbi::TcParseTable<2, 4, 1, 23, 2> Column::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // optional .skDB.Column.ColumnType type = 1;
+    // optional .keystoneDB.Column.ColumnType type = 1;
     {PROTOBUF_FIELD_OFFSET(Column, _impl_.type_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kEnum)},
     // optional int32 integer_num = 2;
@@ -484,16 +484,16 @@ const ::_pbi::TcParseTable<2, 4, 1, 23, 2> Column::_table_ = {
     {PROTOBUF_FIELD_OFFSET(Column, _impl_.float_num_), _Internal::kHasBitsOffset + 3, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kDouble)},
   }}, {{
-    {::_pbi::FieldAuxEnumData{}, ::skDB::Column_ColumnType_internal_data_},
+    {::_pbi::FieldAuxEnumData{}, ::keystoneDB::Column_ColumnType_internal_data_},
   }}, {{
     "\13\0\0\3\0\0\0\0"
-    "skDB.Column"
+    "keystoneDB.Column"
     "str"
   }},
 };
 
 PROTOBUF_NOINLINE void Column::Clear() {
-// @@protoc_insertion_point(message_clear_start:skDB.Column)
+// @@protoc_insertion_point(message_clear_start:keystoneDB.Column)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -523,12 +523,12 @@ PROTOBUF_NOINLINE void Column::Clear() {
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
           const Column& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:skDB.Column)
+          // @@protoc_insertion_point(serialize_to_array_start:keystoneDB.Column)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
           cached_has_bits = this_._impl_._has_bits_[0];
-          // optional .skDB.Column.ColumnType type = 1;
+          // optional .keystoneDB.Column.ColumnType type = 1;
           if (cached_has_bits & 0x00000002u) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteEnumToArray(
@@ -546,7 +546,7 @@ PROTOBUF_NOINLINE void Column::Clear() {
           if (cached_has_bits & 0x00000001u) {
             const std::string& _s = this_._internal_str();
             ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(_s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormat::SERIALIZE,
-                                        "skDB.Column.str");
+                                        "keystoneDB.Column.str");
             target = stream->WriteStringMaybeAliased(3, _s, target);
           }
 
@@ -562,7 +562,7 @@ PROTOBUF_NOINLINE void Column::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:skDB.Column)
+          // @@protoc_insertion_point(serialize_to_array_end:keystoneDB.Column)
           return target;
         }
 
@@ -573,7 +573,7 @@ PROTOBUF_NOINLINE void Column::Clear() {
         ::size_t Column::ByteSizeLong() const {
           const Column& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:skDB.Column)
+          // @@protoc_insertion_point(message_byte_size_start:keystoneDB.Column)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -588,7 +588,7 @@ PROTOBUF_NOINLINE void Column::Clear() {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_str());
             }
-            // optional .skDB.Column.ColumnType type = 1;
+            // optional .keystoneDB.Column.ColumnType type = 1;
             if (cached_has_bits & 0x00000002u) {
               total_size += 1 +
                             ::_pbi::WireFormatLite::EnumSize(this_._internal_type());
@@ -610,7 +610,7 @@ PROTOBUF_NOINLINE void Column::Clear() {
 void Column::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<Column*>(&to_msg);
   auto& from = static_cast<const Column&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:skDB.Column)
+  // @@protoc_insertion_point(class_specific_merge_from_start:keystoneDB.Column)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -635,7 +635,7 @@ void Column::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::
 }
 
 void Column::CopyFrom(const Column& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:skDB.Column)
+// @@protoc_insertion_point(class_specific_copy_from_start:keystoneDB.Column)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -673,11 +673,11 @@ Row::Row(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:skDB.Row)
+  // @@protoc_insertion_point(arena_constructor:keystoneDB.Row)
 }
 inline PROTOBUF_NDEBUG_INLINE Row::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::skDB::Row& from_msg)
+    const Impl_& from, const ::keystoneDB::Row& from_msg)
       : columns_{visibility, arena, from.columns_},
         _cached_size_{0} {}
 
@@ -695,7 +695,7 @@ Row::Row(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:skDB.Row)
+  // @@protoc_insertion_point(copy_constructor:keystoneDB.Row)
 }
 inline PROTOBUF_NDEBUG_INLINE Row::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
@@ -707,7 +707,7 @@ inline void Row::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
 Row::~Row() {
-  // @@protoc_insertion_point(destructor:skDB.Row)
+  // @@protoc_insertion_point(destructor:keystoneDB.Row)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
@@ -760,26 +760,26 @@ const ::_pbi::TcParseTable<0, 1, 1, 0, 2> Row::_table_ = {
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::skDB::Row>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::keystoneDB::Row>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // repeated .skDB.Column columns = 1;
+    // repeated .keystoneDB.Column columns = 1;
     {::_pbi::TcParser::FastMtR1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(Row, _impl_.columns_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // repeated .skDB.Column columns = 1;
+    // repeated .keystoneDB.Column columns = 1;
     {PROTOBUF_FIELD_OFFSET(Row, _impl_.columns_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::skDB::Column>()},
+    {::_pbi::TcParser::GetTable<::keystoneDB::Column>()},
   }}, {{
   }},
 };
 
 PROTOBUF_NOINLINE void Row::Clear() {
-// @@protoc_insertion_point(message_clear_start:skDB.Row)
+// @@protoc_insertion_point(message_clear_start:keystoneDB.Row)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -800,11 +800,11 @@ PROTOBUF_NOINLINE void Row::Clear() {
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
           const Row& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:skDB.Row)
+          // @@protoc_insertion_point(serialize_to_array_start:keystoneDB.Row)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // repeated .skDB.Column columns = 1;
+          // repeated .keystoneDB.Column columns = 1;
           for (unsigned i = 0, n = static_cast<unsigned>(
                                    this_._internal_columns_size());
                i < n; i++) {
@@ -820,7 +820,7 @@ PROTOBUF_NOINLINE void Row::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:skDB.Row)
+          // @@protoc_insertion_point(serialize_to_array_end:keystoneDB.Row)
           return target;
         }
 
@@ -831,7 +831,7 @@ PROTOBUF_NOINLINE void Row::Clear() {
         ::size_t Row::ByteSizeLong() const {
           const Row& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:skDB.Row)
+          // @@protoc_insertion_point(message_byte_size_start:keystoneDB.Row)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -840,7 +840,7 @@ PROTOBUF_NOINLINE void Row::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // repeated .skDB.Column columns = 1;
+            // repeated .keystoneDB.Column columns = 1;
              {
               total_size += 1UL * this_._internal_columns_size();
               for (const auto& msg : this_._internal_columns()) {
@@ -855,7 +855,7 @@ PROTOBUF_NOINLINE void Row::Clear() {
 void Row::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<Row*>(&to_msg);
   auto& from = static_cast<const Row&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:skDB.Row)
+  // @@protoc_insertion_point(class_specific_merge_from_start:keystoneDB.Row)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -866,7 +866,7 @@ void Row::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::pro
 }
 
 void Row::CopyFrom(const Row& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:skDB.Row)
+// @@protoc_insertion_point(class_specific_copy_from_start:keystoneDB.Row)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -899,11 +899,11 @@ TableMetadata::TableMetadata(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:skDB.TableMetadata)
+  // @@protoc_insertion_point(arena_constructor:keystoneDB.TableMetadata)
 }
 inline PROTOBUF_NDEBUG_INLINE TableMetadata::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::skDB::TableMetadata& from_msg)
+    const Impl_& from, const ::keystoneDB::TableMetadata& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         definitions_{visibility, arena, from.definitions_} {}
@@ -929,7 +929,7 @@ TableMetadata::TableMetadata(
                offsetof(Impl_, nextid_) +
                sizeof(Impl_::hasprimary_));
 
-  // @@protoc_insertion_point(copy_constructor:skDB.TableMetadata)
+  // @@protoc_insertion_point(copy_constructor:keystoneDB.TableMetadata)
 }
 inline PROTOBUF_NDEBUG_INLINE TableMetadata::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
@@ -947,7 +947,7 @@ inline void TableMetadata::SharedCtor(::_pb::Arena* arena) {
                sizeof(Impl_::hasprimary_));
 }
 TableMetadata::~TableMetadata() {
-  // @@protoc_insertion_point(destructor:skDB.TableMetadata)
+  // @@protoc_insertion_point(destructor:keystoneDB.TableMetadata)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
@@ -1000,11 +1000,11 @@ const ::_pbi::TcParseTable<2, 3, 1, 0, 2> TableMetadata::_table_ = {
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::skDB::TableMetadata>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::keystoneDB::TableMetadata>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // repeated .skDB.DBDefinition definitions = 1;
+    // repeated .keystoneDB.DBDefinition definitions = 1;
     {::_pbi::TcParser::FastMtR1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(TableMetadata, _impl_.definitions_)}},
     // optional uint64 nextId = 2;
@@ -1016,7 +1016,7 @@ const ::_pbi::TcParseTable<2, 3, 1, 0, 2> TableMetadata::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // repeated .skDB.DBDefinition definitions = 1;
+    // repeated .keystoneDB.DBDefinition definitions = 1;
     {PROTOBUF_FIELD_OFFSET(TableMetadata, _impl_.definitions_), -1, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     // optional uint64 nextId = 2;
@@ -1026,13 +1026,13 @@ const ::_pbi::TcParseTable<2, 3, 1, 0, 2> TableMetadata::_table_ = {
     {PROTOBUF_FIELD_OFFSET(TableMetadata, _impl_.hasprimary_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kBool)},
   }}, {{
-    {::_pbi::TcParser::GetTable<::skDB::DBDefinition>()},
+    {::_pbi::TcParser::GetTable<::keystoneDB::DBDefinition>()},
   }}, {{
   }},
 };
 
 PROTOBUF_NOINLINE void TableMetadata::Clear() {
-// @@protoc_insertion_point(message_clear_start:skDB.TableMetadata)
+// @@protoc_insertion_point(message_clear_start:keystoneDB.TableMetadata)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -1060,11 +1060,11 @@ PROTOBUF_NOINLINE void TableMetadata::Clear() {
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
           const TableMetadata& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:skDB.TableMetadata)
+          // @@protoc_insertion_point(serialize_to_array_start:keystoneDB.TableMetadata)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // repeated .skDB.DBDefinition definitions = 1;
+          // repeated .keystoneDB.DBDefinition definitions = 1;
           for (unsigned i = 0, n = static_cast<unsigned>(
                                    this_._internal_definitions_size());
                i < n; i++) {
@@ -1095,7 +1095,7 @@ PROTOBUF_NOINLINE void TableMetadata::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:skDB.TableMetadata)
+          // @@protoc_insertion_point(serialize_to_array_end:keystoneDB.TableMetadata)
           return target;
         }
 
@@ -1106,7 +1106,7 @@ PROTOBUF_NOINLINE void TableMetadata::Clear() {
         ::size_t TableMetadata::ByteSizeLong() const {
           const TableMetadata& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:skDB.TableMetadata)
+          // @@protoc_insertion_point(message_byte_size_start:keystoneDB.TableMetadata)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -1115,7 +1115,7 @@ PROTOBUF_NOINLINE void TableMetadata::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // repeated .skDB.DBDefinition definitions = 1;
+            // repeated .keystoneDB.DBDefinition definitions = 1;
              {
               total_size += 1UL * this_._internal_definitions_size();
               for (const auto& msg : this_._internal_definitions()) {
@@ -1142,7 +1142,7 @@ PROTOBUF_NOINLINE void TableMetadata::Clear() {
 void TableMetadata::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<TableMetadata*>(&to_msg);
   auto& from = static_cast<const TableMetadata&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:skDB.TableMetadata)
+  // @@protoc_insertion_point(class_specific_merge_from_start:keystoneDB.TableMetadata)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1163,7 +1163,7 @@ void TableMetadata::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::g
 }
 
 void TableMetadata::CopyFrom(const TableMetadata& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:skDB.TableMetadata)
+// @@protoc_insertion_point(class_specific_copy_from_start:keystoneDB.TableMetadata)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1203,11 +1203,11 @@ DBDefinition::DBDefinition(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:skDB.DBDefinition)
+  // @@protoc_insertion_point(arena_constructor:keystoneDB.DBDefinition)
 }
 inline PROTOBUF_NDEBUG_INLINE DBDefinition::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::skDB::DBDefinition& from_msg)
+    const Impl_& from, const ::keystoneDB::DBDefinition& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         name_(arena, from.name_) {}
@@ -1233,14 +1233,14 @@ DBDefinition::DBDefinition(
                offsetof(Impl_, charlen_) +
                sizeof(Impl_::type_));
 
-  // @@protoc_insertion_point(copy_constructor:skDB.DBDefinition)
+  // @@protoc_insertion_point(copy_constructor:keystoneDB.DBDefinition)
 }
 inline PROTOBUF_NDEBUG_INLINE DBDefinition::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : _cached_size_{0},
         name_(arena),
-        type_{static_cast< ::skDB::DBDefinition_DefinitionType >(1)} {}
+        type_{static_cast< ::keystoneDB::DBDefinition_DefinitionType >(1)} {}
 
 inline void DBDefinition::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -1252,7 +1252,7 @@ inline void DBDefinition::SharedCtor(::_pb::Arena* arena) {
                sizeof(Impl_::nullable_));
 }
 DBDefinition::~DBDefinition() {
-  // @@protoc_insertion_point(destructor:skDB.DBDefinition)
+  // @@protoc_insertion_point(destructor:keystoneDB.DBDefinition)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
@@ -1306,11 +1306,11 @@ const ::_pbi::TcParseTable<3, 6, 1, 30, 2> DBDefinition::_table_ = {
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::skDB::DBDefinition>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::keystoneDB::DBDefinition>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // optional .skDB.DBDefinition.DefinitionType type = 1;
+    // optional .keystoneDB.DBDefinition.DefinitionType type = 1;
     {::_pbi::TcParser::FastEr1S1,
      {8, 5, 3, PROTOBUF_FIELD_OFFSET(DBDefinition, _impl_.type_)}},
     // optional string name = 2;
@@ -1332,7 +1332,7 @@ const ::_pbi::TcParseTable<3, 6, 1, 30, 2> DBDefinition::_table_ = {
   }}, {{
     65535, 65535
   }}, {{
-    // optional .skDB.DBDefinition.DefinitionType type = 1;
+    // optional .keystoneDB.DBDefinition.DefinitionType type = 1;
     {PROTOBUF_FIELD_OFFSET(DBDefinition, _impl_.type_), _Internal::kHasBitsOffset + 5, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kEnumRange)},
     // optional string name = 2;
@@ -1354,13 +1354,13 @@ const ::_pbi::TcParseTable<3, 6, 1, 30, 2> DBDefinition::_table_ = {
     {1, 3},
   }}, {{
     "\21\0\4\0\0\0\0\0"
-    "skDB.DBDefinition"
+    "keystoneDB.DBDefinition"
     "name"
   }},
 };
 
 PROTOBUF_NOINLINE void DBDefinition::Clear() {
-// @@protoc_insertion_point(message_clear_start:skDB.DBDefinition)
+// @@protoc_insertion_point(message_clear_start:keystoneDB.DBDefinition)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -1391,12 +1391,12 @@ PROTOBUF_NOINLINE void DBDefinition::Clear() {
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
           const DBDefinition& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:skDB.DBDefinition)
+          // @@protoc_insertion_point(serialize_to_array_start:keystoneDB.DBDefinition)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
           cached_has_bits = this_._impl_._has_bits_[0];
-          // optional .skDB.DBDefinition.DefinitionType type = 1;
+          // optional .keystoneDB.DBDefinition.DefinitionType type = 1;
           if (cached_has_bits & 0x00000020u) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteEnumToArray(
@@ -1407,7 +1407,7 @@ PROTOBUF_NOINLINE void DBDefinition::Clear() {
           if (cached_has_bits & 0x00000001u) {
             const std::string& _s = this_._internal_name();
             ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(_s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormat::SERIALIZE,
-                                        "skDB.DBDefinition.name");
+                                        "keystoneDB.DBDefinition.name");
             target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
@@ -1444,7 +1444,7 @@ PROTOBUF_NOINLINE void DBDefinition::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:skDB.DBDefinition)
+          // @@protoc_insertion_point(serialize_to_array_end:keystoneDB.DBDefinition)
           return target;
         }
 
@@ -1455,7 +1455,7 @@ PROTOBUF_NOINLINE void DBDefinition::Clear() {
         ::size_t DBDefinition::ByteSizeLong() const {
           const DBDefinition& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:skDB.DBDefinition)
+          // @@protoc_insertion_point(message_byte_size_start:keystoneDB.DBDefinition)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -1487,7 +1487,7 @@ PROTOBUF_NOINLINE void DBDefinition::Clear() {
             if (cached_has_bits & 0x00000010u) {
               total_size += 2;
             }
-            // optional .skDB.DBDefinition.DefinitionType type = 1;
+            // optional .keystoneDB.DBDefinition.DefinitionType type = 1;
             if (cached_has_bits & 0x00000020u) {
               total_size += 1 +
                             ::_pbi::WireFormatLite::EnumSize(this_._internal_type());
@@ -1500,7 +1500,7 @@ PROTOBUF_NOINLINE void DBDefinition::Clear() {
 void DBDefinition::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<DBDefinition*>(&to_msg);
   auto& from = static_cast<const DBDefinition&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:skDB.DBDefinition)
+  // @@protoc_insertion_point(class_specific_merge_from_start:keystoneDB.DBDefinition)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1531,7 +1531,7 @@ void DBDefinition::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::go
 }
 
 void DBDefinition::CopyFrom(const DBDefinition& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:skDB.DBDefinition)
+// @@protoc_insertion_point(class_specific_copy_from_start:keystoneDB.DBDefinition)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1569,11 +1569,11 @@ DBMetadata::DBMetadata(::google::protobuf::Arena* arena)
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:skDB.DBMetadata)
+  // @@protoc_insertion_point(arena_constructor:keystoneDB.DBMetadata)
 }
 inline PROTOBUF_NDEBUG_INLINE DBMetadata::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::skDB::DBMetadata& from_msg)
+    const Impl_& from, const ::keystoneDB::DBMetadata& from_msg)
       : tables_{visibility, arena, from.tables_},
         _cached_size_{0} {}
 
@@ -1591,7 +1591,7 @@ DBMetadata::DBMetadata(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:skDB.DBMetadata)
+  // @@protoc_insertion_point(copy_constructor:keystoneDB.DBMetadata)
 }
 inline PROTOBUF_NDEBUG_INLINE DBMetadata::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
@@ -1603,7 +1603,7 @@ inline void DBMetadata::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
 DBMetadata::~DBMetadata() {
-  // @@protoc_insertion_point(destructor:skDB.DBMetadata)
+  // @@protoc_insertion_point(destructor:keystoneDB.DBMetadata)
   _internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   SharedDtor();
 }
@@ -1656,7 +1656,7 @@ const ::_pbi::TcParseTable<0, 1, 0, 30, 2> DBMetadata::_table_ = {
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::skDB::DBMetadata>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::keystoneDB::DBMetadata>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // repeated string tables = 1;
@@ -1672,13 +1672,13 @@ const ::_pbi::TcParseTable<0, 1, 0, 30, 2> DBMetadata::_table_ = {
   // no aux_entries
   {{
     "\17\6\0\0\0\0\0\0"
-    "skDB.DBMetadata"
+    "keystoneDB.DBMetadata"
     "tables"
   }},
 };
 
 PROTOBUF_NOINLINE void DBMetadata::Clear() {
-// @@protoc_insertion_point(message_clear_start:skDB.DBMetadata)
+// @@protoc_insertion_point(message_clear_start:keystoneDB.DBMetadata)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -1699,7 +1699,7 @@ PROTOBUF_NOINLINE void DBMetadata::Clear() {
             ::google::protobuf::io::EpsCopyOutputStream* stream) const {
           const DBMetadata& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:skDB.DBMetadata)
+          // @@protoc_insertion_point(serialize_to_array_start:keystoneDB.DBMetadata)
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
@@ -1707,7 +1707,7 @@ PROTOBUF_NOINLINE void DBMetadata::Clear() {
           for (int i = 0, n = this_._internal_tables_size(); i < n; ++i) {
             const auto& s = this_._internal_tables().Get(i);
             ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormat::SERIALIZE,
-                                        "skDB.DBMetadata.tables");
+                                        "keystoneDB.DBMetadata.tables");
             target = stream->WriteString(1, s, target);
           }
 
@@ -1716,7 +1716,7 @@ PROTOBUF_NOINLINE void DBMetadata::Clear() {
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
                     this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
           }
-          // @@protoc_insertion_point(serialize_to_array_end:skDB.DBMetadata)
+          // @@protoc_insertion_point(serialize_to_array_end:keystoneDB.DBMetadata)
           return target;
         }
 
@@ -1727,7 +1727,7 @@ PROTOBUF_NOINLINE void DBMetadata::Clear() {
         ::size_t DBMetadata::ByteSizeLong() const {
           const DBMetadata& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:skDB.DBMetadata)
+          // @@protoc_insertion_point(message_byte_size_start:keystoneDB.DBMetadata)
           ::size_t total_size = 0;
 
           ::uint32_t cached_has_bits = 0;
@@ -1753,7 +1753,7 @@ PROTOBUF_NOINLINE void DBMetadata::Clear() {
 void DBMetadata::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
   auto* const _this = static_cast<DBMetadata*>(&to_msg);
   auto& from = static_cast<const DBMetadata&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:skDB.DBMetadata)
+  // @@protoc_insertion_point(class_specific_merge_from_start:keystoneDB.DBMetadata)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -1763,7 +1763,7 @@ void DBMetadata::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::goog
 }
 
 void DBMetadata::CopyFrom(const DBMetadata& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:skDB.DBMetadata)
+// @@protoc_insertion_point(class_specific_copy_from_start:keystoneDB.DBMetadata)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1780,7 +1780,7 @@ void DBMetadata::InternalSwap(DBMetadata* PROTOBUF_RESTRICT other) {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)
-}  // namespace skDB
+}  // namespace keystoneDB
 namespace google {
 namespace protobuf {
 }  // namespace protobuf

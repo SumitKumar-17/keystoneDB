@@ -4,7 +4,7 @@
 #include "sql/exp.h"
 #include "execution/executor.h"
 
-namespace skDB {
+namespace keystoneDB {
     bool ExpEvaluator::process(ScalarExp *scalar_exp) {
         assert(scalar_exp!=nullptr);
         switch (scalar_exp->scalarType()) {

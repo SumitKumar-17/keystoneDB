@@ -2,7 +2,7 @@
 #define SHOW_STMT_H
 #include "stmt.h"
 
-namespace skDB {
+namespace keystoneDB {
     enum ShowType {
         ShowDatabases,
         ShowTables,

@@ -1,6 +1,6 @@
 #include "sql/show_stmt.h"
 
-namespace skDB {
+namespace keystoneDB {
     ShowStmt::ShowStmt(const ShowType show_type_): SQLStmt(skSQL_SHOW), show_type(show_type_) {
     }
 

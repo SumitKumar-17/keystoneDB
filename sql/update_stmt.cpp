@@ -2,7 +2,7 @@
 
 #include "sql/exp.h"
 
-namespace skDB {
+namespace keystoneDB {
     UpdateAssign::UpdateAssign(ColumnName *column_name_, Exp *right_) : column_name(column_name_), right(right_) {
     }
 

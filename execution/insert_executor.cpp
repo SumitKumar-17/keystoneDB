@@ -3,7 +3,7 @@
 
 #include "execution/executor.h"
 
-namespace skDB {
+namespace keystoneDB {
     void Executor::executeInsertStmt(const InsertStmt *insert_stmt) const {
         assert(insert_stmt!=nullptr);
         assert(insert_stmt->parameters!=nullptr);

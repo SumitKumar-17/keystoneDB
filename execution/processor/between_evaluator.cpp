@@ -1,6 +1,6 @@
 #include "execution/executor.h"
 
-namespace skDB {
+namespace keystoneDB {
     bool ExpEvaluator::process(BetweenExpr *between_expr) {
         assert(between_expr!=nullptr);
         const Value v1 = between_expr->getExp1()->getValue(), v2 = between_expr->getExp2()->getValue(), v3 =

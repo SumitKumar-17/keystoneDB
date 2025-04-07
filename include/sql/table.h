@@ -2,7 +2,7 @@
 #define TABLE_H
 #include <vector>
 
-namespace skDB {
+namespace keystoneDB {
     struct TableName {
         char *name;
         char *schema;

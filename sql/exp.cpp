@@ -4,7 +4,7 @@
 
 #include "execution/executor.h"
 
-namespace skDB {
+namespace keystoneDB {
     Exp::~Exp() = default;
 
     Exp::Exp(ExpType type_): expType(type_) {

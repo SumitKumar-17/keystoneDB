@@ -3,7 +3,7 @@
 #include "sql/table.h"
 #include <cassert>
 
-namespace skDB {
+namespace keystoneDB {
     // may be ambiguous for TableName here.
     CreateStmt::CreateStmt(TableName name_) : SQLStmt(skSQL_CREATE), name(name_),createType(CreateDatabase), list(nullptr) {
         assert(name.schema!=nullptr&& name.name==nullptr);

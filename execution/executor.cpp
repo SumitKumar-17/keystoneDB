@@ -5,7 +5,7 @@
 
 #include "sql/parser_result.h"
 
-namespace skDB {
+namespace keystoneDB {
     Executor::Executor(): db(nullptr) {
     }
 

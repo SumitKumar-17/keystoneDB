@@ -5,7 +5,7 @@
 
 #include "constant.h"
 
-namespace skDB {
+namespace keystoneDB {
     void Executor::executeUseStmt(const UseStmt *use_stmt) {
         assert(use_stmt!=nullptr);
         assert(use_stmt->name.schema!=nullptr);

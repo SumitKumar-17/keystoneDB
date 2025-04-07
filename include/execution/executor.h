@@ -9,7 +9,7 @@
 #include "sql/parser_result.h"
 #include "sql/stmts.h"
 
-namespace skDB {
+namespace keystoneDB {
     struct TableFullName {
         std::string table_name;
         std::string table_schema;

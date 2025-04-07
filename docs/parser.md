@@ -197,7 +197,7 @@ int main()
 ### public inheritance
 
 ```shell
-‘skDB::SQLStmt’ is an inaccessible base of ‘skDB::DropStmt’
+‘keystoneDB::SQLStmt’ is an inaccessible base of ‘keystoneDB::DropStmt’
 ```
 
 We should use public inheritance here.

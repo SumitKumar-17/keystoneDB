@@ -5,7 +5,7 @@
 #include "table.h"
 #include <vector>
 
-namespace skDB {
+namespace keystoneDB {
     class UpdateAssign {
     public:
         UpdateAssign(ColumnName *column_name_, Exp *right_);

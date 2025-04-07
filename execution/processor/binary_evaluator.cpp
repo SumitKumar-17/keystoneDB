@@ -4,7 +4,7 @@
 #include "sql/exp.h"
 #include "execution/executor.h"
 
-namespace skDB {
+namespace keystoneDB {
     static bool checkIsSameType(Exp *exp1, Exp *exp2) {
         return exp1->getValue().getType() == exp2->getValue().getType();
     }

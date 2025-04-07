@@ -1,6 +1,6 @@
 #include "sql/parser_result.h"
 
-namespace skDB {
+namespace keystoneDB {
     void ParserResult::addStatement(SQLStmt *stmt) {
         statements.push_back(stmt);
     }

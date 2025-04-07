@@ -3,7 +3,7 @@
 #include "stmt.h"
 #include "table.h"
 
-namespace skDB {
+namespace keystoneDB {
     class UseStmt final : public SQLStmt {
     public:
         explicit UseStmt(TableName name_);

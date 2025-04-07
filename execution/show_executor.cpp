@@ -5,7 +5,7 @@
 
 #include "fort.hpp"
 
-namespace skDB {
+namespace keystoneDB {
     void Executor::executeShowStmt(const ShowStmt *show_stmt) const{
         assert(show_stmt!=nullptr);
         switch (show_stmt->getShowType()) {
