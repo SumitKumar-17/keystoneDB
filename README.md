@@ -13,12 +13,15 @@ git submodule update
 ```
 
 Install the following libraries on your computer
-
+Ubuntu
 ```shell
 # required by rocksdb
 sudo apt-get install libgflags-dev libzstd-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev
 # required by protobuf
 sudo apt-get install libprotobuf-dev protobuf-compiler
+# required by flex and bison
+sudo apt-get install flex bison
+
 ```
 in Arch Linux
 ```shell
@@ -27,12 +30,17 @@ sudo pacman -S gflags zstd snappy zlib bzip2 lz4 liburing-dev
 
 # Required by Protobuf
 sudo pacman -S protobuf
+
+# Required by flex and bison
+sudo pacman -S flex bison
+
 ```
-
-if the grpc libray apprecited then recompile by the command in teroot director y 
-with protoc --cpp_out=./ common/codec/db.proto
-
-thn buidl the databsae
+If on compiling the GRPC library gives error you need to recompile the [db.proto](./common/codec/db.proto)
+with 
+```shell
+protoc --cpp_out=./ common/codec/db.proto
+```
+Then recompile the database again.
 
 ## Features
 
