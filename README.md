@@ -24,7 +24,7 @@ sudo apt-get install libprotobuf-dev protobuf-compiler
 sudo apt-get install flex bison
 
 ```
-in Arch Linux
+### Arch Linux
 ```shell
 # Required by RocksDB
 sudo pacman -S gflags zstd snappy zlib bzip2 lz4 liburing-dev
@@ -42,6 +42,10 @@ with
 protoc --cpp_out=./ common/codec/db.proto
 ```
 Then recompile the database again.
+
+This code was tested on **Arch Linux**. 
+If you are running on **Ubuntu** there can be an error that **abseil error** comes.
+For this you need to comment the line **153 and 154** in the [CMakeLists.txt](./CMakeLists.txt).
 
 ## Features
 
