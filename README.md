@@ -88,9 +88,12 @@ select * from test.table1,table1;-- duplicated table (It is correctly checked)
 ```shell
 mkdir build
 cd build
+
 cmake ..
 make -j4
 ```
+
+On building it the libfort library might gives an error with `cmake ..` commands due the libfort cmake version specified. IF you update the libfort Cmake Version then the code does not compile. A fix to that is  to run the command `cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ..`  in the build directory first then run `cmake ..` and then `make -j4`.
 
 ## Project Structure
 

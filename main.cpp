@@ -20,17 +20,19 @@ int wrapped_parse(const char *text, keystoneDB::ParserResult *result);
 void read_loop();
 
 const auto welcome = "Welcome to the keystoneDB. keystoneDB is a relational DBMS built on RocksDB.";
-const auto copyright = "Copyright (c) 2024-present Sumit Kumar All rights reserved.";
-const auto author = "Written by Sumit Kumar <https://github.com/SumitKumar-17>.";
+// const auto copyright = "Copyright (c) 2025-present Sumit Kumar All rights reserved.";
+// const auto author = "Written by Sumit Kumar <https://github.com/SumitKumar-17>.";
 const auto license = "Source code git repository: <https://github.com/SumitKumar-17/keystoneDB>.";
+const auto website = "The website for the Architecture and the Demos of the Database is <https://sumitkumar-17.github.io/keystoneDB>.";
 
 void printInfo() {
     std::cout << welcome << std::endl;
 
     std::cout << "keystoneDB VERSION: v" << KEYSTONEDB_MAJOR << "." << KEYSTONEDB_MINOR << "." << KEYSTONEDB_PATCH << std::endl << std::endl;
 
-    std::cout << copyright << std::endl;
-    std::cout << author << std::endl;
+    // std::cout << copyright << std::endl;
+    // std::cout << author << std::endl;
+    std::cout << website << std::endl;
     std::cout << license << std::endl;
     std::cout << std::endl;
 }

@@ -124,6 +124,14 @@ make -j4</code></pre>
   <button class="copy-button" onclick="copyCode(this)">Copy</button>
 </div>
 
+<div class="note-container">
+  <p><strong>Note:</strong> 
+  On building it the libfort library might gives an error with <strong>cmake ..</strong> commands due the libfort cmake version specified. IF you update the libfort Cmake Version then the code does not compile. A fix to that is  to run the command <strong>cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ..</strong>  in the build directory first then run <strong>cmake ..</strong> and then <strong>make -j4</strong>.
+  </p>
+</div>
+
+On building it the libfort library might gives an error with `cmake ..` commands due the libfort cmake version specified. IF you update the libfort Cmkae code does not compile. A fix to that is  to run the command `cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ..`  in the build directory first then run `cmake ..` and `make -j4`.
+
 ## Supported SQL Examples
 
 <div class="code-container">
