@@ -66,63 +66,68 @@ layout: default
   
   <p>To get the third party dependencies (via source code), run:</p>
   
-  ```shell
-  git submodule init
-  git submodule update
-  ```
+  <div class="code-container">
+    <pre><code>git submodule init
+git submodule update</code></pre>
+    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+  </div>
   
   <p>Install the following libraries on your computer:</p>
   
-  ```shell
-  # required by rocksdb
-  sudo apt-get install libgflags-dev libzstd-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev
-  # required by protobuf
-  sudo apt-get install libprotobuf-dev protobuf-compiler
-  # required by flex and bison
-  sudo apt-get install flex bison
-  ```
+  <div class="code-container">
+    <pre><code># required by rocksdb
+sudo apt-get install libgflags-dev libzstd-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev
+# required by protobuf
+sudo apt-get install libprotobuf-dev protobuf-compiler
+# required by flex and bison
+sudo apt-get install flex bison</code></pre>
+    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+  </div>
 </div>
 
 <div id="Arch" class="tabcontent">
   <h3>Arch Linux</h3>
   
-  ```shell
-  # Required by RocksDB
-  sudo pacman -S gflags zstd snappy zlib bzip2 lz4 liburing-dev
+  <div class="code-container">
+    <pre><code># Required by RocksDB
+sudo pacman -S gflags zstd snappy zlib bzip2 lz4 liburing-dev
 
-  # Required by Protobuf
-  sudo pacman -S protobuf
+# Required by Protobuf
+sudo pacman -S protobuf
 
-  # Required by flex and bison
-  sudo pacman -S flex bison
-  ```
+# Required by flex and bison
+sudo pacman -S flex bison</code></pre>
+    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+  </div>
   
   <p>If compiling the GRPC library gives an error, you need to recompile the db.proto with:</p>
   
-  ```shell
-  protoc --cpp_out=./ common/codec/db.proto
-  ```
-  
-  <p>Then recompile the database again.</p>
-  
+  <div class="code-container">
+    <pre><code>protoc --cpp_out=./ common/codec/db.proto</code></pre>
+    <button class="copy-button" onclick="copyCode(this)">Copy</button>
+  </div>
+</div>
+
+<div class="note-container">
   <p><strong>Note:</strong> This code was tested on <strong>Arch Linux</strong>. 
-  If you are running on <strong>Ubuntu</strong> there can be an error that <strong>abseil error</strong> comes.
-  For this you need to comment the line <strong>153 and 154</strong> in the CMakeLists.txt.</p>
+  If you are running on <strong>Ubuntu</strong> there can be an error related to <strong>abseil</strong>.
+  If you encounter this error, you need to comment lines <strong>153 and 154</strong> in the CMakeLists.txt file.</p>
 </div>
 
 ### Building the Project
 
-```shell
-mkdir build
+<div class="code-container">
+  <pre><code>mkdir build
 cd build
 cmake ..
-make -j4
-```
+make -j4</code></pre>
+  <button class="copy-button" onclick="copyCode(this)">Copy</button>
+</div>
 
 ## Supported SQL Examples
 
-```sql
-CREATE DATABASE example;
+<div class="code-container">
+  <pre><code>CREATE DATABASE example;
 USE example;
 CREATE TABLE user (id int, score float);
 SHOW TABLES;
@@ -133,8 +138,9 @@ DELETE FROM user WHERE id=42;
 SELECT * from user where id=(1+2*2+(id=id)+id^id+id) AND id = id%2 AND id IS NOT NULL;
 select * from t1 where id is not null;
 DROP TABLE user;
-exit; -- keyword used to exit from the database
-```
+exit; -- keyword used to exit from the database</code></pre>
+  <button class="copy-button" onclick="copyCode(this)">Copy</button>
+</div>
 
 Additional examples can be found in [test.sql](https://github.com/SumitKumar-17/keystoneDB/blob/main/test/test.sql).
 
@@ -154,16 +160,15 @@ Additional examples can be found in [test.sql](https://github.com/SumitKumar-17/
 
 ## How to Run
 
-Start keystoneDB interactive shell (interactive mode):
-
-```shell
-# Assuming you are in build directory
-./build/keystoneDB
-```
+<div class="code-container">
+  <pre><code># Assuming you are in build directory
+./build/keystoneDB</code></pre>
+  <button class="copy-button" onclick="copyCode(this)">Copy</button>
+</div>
 
 ## Architecture
 
-<div class="architecture-gallery">
+<div class="vertical-gallery">
   {% for i in (1..10) %}
     <div class="architecture-item">
       <img src="./images/{{ i }}.png" alt="Architecture Diagram {{ i }}" onclick="enlargeImage(this)">
@@ -178,7 +183,7 @@ Start keystoneDB interactive shell (interactive mode):
 
 ## Demo Screenshots
 
-<div class="demo-gallery">
+<div class="vertical-gallery">
   {% for i in (11..18) %}
     <div class="demo-item">
       <img src="./images/{{ i }}.png" alt="Demo Screenshot {{ i }}" onclick="enlargeImage(this)">
@@ -217,10 +222,10 @@ Start keystoneDB interactive shell (interactive mode):
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
   
-  .architecture-gallery, .demo-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
+  .vertical-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     margin: 30px 0;
   }
   
@@ -229,6 +234,7 @@ Start keystoneDB interactive shell (interactive mode):
     border-radius: 6px;
     cursor: pointer;
     transition: opacity 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
   }
   
   .architecture-item img:hover, .demo-item img:hover {
@@ -301,6 +307,50 @@ Start keystoneDB interactive shell (interactive mode):
     animation: fadeEffect 1s;
   }
   
+  .note-container {
+    background-color: #fffde7;
+    border-left: 4px solid #fdd835;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  
+  .code-container {
+    position: relative;
+    margin: 20px 0;
+  }
+  
+  .code-container pre {
+    background-color: #f6f8fa;
+    border-radius: 6px;
+    padding: 16px;
+    padding-right: 60px;
+    overflow: auto;
+    margin: 0;
+  }
+  
+  .copy-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #e9ecef;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+  }
+  
+  .copy-button:hover {
+    background-color: #dee2e6;
+  }
+  
+  .copy-button.copied {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
   @keyframes fadeEffect {
     from {opacity: 0;}
     to {opacity: 1;}
@@ -338,5 +388,22 @@ Start keystoneDB interactive shell (interactive mode):
         modal.style.display = "none";
       }
     }
+  }
+  
+  function copyCode(button) {
+    const codeBlock = button.previousElementSibling;
+    const code = codeBlock.textContent;
+    
+    navigator.clipboard.writeText(code).then(() => {
+      // Visual feedback
+      button.textContent = "Copied!";
+      button.classList.add("copied");
+      
+      // Reset after 2 seconds
+      setTimeout(() => {
+        button.textContent = "Copy";
+        button.classList.remove("copied");
+      }, 2000);
+    });
   }
 </script>
