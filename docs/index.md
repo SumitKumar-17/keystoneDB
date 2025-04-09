@@ -2,18 +2,23 @@
 layout: default
 ---
 
-<div class="hero-banner">
-  <div class="hero-content">
-    <h1>keystoneDB</h1>
-    <p class="hero-description">A relational DBMS built upon persistent key-value storage</p>
-    <p><em>Database Management Systems Laboratory (CS39202) Term Project</em></p>
-    
-    <div class="hero-buttons">
-      <a href="https://github.com/SumitKumar-17/keystoneDB" class="btn primary-btn" target="_blank">View on GitHub</a>
-      <a href="https://github.com/SumitKumar-17/keystoneDB/zipball/main" class="btn secondary-btn" target="_blank">Download .zip</a>
-      <a href="https://github.com/SumitKumar-17/keystoneDB/tarball/main" class="btn secondary-btn" target="_blank">Download .tar.gz</a>
-    </div>
-  </div>
+<p align="center">
+  <img src="./images/keystoneDB.png" alt="keystoneDB Logo" width="500">
+</p>
+
+<div align="center">
+  <h1>keystoneDB</h1>
+  <p><strong>A relational DBMS built upon persistent key-value storage</strong></p>
+  <p><em>Database Management Systems Laboratory (CS39202) Term Project</em></p>
+  
+  <p>
+    <a href="https://github.com/SumitKumar-17/keystoneDB">
+      <img src="https://img.shields.io/badge/View%20on-GitHub-24292e?logo=github&logoColor=white" alt="View on GitHub">
+    </a>
+    <a href="https://github.com/SumitKumar-17/keystoneDB/stargazers">
+      <img src="https://img.shields.io/github/stars/SumitKumar-17/keystoneDB?style=social" alt="GitHub stars">
+    </a>
+  </p>
 </div>
 
 <div class="demo-container">
@@ -121,23 +126,23 @@ make -j4</code></pre>
 
 ## Supported SQL Examples
 
-<div class="code-container sql-code">
-  <pre><code><span class="keyword">CREATE DATABASE</span> example;
-<span class="keyword">USE</span> example;
-<span class="keyword">CREATE TABLE</span> user (id <span class="type">int</span>, score <span class="type">float</span>);
-<span class="keyword">SHOW TABLES</span>;
-<span class="keyword">INSERT INTO</span> user (id <span class="type">int</span> <span class="keyword">NOT NULL</span>) <span class="keyword">VALUES</span> (1);
-<span class="keyword">SELECT</span> id <span class="keyword">from</span> user <span class="keyword">WHERE</span> id = 42;
-<span class="keyword">UPDATE</span> user <span class="keyword">SET</span> id=1 <span class="keyword">WHERE</span> id=42;
-<span class="keyword">DELETE FROM</span> user <span class="keyword">WHERE</span> id=42;
-<span class="keyword">SELECT</span> * <span class="keyword">from</span> user <span class="keyword">where</span> id=(1+2*2+(id=id)+id^id+id) <span class="keyword">AND</span> id = id%2 <span class="keyword">AND</span> id <span class="keyword">IS NOT NULL</span>;
-<span class="keyword">select</span> * <span class="keyword">from</span> t1 <span class="keyword">where</span> id <span class="keyword">is not null</span>;
-<span class="keyword">DROP TABLE</span> user;
-exit; <span class="comment">-- keyword used to exit from the database</span></code></pre>
+<div class="code-container">
+  <pre><code>CREATE DATABASE example;
+USE example;
+CREATE TABLE user (id int, score float);
+SHOW TABLES;
+INSERT INTO user (id int NOT NULL) VALUES (1);
+SELECT id from user WHERE id = 42;
+UPDATE user SET id=1 WHERE id=42;
+DELETE FROM user WHERE id=42;
+SELECT * from user where id=(1+2*2+(id=id)+id^id+id) AND id = id%2 AND id IS NOT NULL;
+select * from t1 where id is not null;
+DROP TABLE user;
+exit; -- keyword used to exit from the database</code></pre>
   <button class="copy-button" onclick="copyCode(this)">Copy</button>
 </div>
 
-Additional examples can be found in <a href="https://github.com/SumitKumar-17/keystoneDB/blob/main/test/test.sql" target="_blank">test.sql</a>.
+Additional examples can be found in [test.sql](https://github.com/SumitKumar-17/keystoneDB/blob/main/test/test.sql).
 
 ## Project Structure
 
@@ -187,81 +192,6 @@ Additional examples can be found in <a href="https://github.com/SumitKumar-17/ke
 </div>
 
 <style>
-  /* Main layout and typography */
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.6;
-    color: #24292e;
-    background-color: #f6f8fa;
-  }
-  
-  /* Hero Banner */
-  .hero-banner {
-    background-image: linear-gradient(120deg, #155799, #159957);
-    color: white;
-    padding: 3rem 1rem;
-    text-align: center;
-    margin-bottom: 40px;
-    border-radius: 0 0 8px 8px;
-  }
-  
-  .hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: white;
-  }
-  
-  .hero-description {
-    font-size: 1.5rem;
-    opacity: 0.9;
-    margin-bottom: 2rem;
-  }
-  
-  .hero-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
-  }
-  
-  .btn {
-    padding: 12px 24px;
-    border-radius: 4px;
-    text-decoration: none;
-    text-align: center;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    display: inline-block;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .primary-btn {
-    background-color: #0366d6;
-    color: white;
-  }
-  
-  .primary-btn:hover {
-    background-color: #0459c4;
-    transform: translateY(-2px);
-  }
-  
-  .secondary-btn {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-  }
-  
-  .secondary-btn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-  }
-  
-  /* Features Grid */
   .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -270,7 +200,7 @@ Additional examples can be found in <a href="https://github.com/SumitKumar-17/ke
   }
   
   .feature-item {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -281,13 +211,6 @@ Additional examples can be found in <a href="https://github.com/SumitKumar-17/ke
     transform: translateY(-5px);
   }
   
-  .feature-item h3 {
-    color: #155799;
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  
-  /* Demo container */
   .demo-container {
     margin: 40px 0;
     text-align: center;
@@ -299,7 +222,6 @@ Additional examples can be found in <a href="https://github.com/SumitKumar-17/ke
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
   
-  /* Image Gallery */
   .vertical-gallery {
     display: flex;
     flex-direction: column;
@@ -319,7 +241,6 @@ Additional examples can be found in <a href="https://github.com/SumitKumar-17/ke
     opacity: 0.9;
   }
   
-  /* Modal for image zoom */
   .modal {
     display: none;
     position: fixed;
@@ -350,7 +271,6 @@ Additional examples can be found in <a href="https://github.com/SumitKumar-17/ke
     cursor: pointer;
   }
   
-  /* Tabs */
   .tabs {
     overflow: hidden;
     border: 1px solid #ccc;
@@ -374,7 +294,7 @@ Additional examples can be found in <a href="https://github.com/SumitKumar-17/ke
   }
   
   .tabs button.active {
-    background-color: #159957;
+    background-color: #4CAF50;
     color: white;
   }
   
@@ -385,10 +305,8 @@ Additional examples can be found in <a href="https://github.com/SumitKumar-17/ke
     border-top: none;
     border-radius: 0 0 5px 5px;
     animation: fadeEffect 1s;
-    background-color: white;
   }
   
-  /* Notes */
   .note-container {
     background-color: #fffde7;
     border-left: 4px solid #fdd835;
@@ -397,7 +315,6 @@ Additional examples can be found in <a href="https://github.com/SumitKumar-17/ke
     border-radius: 0 4px 4px 0;
   }
   
-  /* Code Containers */
   .code-container {
     position: relative;
     margin: 20px 0;
@@ -410,27 +327,6 @@ Additional examples can be found in <a href="https://github.com/SumitKumar-17/ke
     padding-right: 60px;
     overflow: auto;
     margin: 0;
-    border: 1px solid #e1e4e8;
-  }
-  
-  .sql-code pre {
-    background-color: #282c34;
-    color: #abb2bf;
-  }
-  
-  /* SQL Syntax Highlighting */
-  .sql-code .keyword {
-    color: #c678dd;
-    font-weight: bold;
-  }
-  
-  .sql-code .type {
-    color: #98c379;
-  }
-  
-  .sql-code .comment {
-    color: #5c6370;
-    font-style: italic;
   }
   
   .copy-button {
@@ -451,68 +347,8 @@ Additional examples can be found in <a href="https://github.com/SumitKumar-17/ke
   }
   
   .copy-button.copied {
-    background-color: #159957;
+    background-color: #4CAF50;
     color: white;
-  }
-  
-  /* Tables */
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 2rem 0;
-    background-color: white;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  th, td {
-    padding: 12px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #f6f8fa;
-    font-weight: 600;
-    color: #24292e;
-  }
-  
-  tr:hover {
-    background-color: #f5f5f5;
-  }
-  
-  /* Headings */
-  h1, h2, h3, h4, h5, h6 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-    color: #155799;
-  }
-  
-  h2 {
-    padding-bottom: 0.3em;
-    border-bottom: 1px solid #eaecef;
-  }
-  
-  /* Responsive adjustments */
-  @media screen and (max-width: 768px) {
-    .hero-buttons {
-      flex-direction: column;
-      gap: 10px;
-    }
-    
-    .features-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .hero-content h1 {
-      font-size: 2.5rem;
-    }
-    
-    .hero-description {
-      font-size: 1.2rem;
-    }
   }
   
   @keyframes fadeEffect {
@@ -570,15 +406,4 @@ Additional examples can be found in <a href="https://github.com/SumitKumar-17/ke
       }, 2000);
     });
   }
-  
-  // Make all external links open in new tabs
-  document.addEventListener('DOMContentLoaded', function() {
-    var links = document.getElementsByTagName('a');
-    for (var i = 0; i < links.length; i++) {
-      if (links[i].hostname != window.location.hostname) {
-        links[i].target = '_blank';
-        links[i].rel = 'noopener noreferrer';
-      }
-    }
-  });
 </script>
