@@ -430,7 +430,7 @@ Additional examples can be found in [test.sql](https://github.com/SumitKumar-17/
   function openReport() {
     var modal = document.getElementById("reportModal");
     var pdfViewer = document.getElementById("pdfViewer");
-    pdfViewer.src = "./report/DBMS_FINAL_Reprt.pdf";
+    pdfViewer.src = "./report/DBMS_Final_Report.pdf";
     modal.style.display = "block";
     
     window.onclick = function(event) {
