@@ -5,10 +5,12 @@ layout: default
 <p align="center">
   <img src="./images/keystoneDB.png" alt="keystoneDB Logo" width="500">
 </p>
+
 <div align="center">
   <h1>keystoneDB</h1>
   <p><strong>A relational DBMS built upon persistent key-value storage</strong></p>
   <p><em>Database Management Systems Laboratory (CS39202) Term Project</em></p>
+  
   <p>
     <a href="https://github.com/SumitKumar-17/keystoneDB">
       <img src="https://img.shields.io/badge/View%20on-GitHub-24292e?logo=github&logoColor=white" alt="View on GitHub">
@@ -21,6 +23,7 @@ layout: default
     </a>
   </p>
 </div>
+
 <div class="demo-container">
   <img src="./images/keystoneDB_Demo.png" alt="keystoneDB Demo" class="demo-image">
 </div>
@@ -189,6 +192,12 @@ Additional examples can be found in [test.sql](https://github.com/SumitKumar-17/
   <img class="modal-content" id="enlargedImage">
 </div>
 
+<!-- PDF Report Modal -->
+<div id="reportModal" class="modal">
+  <span class="close" onclick="closeReport()">&times;</span>
+  <embed class="modal-content" id="pdfViewer" type="application/pdf">
+</div>
+
 ## Demo Screenshots
 
 <div class="vertical-gallery">
@@ -268,6 +277,11 @@ Additional examples can be found in [test.sql](https://github.com/SumitKumar-17/
     max-height: 90%;
   }
   
+  #pdfViewer {
+    width: 100%;
+    height: 100vh;
+  }
+  
   .close {
     position: absolute;
     top: 15px;
@@ -277,6 +291,21 @@ Additional examples can be found in [test.sql](https://github.com/SumitKumar-17/
     font-weight: bold;
     transition: 0.3s;
     cursor: pointer;
+    z-index: 1001;
+  }
+  
+  .close:hover {
+    color: #bbb;
+  }
+  
+  .report-button {
+    display: inline-block;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  .report-button:hover {
+    transform: translateY(-2px);
   }
   
   .tabs {
@@ -396,6 +425,24 @@ Additional examples can be found in [test.sql](https://github.com/SumitKumar-17/
         modal.style.display = "none";
       }
     }
+  }
+  
+  function openReport() {
+    var modal = document.getElementById("reportModal");
+    var pdfViewer = document.getElementById("pdfViewer");
+    pdfViewer.src = "./report/DBMS_FINAL_Reprt.pdf";
+    modal.style.display = "block";
+    
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        closeReport();
+      }
+    }
+  }
+  
+  function closeReport() {
+    var modal = document.getElementById("reportModal");
+    modal.style.display = "none";
   }
   
   function copyCode(button) {
