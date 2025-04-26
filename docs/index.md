@@ -5,12 +5,10 @@ layout: default
 <p align="center">
   <img src="./images/keystoneDB.png" alt="keystoneDB Logo" width="500">
 </p>
-
 <div align="center">
   <h1>keystoneDB</h1>
   <p><strong>A relational DBMS built upon persistent key-value storage</strong></p>
   <p><em>Database Management Systems Laboratory (CS39202) Term Project</em></p>
-  
   <p>
     <a href="https://github.com/SumitKumar-17/keystoneDB">
       <img src="https://img.shields.io/badge/View%20on-GitHub-24292e?logo=github&logoColor=white" alt="View on GitHub">
@@ -18,9 +16,11 @@ layout: default
     <a href="https://github.com/SumitKumar-17/keystoneDB/stargazers">
       <img src="https://img.shields.io/github/stars/SumitKumar-17/keystoneDB?style=social" alt="GitHub stars">
     </a>
+    <a href="#" class="report-button" onclick="openReport()">
+      <img src="https://img.shields.io/badge/View%20Full%20Report-PDF-red?logo=adobe-acrobat-reader&logoColor=white" alt="View Full Report">
+    </a>
   </p>
 </div>
-
 <div class="demo-container">
   <img src="./images/keystoneDB_Demo.png" alt="keystoneDB Demo" class="demo-image">
 </div>
