@@ -4,88 +4,193 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>keystoneDB - A relational DBMS built upon persistent key-value storage</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <style>
+    :root {
+      --primary-color: #0366d6;
+      --secondary-color: #4CAF50;
+      --accent-color: #fdd835;
+      --text-color: #24292e;
+      --bg-color: #f6f8fa;
+      --card-bg: #ffffff;
+      --border-color: #eaecef;
+      --code-bg: #f6f8fa;
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.1);
+      --border-radius: 8px;
+      --transition-speed: 0.3s;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.6;
-      color: #24292e;
-      background-color: #f6f8fa;
-      margin: 0;
+      color: var(--text-color);
+      background-color: var(--bg-color);
       padding: 0;
+      margin: 0;
     }
     
     .container {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 40px 20px;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: var(--card-bg);
+      box-shadow: var(--shadow-md);
+      border-radius: var(--border-radius);
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
     
     h1, h2, h3 {
-      color: #0366d6;
+      color: var(--primary-color);
+      font-weight: 600;
     }
     
     h1 {
       font-size: 2.5em;
       margin-bottom: 0.5em;
+      letter-spacing: -0.5px;
     }
     
     h2 {
       font-size: 1.8em;
-      margin-top: 1.5em;
-      margin-bottom: 0.5em;
+      margin-top: 2em;
+      margin-bottom: 0.8em;
       padding-bottom: 0.3em;
-      border-bottom: 1px solid #eaecef;
+      border-bottom: 2px solid var(--border-color);
     }
     
     h3 {
       font-size: 1.3em;
-      margin-top: 1.2em;
-      margin-bottom: 0.5em;
+      margin-top: 1.5em;
+      margin-bottom: 0.7em;
     }
     
     a {
-      color: #0366d6;
+      color: var(--primary-color);
       text-decoration: none;
+      transition: color var(--transition-speed) ease;
     }
     
     a:hover {
       text-decoration: underline;
+      color: #0f52ba;
     }
     
     .center {
       text-align: center;
     }
     
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .header img {
+      max-width: 350px;
+      height: auto;
+      margin-bottom: 20px;
+      transition: transform 0.5s ease;
+    }
+    
+    .header img:hover {
+      transform: scale(1.05);
+    }
+    
+    .header h1 {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-size: 3em;
+      background: linear-gradient(45deg, var(--primary-color), #39c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .header p {
+      font-size: 1.2em;
+      margin-bottom: 15px;
+    }
+    
+    .header p strong {
+      font-size: 1.1em;
+    }
+    
+    .badges {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .badges a {
+      transition: transform var(--transition-speed) ease;
+    }
+    
+    .badges a:hover {
+      transform: translateY(-3px);
+    }
+    
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
+      gap: 25px;
       margin: 30px 0;
     }
     
     .feature-item {
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
+      background-color: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+      border-left: 4px solid var(--primary-color);
     }
     
     .feature-item:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .feature-item h3 {
+      display: flex;
+      align-items: center;
+      margin-top: 0;
+    }
+    
+    .feature-item h3::before {
+      content: "✓";
+      color: var(--secondary-color);
+      margin-right: 10px;
+      font-weight: bold;
     }
     
     .demo-container {
-      margin: 40px 0;
+      margin: 50px 0;
       text-align: center;
     }
     
     .demo-image {
       max-width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-lg);
+      transition: transform var(--transition-speed) ease;
+    }
+    
+    .demo-image:hover {
+      transform: scale(1.02);
     }
     
     .vertical-gallery {
@@ -95,16 +200,27 @@
       margin: 30px 0;
     }
     
+    .gallery-item {
+      overflow: hidden;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-md);
+      transition: transform var(--transition-speed) ease;
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-5px);
+    }
+    
     .architecture-item img, .demo-item img {
       width: 100%;
-      border-radius: 6px;
+      border-radius: var(--border-radius);
       cursor: pointer;
-      transition: opacity 0.3s ease;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+      transition: transform var(--transition-speed) ease;
+      display: block;
     }
     
     .architecture-item img:hover, .demo-item img:hover {
-      opacity: 0.9;
+      transform: scale(1.03);
     }
     
     .modal {
@@ -117,6 +233,13 @@
       height: 100%;
       overflow: auto;
       background-color: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(5px);
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
     
     .modal-content {
@@ -124,11 +247,18 @@
       display: block;
       max-width: 90%;
       max-height: 90%;
+      animation: zoomIn 0.3s ease;
+    }
+    
+    @keyframes zoomIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
     
     #pdfViewer {
       width: 100%;
-      height: 100vh;
+      height: 90vh;
+      border: none;
     }
     
     .close {
@@ -145,6 +275,7 @@
     
     .close:hover {
       color: #bbb;
+      transform: rotate(90deg);
     }
     
     .report-button {
@@ -161,18 +292,25 @@
       overflow: hidden;
       border: 1px solid #ccc;
       background-color: #f1f1f1;
-      border-radius: 5px 5px 0 0;
+      border-radius: 8px 8px 0 0;
+      display: flex;
     }
     
     .tabs button {
       background-color: inherit;
-      float: left;
       border: none;
       outline: none;
       cursor: pointer;
-      padding: 14px 16px;
-      transition: 0.3s;
-      font-size: 17px;
+      padding: 14px 20px;
+      transition: all 0.3s;
+      font-size: 16px;
+      font-weight: 500;
+      flex: 1;
+      border-right: 1px solid #ddd;
+    }
+    
+    .tabs button:last-child {
+      border-right: none;
     }
     
     .tabs button:hover {
@@ -180,67 +318,97 @@
     }
     
     .tabs button.active {
-      background-color: #4CAF50;
+      background-color: var(--secondary-color);
       color: white;
     }
     
     .tabcontent {
       display: none;
-      padding: 6px 12px;
+      padding: 20px;
       border: 1px solid #ccc;
       border-top: none;
-      border-radius: 0 0 5px 5px;
-      animation: fadeEffect 1s;
+      border-radius: 0 0 8px 8px;
+      animation: fadeEffect 0.5s;
+      background-color: white;
     }
     
     .note-container {
       background-color: #fffde7;
-      border-left: 4px solid #fdd835;
-      padding: 15px;
-      margin: 20px 0;
-      border-radius: 0 4px 4px 0;
+      border-left: 4px solid var(--accent-color);
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 0 8px 8px 0;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .note-container strong {
+      color: #f57c00;
     }
     
     .code-container {
       position: relative;
-      margin: 20px 0;
+      margin: 25px 0;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
     }
     
     .code-container pre {
-      background-color: #f6f8fa;
-      border-radius: 6px;
-      padding: 16px;
+      background-color: var(--code-bg);
+      padding: 20px;
       padding-right: 60px;
       overflow: auto;
       margin: 0;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #333;
+      border-radius: var(--border-radius);
     }
     
     .copy-button {
       position: absolute;
-      top: 8px;
-      right: 8px;
+      top: 10px;
+      right: 10px;
       background-color: #e9ecef;
       border: none;
       border-radius: 4px;
-      padding: 5px 10px;
+      padding: 8px 12px;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 13px;
       transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .copy-button::before {
+      content: '\f0c5';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
     }
     
     .copy-button:hover {
       background-color: #dee2e6;
+      transform: translateY(-2px);
     }
     
     .copy-button.copied {
-      background-color: #4CAF50;
+      background-color: var(--secondary-color);
       color: white;
+    }
+    
+    .copied::before {
+      content: '\f00c';
     }
     
     table {
       border-collapse: collapse;
       width: 100%;
-      margin: 20px 0;
+      margin: 30px 0;
+      box-shadow: var(--shadow-md);
+      border-radius: var(--border-radius);
+      overflow: hidden;
     }
     
     table, th, td {
@@ -248,82 +416,206 @@
     }
     
     th, td {
-      padding: 12px;
+      padding: 15px;
       text-align: left;
     }
     
     th {
-      background-color: #f2f2f2;
+      background-color: var(--primary-color);
+      color: white;
+      font-weight: 600;
     }
     
     tr:nth-child(even) {
       background-color: #f9f9f9;
     }
     
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+    
+    .run-instructions {
+      background-color: #e8f5e9;
+      border-left: 4px solid var(--secondary-color);
+      padding: 20px;
+      margin: 25px 0;
+      border-radius: 0 8px 8px 0;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .run-instructions h3 {
+      color: var(--secondary-color);
+      margin-top: 0;
+    }
+    
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 50px;
+    }
+    
+    .section-title::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 4px;
+      background-color: var(--primary-color);
+      border-radius: 2px;
+    }
+    
     @keyframes fadeEffect {
       from {opacity: 0;}
       to {opacity: 1;}
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px 15px;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .tabs button {
+        padding: 10px;
+        font-size: 14px;
+      }
+      
+      .header h1 {
+        font-size: 2.2em;
+      }
+      
+      .header img {
+        max-width: 280px;
+      }
+    }
+    
+    /* Footer styles */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      border-top: 1px solid var(--border-color);
+      color: #666;
+    }
+    
+    /* Back to top button */
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--primary-color);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-md);
+      z-index: 100;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      background-color: #0257be;
+    }
+    
+    /* Loading animation */
+    .loading {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1100;
+    }
+    
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top-color: var(--primary-color);
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <p align="center">
-      <img src="./images/keystoneDB.png" alt="keystoneDB Logo" width="500">
-    </p>
-    
-    <div align="center">
+    <div class="header animate__animated animate__fadeIn">
+      <img src="./images/keystoneDB.png" alt="keystoneDB Logo">
+      
       <h1>keystoneDB</h1>
       <p><strong>A relational DBMS built upon persistent key-value storage</strong></p>
       <p><em>Database Management Systems Laboratory (CS39202) Term Project</em></p>
       
-      <p>
-        <a href="https://github.com/SumitKumar-17/keystoneDB">
-          <img src="https://img.shields.io/badge/View%20on-GitHub-24292e?logo=github&logoColor=white" alt="View on GitHub">
+      <div class="badges">
+        <a href="https://github.com/SumitKumar-17/keystoneDB" target="_blank">
+          <img src="https://img.shields.io/badge/View%20on-GitHub-24292e?logo=github&logoColor=white&style=for-the-badge" alt="View on GitHub">
         </a>
-        <a href="https://github.com/SumitKumar-17/keystoneDB/stargazers">
+        <a href="https://github.com/SumitKumar-17/keystoneDB/stargazers" target="_blank">
           <img src="https://img.shields.io/github/stars/SumitKumar-17/keystoneDB?style=social" alt="GitHub stars">
         </a>
         <a href="#" class="report-button" onclick="openReport()">
-          <img src="https://img.shields.io/badge/View%20Full%20Report-PDF-red?logo=adobe-acrobat-reader&logoColor=white" alt="View Full Report">
+          <img src="https://img.shields.io/badge/View%20Full%20Report-PDF-red?logo=adobe-acrobat-reader&logoColor=white&style=for-the-badge" alt="View Full Report">
         </a>
-      </p>
+      </div>
     </div>
     
-    <div class="demo-container">
+    <div class="demo-container animate__animated animate__fadeIn animate__delay-1s">
       <img src="./images/keystoneDB_Demo.png" alt="keystoneDB Demo" class="demo-image">
     </div>
     
-    <h2>Key Features</h2>
+    <h2 class="section-title">Key Features</h2>
     
     <div class="features-grid">
-      <div class="feature-item">
+      <div class="feature-item animate__animated animate__fadeInUp animate__delay-1s">
         <h3>Expression Evaluation</h3>
-        <p>Support for nested expressions including arithmetic operations, logical operations, and more</p>
+        <p>Support for nested expressions including arithmetic operations, logical operations, and more. Create complex queries with ease.</p>
       </div>
-      <div class="feature-item">
+      <div class="feature-item animate__animated animate__fadeInUp animate__delay-1s">
         <h3>Multiple Data Types</h3>
-        <p>Support for INT, FLOAT, and CHAR(N) data types</p>
+        <p>Support for INT, FLOAT, and CHAR(N) data types to handle various data storage requirements.</p>
       </div>
-      <div class="feature-item">
+      <div class="feature-item animate__animated animate__fadeInUp animate__delay-1s">
         <h3>Constraints</h3>
-        <p>NOT NULL constraint, SQL comments, and more</p>
+        <p>NOT NULL constraint, SQL comments, and more to maintain data integrity.</p>
       </div>
-      <div class="feature-item">
+      <div class="feature-item animate__animated animate__fadeInUp animate__delay-1s">
         <h3>Multi-line Support</h3>
-        <p>Execute multi-line SQL statements with ease</p>
+        <p>Execute multi-line SQL statements with ease, improving readability and organization.</p>
       </div>
-      <div class="feature-item">
+      <div class="feature-item animate__animated animate__fadeInUp animate__delay-1s">
         <h3>File Execution</h3>
-        <p>Run SQL scripts directly from files</p>
+        <p>Run SQL scripts directly from files for batch processing and automation.</p>
       </div>
-      <div class="feature-item">
+      <div class="feature-item animate__animated animate__fadeInUp animate__delay-1s">
         <h3>Persistent Storage</h3>
-        <p>Built upon LSM-Tree like MyRocks and TiDB</p>
+        <p>Built upon LSM-Tree like MyRocks and TiDB for efficient and reliable data persistence.</p>
       </div>
     </div>
     
-    <h2>Build Instructions</h2>
+    <h2 class="section-title">Build Instructions</h2>
     
     <div class="tabs">
       <button class="tablinks active" onclick="openTab(event, 'Ubuntu')">Ubuntu 22.04</button>
@@ -378,7 +670,7 @@ sudo pacman -S flex bison</code></pre>
     </div>
     
     <div class="note-container">
-      <p><strong>Note:</strong> This code was tested on <strong>Arch Linux</strong>. 
+      <p><i class="fas fa-exclamation-circle"></i> <strong>Note:</strong> This code was tested on <strong>Arch Linux</strong>. 
       If you are running on <strong>Ubuntu</strong> there can be an error related to <strong>abseil</strong>.
       If you encounter this error, you need to comment lines <strong>153 and 154</strong> in the CMakeLists.txt file.</p>
     </div>
@@ -394,12 +686,12 @@ make -j4</code></pre>
     </div>
     
     <div class="note-container">
-      <p><strong>Note:</strong> 
-      On building it the libfort library might gives an error with <strong>cmake ..</strong> commands due the libfort cmake version specified. IF you update the libfort Cmake Version then the code does not compile. A fix to that is to run the command <strong>cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ..</strong> in the build directory first then run <strong>cmake ..</strong> and then <strong>make -j4</strong>.
+      <p><i class="fas fa-exclamation-circle"></i> <strong>Note:</strong> 
+      On building it the libfort library might gives an error with <strong>cmake ..</strong> commands due the libfort cmake version specified. If you update the libfort Cmake Version then the code does not compile. A fix to that is to run the command <strong>cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ..</strong> in the build directory first then run <strong>cmake ..</strong> and then <strong>make -j4</strong>.
       </p>
     </div>
     
-    <h2>Supported SQL Examples</h2>
+    <h2 class="section-title">Supported SQL Examples</h2>
     
     <div class="code-container">
       <pre><code>CREATE DATABASE example;
@@ -417,9 +709,9 @@ exit; -- keyword used to exit from the database</code></pre>
       <button class="copy-button" onclick="copyCode(this)">Copy</button>
     </div>
     
-    <p>Additional examples can be found in <a href="https://github.com/SumitKumar-17/keystoneDB/blob/main/test/test.sql">test.sql</a>.</p>
+    <p>Additional examples can be found in <a href="https://github.com/SumitKumar-17/keystoneDB/blob/main/test/test.sql" target="_blank">test.sql</a>.</p>
     
-    <h2>Project Structure</h2>
+    <h2 class="section-title">Project Structure</h2>
     
     <table>
       <tr>
@@ -427,75 +719,92 @@ exit; -- keyword used to exit from the database</code></pre>
         <th>Description</th>
       </tr>
       <tr>
-        <td>include/*</td>
-        <td>all the header files</td>
+        <td><code>include/*</code></td>
+        <td>All the header files</td>
       </tr>
       <tr>
-        <td>sql/*</td>
-        <td>intermediate representation(IR) for SQL</td>
+        <td><code>sql/*</code></td>
+        <td>Intermediate representation (IR) for SQL</td>
       </tr>
       <tr>
-        <td>executor/*</td>
-        <td>execute SQL IR</td>
+        <td><code>executor/*</code></td>
+        <td>Execute SQL IR</td>
       </tr>
       <tr>
-        <td>executor/processor/*</td>
-        <td>processor for SQL expression(visitor pattern)</td>
+        <td><code>executor/processor/*</code></td>
+        <td>Processor for SQL expression (visitor pattern)</td>
       </tr>
       <tr>
-        <td>parser/sql.l</td>
-        <td>lexical analysis for SQL(flex)</td>
+        <td><code>parser/sql.l</code></td>
+        <td>Lexical analysis for SQL (flex)</td>
       </tr>
       <tr>
-        <td>parser/sql.y</td>
-        <td>syntax analysis for SQL(bison)</td>
+        <td><code>parser/sql.y</code></td>
+        <td>Syntax analysis for SQL (bison)</td>
       </tr>
       <tr>
-        <td>third_party/*</td>
-        <td>third party dependencies, e.g., googletest, rocksdb</td>
+        <td><code>third_party/*</code></td>
+        <td>Third party dependencies, e.g., googletest, rocksdb</td>
       </tr>
       <tr>
-        <td>test/*</td>
-        <td>unit test</td>
+        <td><code>test/*</code></td>
+        <td>Unit test</td>
       </tr>
       <tr>
-        <td>docs/*</td>
-        <td>documentation for the project</td>
+        <td><code>docs/*</code></td>
+        <td>Documentation for the project</td>
       </tr>
     </table>
     
-    <h2>How to Run</h2>
-    
-    <div class="code-container">
-      <pre><code># Assuming you are in build directory
+    <div class="run-instructions">
+      <h3><i class="fas fa-terminal"></i> How to Run</h3>
+      <div class="code-container">
+        <pre><code># Assuming you are in build directory
 ./build/keystoneDB</code></pre>
-      <button class="copy-button" onclick="copyCode(this)">Copy</button>
+        <button class="copy-button" onclick="copyCode(this)">Copy</button>
+      </div>
     </div>
     
-    <h2>Architecture</h2>
+    <h2 class="section-title">Architecture</h2>
     
     <div class="vertical-gallery" id="architecture-gallery">
       <!-- Will be populated via JavaScript -->
     </div>
     
-    <div id="imageModal" class="modal">
-      <span class="close">&times;</span>
-      <img class="modal-content" id="enlargedImage">
-    </div>
-    
-    <!-- PDF Report Modal -->
-    <div id="reportModal" class="modal">
-      <span class="close" onclick="closeReport()">&times;</span>
-      <embed class="modal-content" id="pdfViewer" type="application/pdf">
-    </div>
-    
-    <h2>Demo Screenshots</h2>
+    <h2 class="section-title">Demo Screenshots</h2>
     
     <div class="vertical-gallery" id="demo-gallery">
       <!-- Will be populated via JavaScript -->
     </div>
+    
+    <div class="footer">
+      <p>© 2025 keystoneDB Project | Made with <i class="fas fa-heart" style="color: #e25555;"></i> by the keystoneDB Team</p>
+    </div>
   </div>
 
+  <!-- Back to top button -->
+  <a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+  
+  <!-- Loading animation -->
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Image Modal -->
+  <div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="enlargedImage">
+  </div>
+    
+  <!-- PDF Report Modal -->
+  <div id="reportModal" class="modal">
+    <span class="close" onclick="closeReport()">&times;</span>
+    <embed class="modal-content" id="pdfViewer" type="application/pdf">
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script>
     // Populate architecture gallery
     window.onload = function() {
@@ -505,11 +814,12 @@ exit; -- keyword used to exit from the database</code></pre>
       // Add architecture images
       for (let i = 1; i <= 10; i++) {
         const div = document.createElement('div');
-        div.className = 'architecture-item';
+        div.className = 'architecture-item gallery-item animate__animated animate__fadeIn';
         
         const img = document.createElement('img');
         img.src = `./images/${i}.png`;
         img.alt = `Architecture Diagram ${i}`;
+        img.loading = "lazy"; // Lazy loading
         img.onclick = function() { enlargeImage(this); };
         
         div.appendChild(img);
@@ -519,39 +829,68 @@ exit; -- keyword used to exit from the database</code></pre>
       // Add demo images
       for (let i = 11; i <= 18; i++) {
         const div = document.createElement('div');
-        div.className = 'demo-item';
+        div.className = 'demo-item gallery-item animate__animated animate__fadeIn';
         
         const img = document.createElement('img');
         img.src = `./images/${i}.png`;
-        img.alt = `Demo Screenshot ${i}`;
+        img.alt = `Demo Screenshot ${i-10}`;
+        img.loading = "lazy"; // Lazy loading
         img.onclick = function() { enlargeImage(this); };
         
         div.appendChild(img);
         demoGallery.appendChild(div);
       }
+      
+      // Back to top button functionality
+      const backToTopButton = document.getElementById('backToTop');
+      
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.add('visible');
+        } else {
+          backToTopButton.classList.remove('visible');
+        }
+      });
+      
+      backToTopButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     };
     
     function openTab(evt, tabName) {
-      var i, tabcontent, tablinks;
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
+      const tabcontent = document.getElementsByClassName("tabcontent");
+      for (let i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
       }
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
+      
+      const tablinks = document.getElementsByClassName("tablinks");
+      for (let i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
       }
+      
       document.getElementById(tabName).style.display = "block";
       evt.currentTarget.className += " active";
+      
+      // Add animation
+      document.getElementById(tabName).classList.add('animate__animated', 'animate__fadeIn');
     }
     
     function enlargeImage(img) {
-      var modal = document.getElementById("imageModal");
-      var modalImg = document.getElementById("enlargedImage");
-      modal.style.display = "block";
+      const loading = document.getElementById("loading");
+      loading.style.display = "flex";
+      
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("enlargedImage");
+      
+      modalImg.onload = function() {
+        loading.style.display = "none";
+        modal.style.display = "block";
+      };
+      
       modalImg.src = img.src;
       
-      var span = document.getElementsByClassName("close")[0];
+      const span = document.getElementsByClassName("close")[0];
       span.onclick = function() { 
         modal.style.display = "none";
       }
@@ -564,8 +903,16 @@ exit; -- keyword used to exit from the database</code></pre>
     }
     
     function openReport() {
-      var modal = document.getElementById("reportModal");
-      var pdfViewer = document.getElementById("pdfViewer");
+      const loading = document.getElementById("loading");
+      loading.style.display = "flex";
+      
+      const modal = document.getElementById("reportModal");
+      const pdfViewer = document.getElementById("pdfViewer");
+      
+      pdfViewer.onload = function() {
+        loading.style.display = "none";
+      };
+      
       pdfViewer.src = "./report/DBMS_Final_Report.pdf";
       modal.style.display = "block";
       
@@ -577,7 +924,7 @@ exit; -- keyword used to exit from the database</code></pre>
     }
     
     function closeReport() {
-      var modal = document.getElementById("reportModal");
+      const modal = document.getElementById("reportModal");
       modal.style.display = "none";
     }
     
@@ -597,6 +944,43 @@ exit; -- keyword used to exit from the database</code></pre>
         }, 2000);
       });
     }
-  </script>
-</body>
-</html>
+    
+    // Add smooth scrolling for all anchors
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+    
+    // Intersection Observer for animation on scroll
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.feature-item, .gallery-item, .section-title');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      elements.forEach(element => {
+        // Remove any existing animation classes first
+        element.classList.remove('animate__animated', 'animate__fadeIn', 'animate__fadeInUp');
+        observer.observe(element);
+      });
+    };
+    
+    // Initialize animation on scroll
+    document.addEventListener('DOMContentLoaded', animateOnScroll);
