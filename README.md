@@ -3,7 +3,7 @@ Database Management Systems Laboratory(CS39202) Term Project
 ![keystoneDB.png](./docs/images/keystoneDB_Demo.png)
 
 ## Project Demo
-![Demo Video](./DBMS_Group_Project_Demo.webm)
+[Demo Video](https://drive.google.com/file/d/1m0a_JIVV1QeOkWNqVFGoFg9BhUIKFUB8/view?usp=sharing)
 
 ## Build
 
