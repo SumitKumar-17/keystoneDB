@@ -2,6 +2,9 @@
 Database Management Systems Laboratory(CS39202) Term Project
 ![keystoneDB.png](./docs/images/keystoneDB_Demo.png)
 
+## Project Demo
+![Demo Video](./DBMS_Group_Project_Demo.webm)
+
 ## Build
 
 ### Ubuntu 22.04
