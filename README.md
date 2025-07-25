@@ -3,7 +3,7 @@ Database Management Systems Laboratory(CS39202) Term Project
 
 ## Group Members
 
-- **Sumit Kumar** 22CS30056 [sumitkUmar17](https://github.com/SumitKumar17)
+- **Sumit Kumar** 22CS30056 [SumitKumar-17](https://github.com/SumitKumar-17)
 - **Mayash Nayak** 22CS30064 [Mn031](https://github.com/Mn031)
 - **Aviral Singh** 22CS30015 [aviral759](https://github.com/aviral759)
 
